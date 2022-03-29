@@ -1,7 +1,12 @@
 .DS_Store
 node_modules
 /dist
-
+#router main App.vue store.js assets
+store/index.js
+main.js
+App.vue
+router/index.js
+assets
 
 # local env files
 .env.local

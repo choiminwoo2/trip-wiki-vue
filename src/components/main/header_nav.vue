@@ -8,9 +8,9 @@
                         <li><router-link :to="{name:'Join'}" class="nav-link">회원가입</router-link></li>
                     </ul>
                     <ul class="navbar-nav ms-md-auto" v-else>
-                        <li class="nav-link" @click="logout">{{parent_id}}님 (로그아웃)</li>
-                        <li><router-link :to="{name:'Adminpage'}" class="nav-link" v-show="id === 'admin'">관리자페이지</router-link></li>
-                        <li><router-link :to="{name:'Mypage'}" class="nav-link" v-show="!id === 'admin'">마이페이지</router-link></li>
+                        <li class="nav-link" @click="logout">님 (로그아웃)</li>
+                        <li><router-link to="#" class="nav-link" v-show="id === 'admin'">관리자페이지</router-link></li>
+                        <li><router-link to="#" class="nav-link" v-show="!id === 'admin'">마이페이지</router-link></li>
                     </ul>
                 </div>
             
@@ -18,8 +18,8 @@
         <!-- 로고 및 검색바 -->
         <div class="row align-items-center" id="middle_header">
             <div class="col-lg-5 col-md-12" id="logo_div">
-                <router-link :to="{name:'Mainpage'}">
-                    <img src="../assets/logo_tripWiki.png" width="300" height="100" class="float-end" id="logo">
+                <router-link :to="{name:'Home'}">
+                    <img src="@/assets/logo_tripWiki.png" class="float-end" id="logo">
                 </router-link>  
             </div>
             <div class="col-lg-7 col-md-12">
@@ -74,6 +74,11 @@ export default {
         margin-bottom: 15px;
     }
 
+    #logo {
+        width: 270px;
+        height: 100px;
+    }
+
     #first_nav {
         height: 31px;
     }
@@ -97,11 +102,17 @@ export default {
             padding-right: 0rem;
             padding-left: 0rem;
         }
+        #logo {
+            max-width: 300px;
+        }
     }
 
     @media (max-width: 991px) {
         #logo_div {
-            width: 324px;
+            width: 400px;
+        }
+        #logo {
+            max-width: 300px;
         }
     }
 

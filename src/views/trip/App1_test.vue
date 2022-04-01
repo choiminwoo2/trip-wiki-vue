@@ -52,11 +52,25 @@
 
   <div class="search_box">
 
+  <div class="btn-group mt-3" role="group" aria-label="Button group with nested dropdown">
+    
+      <button type="button" class="btn btn-primary" style="width:100px">지역</button>
+      <button id="btnGroupDrop1" type="button" class="btn btn-primary dropdown-toggle" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false"></button>
+      <div class="dropdown-menu" aria-labelledby="btnGroupDrop1" style="">
+        <a class="dropdown-item" href="#">Dropdown link</a>
+        <a class="dropdown-item" href="#">Dropdown link</a>
+      </div>
+      <input type="text" class="form-control" placeholder="지역 검색" aria-label="Recipient's username" aria-describedby="button-addon2" style="margin-left:10px;width:800px;" >
+      <button class="btn btn-primary" type="button" id="button-addon2" style="width:100px">검색</button>
+</div>
+
+
   </div>
 
-   <div class="row">
+  <div class="main">
+  <div class="row">
       <div class="col-3">
-          <p>Card</p>
+        
           <div class="card">
             <div class="card-header">
               My Card
@@ -71,27 +85,12 @@
         </div>
 
         <div class="col-3">
-          <p>Card</p>
+        
           <div class="card">
             <div class="card-header">
               My Card
             </div>
-            <img src="images/card-image.png" alt="" />
-            <div class="card-body">
-              <h5 class="card-title">Lorem</h5>
-              <p class="card-text">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam egestas sed sem ut malesuada.</p>
-              <a href="#" class="btn btn-primary">More</a>
-            </div>
-          </div>
-        </div>
-
-         <div class="col-3">
-          <p>Card</p>
-          <div class="card">
-            <div class="card-header">
-              My Card
-            </div>
-            <img src="images/card-image.png" alt="" />
+            <img src="./1234.jpg" alt="" />
             <div class="card-body">
               <h5 class="card-title">Lorem</h5>
               <p class="card-text">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam egestas sed sem ut malesuada.</p>
@@ -101,12 +100,12 @@
         </div>
 
         <div class="col-3">
-          <p>Card</p>
+        
           <div class="card">
             <div class="card-header">
               My Card
             </div>
-            <img src="images/card-image.png" alt="" />
+            <img src="./1234.jpg" alt="" />
             <div class="card-body">
               <h5 class="card-title">Lorem</h5>
               <p class="card-text">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam egestas sed sem ut malesuada.</p>
@@ -114,10 +113,115 @@
             </div>
           </div>
         </div>
-      </div>
 
+        <div class="col-3">
+        
+          <div class="card">
+            <div class="card-header">
+              My Card
+            </div>
+            <img src="./1234.jpg" alt="" />
+            <div class="card-body">
+              <h5 class="card-title">Lorem</h5>
+              <p class="card-text">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam egestas sed sem ut malesuada.</p>
+              <a href="#" class="btn btn-primary">More</a>
+            </div>
+          </div>
+        </div>
+   </div>
+
+   <div class="row">
+      <div class="col-3">
+        
+          <div class="card">
+            <div class="card-header">
+              My Card
+            </div>
+            <img src="./1234.jpg" alt="" />
+            <div class="card-body">
+              <h5 class="card-title">Lorem</h5>
+              <p class="card-text">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam egestas sed sem ut malesuada.</p>
+              <a href="#" class="btn btn-primary">More</a>
+            </div>
+          </div>
+        </div>
+
+        <div class="col-3">
+        
+          <div class="card">
+            <div class="card-header">
+              My Card
+            </div>
+            <img src="./1234.jpg" alt="" />
+            <div class="card-body">
+              <h5 class="card-title">Lorem</h5>
+              <p class="card-text">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam egestas sed sem ut malesuada.</p>
+              <a href="#" class="btn btn-primary">More</a>
+            </div>
+          </div>
+        </div>
+
+        <div class="col-3">
+        
+          <div class="card">
+            <div class="card-header">
+              My Card
+            </div>
+            <img src="./1234.jpg" alt="" />
+            <div class="card-body">
+              <h5 class="card-title">Lorem</h5>
+              <p class="card-text">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam egestas sed sem ut malesuada.</p>
+              <a href="#" class="btn btn-primary">More</a>
+            </div>
+          </div>
+        </div>
+
+        <div class="col-3">
+        
+          <div class="card">
+            <div class="card-header">
+              My Card
+            </div>
+            <img src="./1234.jpg" alt="" />
+            <div class="card-body">
+              <h5 class="card-title">Lorem</h5>
+              <p class="card-text">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam egestas sed sem ut malesuada.</p>
+              <a href="#" class="btn btn-primary">More</a>
+            </div>
+          </div>
+        </div>
+   </div>
+  </div>
+
+
+
+
+<div>
+  <ul class="pagination">
+    <li class="page-item disabled">
+      <a class="page-link" href="#">&laquo;</a>
+    </li>
+    <li class="page-item active">
+      <a class="page-link" href="#">1</a>
+    </li>
+    <li class="page-item">
+      <a class="page-link" href="#">2</a>
+    </li>
+    <li class="page-item">
+      <a class="page-link" href="#">3</a>
+    </li>
+    <li class="page-item">
+      <a class="page-link" href="#">4</a>
+    </li>
+    <li class="page-item">
+      <a class="page-link" href="#">5</a>
+    </li>
+    <li class="page-item">
+      <a class="page-link" href="#">&raquo;</a>
+    </li>
+  </ul>
+</div>
       
-
 </div>
 
 </template>
@@ -128,8 +232,14 @@
 </script>
 
 <style scope>
-  .search_box{
-    background-color: blue;
-    height: 100px;
+ 
+
+  .row {
+    margin-top: 50px;
+  }
+
+  .pagination{
+    margin-top: 50px;
+    justify-content: center;
   }
 </style>

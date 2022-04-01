@@ -15,7 +15,7 @@ export default {
 }
 </script>
 
-<style leng="scss" scope>
+<style leng="scss" scoped>
 
  @media screen and (min-width:1024px){
   .login-Container{

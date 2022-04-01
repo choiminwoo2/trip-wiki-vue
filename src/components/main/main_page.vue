@@ -1,7 +1,7 @@
 <template>
     <div>
         <!-- 사진 슬라이드 -->
-        <div id="carouselExampleIndicators" class="carousel slide" data-bs-ride="carousel">
+       <div id="carouselExampleIndicators" class="carousel slide" data-bs-ride="carousel">
             <div class="carousel-indicators">
                 <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
                 <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="1" aria-label="Slide 2"></button>
@@ -9,13 +9,13 @@
             </div>
             <div class="carousel-inner">
                 <div class="carousel-item active" id="slide_div">
-                    <img src="@/assets/image/spring.jpg" id="slide_img">
+                    <img src="@/assets/image/spring.jpg" class="d-block w-100 slide_img">
                 </div>
                 <div class="carousel-item" id="slide_div">
-                    <img src="@/assets/image/flower.jpg" id="slide_img">
+                    <img src="@/assets/image/flower.jpg" class="d-block w-100 slide_img">
                 </div>
                 <div class="carousel-item" id="slide_div">
-                    <img src="@/assets/image/seasons.png" id="slide_img">
+                    <img src="@/assets/image/seasons.png" class="d-block w-100 slide_img">
                 </div>
             </div>
             <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="prev">
@@ -92,9 +92,6 @@
 
             </div>
         </div>
-
-
-
     </div>
 </template>
 
@@ -112,8 +109,8 @@ export default {
         text-align: center;
     }
     
-    #slide_img {
-      min-width: 105%;
+    .slide_img {
+      min-width: 100%;
       min-height: 450px;
       object-fit: cover;
     }
@@ -162,7 +159,7 @@ export default {
     }
 
     #trip-photo {
-        min-width: 110%;
+        min-width: 100%;
         min-height: 250px;
         overflow: hidden;
     }

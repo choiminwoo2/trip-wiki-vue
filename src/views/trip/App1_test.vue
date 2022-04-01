@@ -232,7 +232,11 @@
 </script>
 
 <style scope>
+.search_box{
+   margin-top: 10px;
+  transform: translateX(130px);
  
+} 
 
   .row {
     margin-top: 50px;

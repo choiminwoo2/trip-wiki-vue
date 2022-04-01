@@ -1,5 +1,4 @@
 <template>
-    <div class="header"></div>
   <div class="join-container">
     <img src="@/assets/logo.png">
     <MemberJoin/>
@@ -25,6 +24,7 @@ export default {
     max-width: 1100px;
     justify-content: center;
     justify-items: center;
+        margin-top:50px;
 
   }
   img{
@@ -32,10 +32,7 @@ export default {
     max-width:200px;
     max-height: 200px;
     margin: 0 auto;
-    transform: translateX(-25px);
-  }
-   .header{
-  height:100px;
+    transform: translateX(3px);
   }
 }
 /* 태블릿 pc~ */
@@ -50,7 +47,7 @@ export default {
     justify-content: center;
     justify-items: center;
     transform: translateX(-10px);
-
+        margin-top:50px;
   } 
    img{
     position: relative;
@@ -58,10 +55,6 @@ export default {
     max-height: 200px;
     margin: 0 auto;
   }
-   .header{
-  height:200px;
-  }
-
 }
 /* 모바일~*/
 /* 가로의 길이가  767 이하*/
@@ -75,6 +68,7 @@ export default {
     justify-items: center;
     min-width: 300px;
     max-width: 600px;
+    margin-top:50px;
 
   }
    img{
@@ -82,9 +76,6 @@ export default {
     max-width:125px;
     max-height: 125px;
     margin: 0 auto;
-  }
-   .header{
-  height:150px;
   }
 }
 </style>

@@ -1,5 +1,4 @@
 <template>
-  <div class="header"></div>
   <div class="login-Container">
     <img src="@/assets/logo.png">
     <LoginPages/>
@@ -27,6 +26,7 @@ export default {
     max-width: 1100px;
     justify-content: center;
     justify-items: center;
+    margin-top:225px;
 
   }
   img{
@@ -35,9 +35,6 @@ export default {
     max-height: 200px;
     margin: 0 auto;
     transform: translateX(-25px);
-  }
-  .header{
-  height:225px;
   }
 }
 /* 태블릿 pc~ */
@@ -51,6 +48,7 @@ export default {
     max-width: 70%;
     justify-content: center;
     justify-items: center;
+    margin-top:150px;
   } 
    img{
     position: relative;
@@ -76,6 +74,7 @@ export default {
     justify-items: center;
     min-width: 300px;
     max-width: 600px;
+   margin-top:150px;
 
   }
    img{

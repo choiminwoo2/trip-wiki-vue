@@ -22,10 +22,18 @@
 
 <script>
 import { ref } from '@vue/reactivity'
+import axios from '@/setting/axiossetting.js';
 export default {
   setup(){
     const input_id = ref('');
     const input_pass = ref('');
+    try{
+        const json = axios.get('apitest');
+        console.log(json);
+    }
+    catch(err){
+      console.log(err)
+    }
     return{
       input_id,input_pass
     }

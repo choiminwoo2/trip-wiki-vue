@@ -6,7 +6,6 @@ src/store/index.js
 src/main.js
 src/App.vue
 src/router/index.js
-src/assets
 
 # local env files
 .env.local

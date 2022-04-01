@@ -8,13 +8,13 @@
                 <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="2" aria-label="Slide 3"></button>
             </div>
             <div class="carousel-inner">
-                <div class="carousel-item active" id="slide_div">
+                <div class="carousel-item active slide_div">
                     <img src="@/assets/image/spring.jpg" class="d-block w-100 slide_img">
                 </div>
-                <div class="carousel-item" id="slide_div">
+                <div class="carousel-item slide_div">
                     <img src="@/assets/image/flower.jpg" class="d-block w-100 slide_img">
                 </div>
-                <div class="carousel-item" id="slide_div">
+                <div class="carousel-item slide_div">
                     <img src="@/assets/image/seasons.png" class="d-block w-100 slide_img">
                 </div>
             </div>
@@ -34,42 +34,42 @@
             <button type="button" id="move-btn" class="btn btn-primary">여행지 살펴보기 > </button>
             <div class="card_wrapper">
                 <div class="card">
-                    <img src="@/assets/image/spring.jpg" class="card-img-top" id="trip-photo">
+                    <img src="@/assets/image/spring.jpg" class="card-img-top trip-photo">
                     <div class="card-body">
                         <h6 class="card-title">중앙HTA</h6>
                         <p class="card-text" style="font-size: 13px">서울특별시 종로구 율곡로10길 디아망 4층(봉익동 10-1)</p>
                     </div>
                 </div>
                 <div class="card">
-                    <img src="@/assets/image/spring.jpg" class="card-img-top" id="trip-photo">
+                    <img src="@/assets/image/spring.jpg" class="card-img-top trip-photo">
                     <div class="card-body">
                         <h6 class="card-title">중앙HTA</h6>
                         <p class="card-text" style="font-size: 13px">서울특별시 종로구 율곡로10길 디아망 4층(봉익동 10-1)</p>
                     </div>
                 </div>
                 <div class="card">
-                    <img src="@/assets/image/spring.jpg" class="card-img-top" id="trip-photo">
+                    <img src="@/assets/image/spring.jpg" class="card-img-top trip-photo">
                     <div class="card-body">
                         <h6 class="card-title">중앙HTA</h6>
                         <p class="card-text" style="font-size: 13px">서울특별시 종로구 율곡로10길 디아망 4층(봉익동 10-1)</p>
                     </div>
                 </div>
                 <div class="card">
-                    <img src="@/assets/image/spring.jpg" class="card-img-top " id="trip-photo">
+                    <img src="@/assets/image/spring.jpg" class="card-img-top trip-photo">
                     <div class="card-body">
                         <h6 class="card-title">중앙HTA</h6>
                         <p class="card-text" style="font-size: 13px">서울특별시 종로구 율곡로10길 디아망 4층(봉익동 10-1)</p>
                     </div>
                 </div>
                 <div class="card">
-                    <img src="@/assets/image/spring.jpg" class="card-img-top" id="trip-photo">
+                    <img src="@/assets/image/spring.jpg" class="card-img-top trip-photo">
                     <div class="card-body">
                         <h6 class="card-title">중앙HTA</h6>
                         <p class="card-text" style="font-size: 13px">서울특별시 종로구 율곡로10길 디아망 4층(봉익동 10-1)</p>
                     </div>
                 </div>
                 <div class="card">
-                    <img src="@/assets/image/spring.jpg" class="card-img-top" id="trip-photo">
+                    <img src="@/assets/image/spring.jpg" class="card-img-top trip-photo">
                     <div class="card-body">
                         <h6 class="card-title">중앙HTA</h6>
                         <p class="card-text" style="font-size: 13px">서울특별시 종로구 율곡로10길 디아망 4층(봉익동 10-1)</p>
@@ -84,11 +84,11 @@
             <button type="button" id="move-btn" class="btn btn-primary">포토갤러리 > </button>
             <div class="gallery_wrapper">
 
-                    <img src="@/assets/image/beach.jpg" id="gallery-photo">
-                    <img src="@/assets/image/flower.jpg" id="gallery-photo">
-                    <img src="@/assets/image/winter.jpg" id="gallery-photo">
-                    <img src="@/assets/image/spring.jpg" id="gallery-photo">
-                    <img src="@/assets/image/spring.jpg" id="gallery-photo">
+                    <img src="@/assets/image/beach.jpg" class="gallery-photo">
+                    <img src="@/assets/image/flower.jpg" class="gallery-photo">
+                    <img src="@/assets/image/winter.jpg" class="gallery-photo">
+                    <img src="@/assets/image/spring.jpg" class="gallery-photo">
+                    <img src="@/assets/image/spring.jpg" class="gallery-photo">
 
             </div>
         </div>
@@ -104,7 +104,7 @@ export default {
 
 <style scoped>
     /* 슬라이드 */
-    #slide_div, .active {
+    .slide_div, .active {
         overflow: hidden;
         text-align: center;
     }
@@ -158,7 +158,7 @@ export default {
         margin: 10px;
     }
 
-    #trip-photo {
+    .trip-photo {
         min-width: 100%;
         min-height: 250px;
         overflow: hidden;
@@ -175,7 +175,7 @@ export default {
         border-width: 2px;
     }
 
-    #gallery-photo {
+    .gallery-photo {
         max-width:100%;
         
     }

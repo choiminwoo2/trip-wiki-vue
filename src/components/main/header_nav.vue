@@ -72,6 +72,9 @@ export default {
     #middle_header {
         margin-top: 15px;
         margin-bottom: 15px;
+        margin-right: 0px;
+        margin-left: 0px;
+
     }
 
     #logo {

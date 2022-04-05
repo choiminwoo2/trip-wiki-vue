@@ -24,8 +24,7 @@ export default {
     max-width: 1100px;
     justify-content: center;
     justify-items: center;
-        margin-top:50px;
-
+    margin-top:50px;
   }
   img{
     position: relative;
@@ -47,7 +46,7 @@ export default {
     justify-content: center;
     justify-items: center;
     transform: translateX(-10px);
-        margin-top:50px;
+    margin-top:50px;
   } 
    img{
     position: relative;
@@ -69,7 +68,6 @@ export default {
     min-width: 300px;
     max-width: 600px;
     margin-top:50px;
-
   }
    img{
     position: relative;

@@ -2,7 +2,6 @@
   <div class="login-Container">
     <img src="@/assets/logo.png">
     <LoginPages/>
-
   </div>
 </template>
 
@@ -11,6 +10,15 @@ import LoginPages from '@/components/member/loginPages.vue'
 export default {
     components: {
       LoginPages
+    },props:{
+      parent_id:{
+        type: String,
+        required: false
+      }
+    },
+    emits:['parent_getSession'],
+    setup(props,context){
+      context.emit("parent_getSession");
     }
 }
 </script>
@@ -59,7 +67,7 @@ export default {
   }
   .header{
   height:200px;
-}
+  }
 
 }
 /* 모바일~*/
@@ -86,6 +94,6 @@ export default {
   }
   .header{
   height:150px;
-}
+  }
 }
 </style>

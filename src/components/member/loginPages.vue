@@ -1,16 +1,16 @@
 <template>
-  <form class="login-Form">
+  <form class="login-Form" @submit.prevent="loginProcess">
       <ul>
         <li><i class='bx bx-user' ></i><input v-model="input_id" placeholder="아이디를 입력하세요"></li>
         <li><i class='bx bx-lock-open-alt' ></i><input v-model="input_pass"  type="password" placeholder="비밀번호를 입력하세요"></li>
       </ul>
-      <input type="checkbox"><span>아이디 기억하기</span>
+      <input type="checkbox" v-model="remember"><span>아이디 기억하기</span>
       <div class="find-action">
          <a >아이디 찾기</a>
          <a >비밀 번호 찾기</a>
       </div>
       <div class="btn-group">
-        <router-link :to="{name:'Join'}" class="btn btn-primary">회원 가입</router-link>
+        <router-link :to="{name:'Join'}" class="btn btn-primary" @click="join">회원 가입</router-link>
         <button type="submit" class="btn btn-info" >로그인</button>
       </div>
       <p>소셜 계정으로 로그인하기</p>
@@ -23,10 +23,58 @@
 <script>
 import { ref } from '@vue/reactivity'
 import axios from '@/setting/axiossetting.js';
+import cookies from 'vue-cookies';
+import router from '@/router';
 export default {
-  setup(){
+  emits:["parent_getSession"],
+  setup(props,context){
+    context.emit("parent_getSession","");
     const input_id = ref('');
     const input_pass = ref('');
+    const remember = ref(false);
+
+    const getCookie = () =>{
+      //이름이 save_id인 쿠키를 가져온다
+      const cookie_value = cookies.get("save_id");
+      if(cookie_value != null){
+        remember.value=true;
+        input_id.value = cookie_value;
+      }else{
+        remember.value = false;
+      }
+    }
+    getCookie();
+
+
+    const join = () => router.push({
+      name:'Join'
+    });
+
+    const loginProcess = async() =>{
+      try{
+        const data = await(await axios.post("users",{
+          user_id : input_id.value,
+          user_password : input_pass.value
+        })).data;
+        console.log(data);
+        if(data == -1){
+          console.log("아이디가 존재하지않습니다.");
+        }else if(data == 0){
+          console.log("비밀번호가 일치하지 않습니다.");
+        }else if(data == 1){
+          if(remember.value){
+            cookies.set("save_id",input_id.value,'0.5d');
+          }else{
+            cookies.remove("save_id");
+          }
+          router.push({
+            name:'Home'
+          });
+        }
+      }catch(err){
+        console.log(err);
+      }
+    }
     try{
         const json = axios.get('apitest');
         console.log(json);
@@ -35,14 +83,13 @@ export default {
       console.log(err)
     }
     return{
-      input_id,input_pass
+      input_id,input_pass,remember,loginProcess,join
     }
   }
 }
 </script>
 
 <style lang="scss" scoped>
-
 .kakao-logo{
   width: 25px;
 }

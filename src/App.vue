@@ -1,9 +1,42 @@
 <template> 
   <div class="app">
-      <router-view/>
+      <router-view 
+        @parent_getSession = "getSession"
+        :parent_id="id"/>
   </div>
 </template>
-
+<script>
+import axios from '@/setting/axiossetting.js';
+import { useRouter } from 'vue-router';
+import { ref } from '@vue/reactivity';
+export default {
+  setup(){
+    const id = ref('');
+    const router = useRouter();
+    const getSession = async(received_id) =>{
+      if(received_id == ''){
+        try{
+          const data = await (await axios.post("members/logout")).data;
+          id.value='';
+          console.log(data);
+        }catch(err){
+          console.log(err);
+        }
+      }else{
+        try{
+          const data = await ( await axios.get("getSession")).data;
+          console.log(data);
+        }catch(err){
+          console.log(err);
+        }
+      }
+    }
+    return{
+      router,getSession
+    }
+  }
+}
+</script>
 <style lang="scss">
   html{
     height:100%;

@@ -2,6 +2,7 @@ import { createRouter, createWebHistory } from 'vue-router'
 import LoginView from '@/views/member/LoginView.vue';
 import JoinView from '@/views/member/JoinView.vue';
 import MainPage from '@/views/main/MainPage.vue';
+import GalleryMain from '@/views/gallery/galleryMain.vue';
 const routes = [
   {
     path: '/',
@@ -17,7 +18,14 @@ const routes = [
     path: '/trip/login',
     name: 'Login',
     component: LoginView
+  },
+  {
+    path: '/trip/gallery',
+    name: 'GalleryMain',
+    component: GalleryMain
   }
+
+
 ]
 
 const router = createRouter({

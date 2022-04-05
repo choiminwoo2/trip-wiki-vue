@@ -5,5 +5,5 @@ module.exports = defineConfig({
   //index.html 경로
   indexPath : "C:/eduStudy/SecurityToBoot/demo/src/main/resources/templates/index.html",
 
-  publicPath:"/vue/",
+  publicPath:"/trip/",
 })

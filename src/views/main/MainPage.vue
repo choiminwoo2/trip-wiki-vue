@@ -1,6 +1,6 @@
 <template>
     <div>
-        <Header />
+        <Header :parent_id="parent_id"/>
         <Main_Slide />
         <Main_Trip />
         <Main_Gallery />
@@ -17,6 +17,17 @@ import Main_Gallery from '@/components/main/main_gallery.vue';
 export default {
     components: {
         Header, Footer, Main_Slide, Main_Trip, Main_Gallery
+    },
+    props:{
+        parent_id:{
+            type:String,
+            required:false
+        }
+    },
+    emits: ['parent_getSeesion'],
+    setup(props,context){
+        context.emit("parent_getSeesion");
+        console.log("main_page" + props.parent_id)
     }
 }
 </script>

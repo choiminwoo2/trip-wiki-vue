@@ -1,7 +1,7 @@
 <template> 
   <div class="app">
       <router-view 
-        @parent_getSession = "getSession"
+        @parent_getSession="getSession"
         :parent_id="id"/>
   </div>
 </template>
@@ -25,14 +25,14 @@ export default {
       }else{
         try{
           const data = await ( await axios.get("getSession")).data;
-          console.log(data);
+          id.value = data;
         }catch(err){
           console.log(err);
         }
       }
     }
     return{
-      router,getSession
+      router,getSession,id
     }
   }
 }

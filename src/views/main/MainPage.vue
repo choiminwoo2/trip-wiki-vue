@@ -21,13 +21,13 @@ export default {
     props:{
         parent_id:{
             type:String,
-            required:false
+            required:true
         }
     },
-    emits: ['parent_getSeesion'],
+    emits: ['parent_getSession'],
     setup(props,context){
-        context.emit("parent_getSeesion");
-        console.log("main_page" + props.parent_id)
+        context.emit("parent_getSession");
+        console.log("main_page" + props.parent_id);
     }
 }
 </script>

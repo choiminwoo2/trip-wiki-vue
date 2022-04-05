@@ -9,8 +9,8 @@
                 </ul>
                 <ul class="navbar-nav ms-md-auto" v-else>
                     <li class="nav-link" @click="logout">{{parent_id}}님 (로그아웃)</li>
-                    <li><router-link to="#" class="nav-link" v-show="id === 'admin'">관리자페이지</router-link></li>
-                    <li><router-link to="#" class="nav-link" v-show="!id === 'admin'">마이페이지</router-link></li>
+                    <li><router-link to="#" class="nav-link" v-show="parent_id === 'admin'">관리자페이지</router-link></li>
+                    <li><router-link to="#" class="nav-link" v-show="!parent_id === 'admin'">마이페이지</router-link></li>
                 </ul>
             </div>
         </nav>

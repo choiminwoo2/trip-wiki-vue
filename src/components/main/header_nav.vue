@@ -3,12 +3,12 @@
         <!-- 로그인/ 로그아웃 nav -->
         <nav class="navbar navbar-expand-sm navbar-dark bg-primary">
             <div class="container-fluid" id="first_nav">
-                <ul class="navbar-nav ms-md-auto" v-if="!parent_id">
+                <ul class="navbar-nav ms-md-auto" v-if="!shownav" >
                     <li><router-link :to="{name:'Login'}" class="nav-link">로그인</router-link></li>
                     <li><router-link :to="{name:'Join'}" class="nav-link">회원가입</router-link></li>
                 </ul>
                 <ul class="navbar-nav ms-md-auto" v-else>
-                    <li class="nav-link" @click="logout">{{parent_id}}님 (로그아웃)</li>
+                    <li class="nav-link logout-hover" @click="logout" >{{parent_id}}님 (로그아웃)</li>
                     <li><router-link to="#" class="nav-link" v-show="parent_id === 'admin'">관리자페이지</router-link></li>
                     <li><router-link to="#" class="nav-link" v-show="!parent_id === 'admin'">마이페이지</router-link></li>
                 </ul>
@@ -62,11 +62,39 @@
 </template>
 
 <script>
+import axios from '@/setting/axiossetting.js';
+import cookies from 'vue-cookies';
+import { useStore } from 'vuex';
+import router from '@/router';
 export default {
     props:{
         parent_id:{
             type:String,
             required:true
+        }
+    },
+    emits:['parent_getSession'],
+    setup(props,context){
+        const store =useStore();
+        const shownav = store.state.nav_show;
+        const logout = async() =>{
+            const data = await(await axios.post('users/logout')).data;
+            console.log(data);
+            if(data){
+                cookies.remove(props.parent_id);
+                context.emit('parent_getSession','');
+                console.log("props 삭제 이후 =" +props.parent_id);
+                store.dispatch('navShow',false);
+                router.push({
+                    name:'Home'
+                })
+                
+            }else{
+                console.log("로그아웃 실패.");
+            }
+        }  
+        return{
+            logout,shownav
         }
     }
 }
@@ -79,7 +107,11 @@ export default {
         margin-right: 0px;
         margin-left: 0px;
     }
-
+    .logout-hover:hover{
+        cursor: pointer;
+        font-size: 18px;
+        transition: 0.5s font-size;
+    }
     #logo {
         width: 200px;
         height: 70px;

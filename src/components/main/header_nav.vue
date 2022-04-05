@@ -3,17 +3,16 @@
         <!-- 로그인/ 로그아웃 nav -->
         <nav class="navbar navbar-expand-sm navbar-dark bg-primary">
             <div class="container-fluid" id="first_nav">
-                    <ul class="navbar-nav ms-md-auto" v-if="!id">
-                        <li><router-link :to="{name:'Login'}" class="nav-link">로그인</router-link></li>
-                        <li><router-link :to="{name:'Join'}" class="nav-link">회원가입</router-link></li>
-                    </ul>
-                    <ul class="navbar-nav ms-md-auto" v-else>
-                        <li class="nav-link" @click="logout">님 (로그아웃)</li>
-                        <li><router-link to="#" class="nav-link" v-show="id === 'admin'">관리자페이지</router-link></li>
-                        <li><router-link to="#" class="nav-link" v-show="!id === 'admin'">마이페이지</router-link></li>
-                    </ul>
-                </div>
-            
+                <ul class="navbar-nav ms-md-auto" v-if="!id">
+                    <li><router-link :to="{name:'Login'}" class="nav-link">로그인</router-link></li>
+                    <li><router-link :to="{name:'Join'}" class="nav-link">회원가입</router-link></li>
+                </ul>
+                <ul class="navbar-nav ms-md-auto" v-else>
+                    <li class="nav-link" @click="logout">님 (로그아웃)</li>
+                    <li><router-link to="#" class="nav-link" v-show="id === 'admin'">관리자페이지</router-link></li>
+                    <li><router-link to="#" class="nav-link" v-show="!id === 'admin'">마이페이지</router-link></li>
+                </ul>
+            </div>
         </nav>
         <!-- 로고 및 검색바 -->
         <div class="row align-items-center" id="middle_header">
@@ -40,16 +39,16 @@
                 <div class="collapse navbar-collapse justify-content-center" id="menu_nav">
                     <ul class="navbar-nav" id="category">
                         <li class="nav-item">
-                            <router-link class="nav-link" to="#"> 포토갤러리 </router-link>
+                            <router-link class="nav-link" :to="{name:'GalleryMain'}"> 포토갤러리 </router-link>
                         </li>
                         <li class="nav-item dropdown">
                             <router-link class="nav-link dropdown-toggle" data-bs-toggle="dropdown" to="#" role="button" aria-haspopup="true" aria-expanded="false"> 여행지 살펴보기 </router-link>
                             <div class="dropdown-menu">
-                                <router-link class="dropdown-item" to="#">서울</router-link>
-                                <router-link class="dropdown-item" to="#">경기/ 인천</router-link>
-                                <router-link class="dropdown-item" to="#">대전/ 충청/ 강원</router-link>
-                                <router-link class="dropdown-item" to="#">부산/ 대구/ 경상</router-link>
-                                <router-link class="dropdown-item" to="#">광주/ 전라/ 제주</router-link>
+                                <router-link class="dropdown-item" to="#">&nbsp;서울 </router-link>
+                                <router-link class="dropdown-item" to="#">&nbsp;경기/ 인천 </router-link>
+                                <router-link class="dropdown-item" to="#">&nbsp;대전/ 충청/ 강원 </router-link>
+                                <router-link class="dropdown-item" to="#">&nbsp;부산/ 대구/ 경상 </router-link>
+                                <router-link class="dropdown-item" to="#">&nbsp;광주/ 전라/ 제주 </router-link>
                             </div>
                         </li>
                         <li class="nav-item">
@@ -74,20 +73,19 @@ export default {
         margin-bottom: 15px;
         margin-right: 0px;
         margin-left: 0px;
-
     }
 
     #logo {
-        width: 270px;
-        height: 100px;
+        width: 200px;
+        height: 70px;
     }
 
     #first_nav {
-        height: 31px;
+        height: 18px;
     }
 
     #category {
-        font-size: 20px;
+        font-size: 18px;
         font-weight: bold;
     }
 
@@ -98,6 +96,18 @@ export default {
 
     .navbar-dark .navbar-nav .nav-link {
         color: white;
+    }
+
+    .dropdown-menu {
+        width: 180px;
+        border-style: solid;
+        border-width: 3px;
+        border-radius: 20px;
+        border-color: rgb(138, 132, 132);
+    }
+
+    .dropdown-item {
+        font-weight: bold;
     }
 
     @media (min-width: 992px) {

@@ -1,18 +1,23 @@
 <template>
     <div>
         <Header />
-        <Main />
+        <Main_Slide />
+        <Main_Trip />
+        <Main_Gallery />
+        <Footer />
     </div>
 </template>
 
 <script>
 import Header from '@/components/main/header_nav.vue';
-import Main from '@/components/main/main_page.vue';
+import Footer from '@/components/main/footer_info.vue'
+import Main_Slide from '@/components/main/main_slide.vue';
+import Main_Trip from '@/components/main/main_trip.vue';
+import Main_Gallery from '@/components/main/main_gallery.vue';
 export default {
     components: {
-        Header, Main
+        Header, Footer, Main_Slide, Main_Trip, Main_Gallery
     }
-
 }
 </script>
 

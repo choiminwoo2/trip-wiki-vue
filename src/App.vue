@@ -26,6 +26,7 @@ export default {
         try{
           const data = await ( await axios.get("getSession")).data;
           id.value = data;
+          console.log("Session=" + data);
         }catch(err){
           console.log(err);
         }

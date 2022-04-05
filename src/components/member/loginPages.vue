@@ -62,6 +62,7 @@ export default {
         }else if(data == 0){
           console.log("비밀번호가 일치하지 않습니다.");
         }else if(data == 1){
+          console.log("login data = " + data);
           if(remember.value){
             cookies.set("save_id",input_id.value,'0.5d');
           }else{

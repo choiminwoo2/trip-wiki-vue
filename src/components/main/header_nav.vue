@@ -3,12 +3,12 @@
         <!-- 로그인/ 로그아웃 nav -->
         <nav class="navbar navbar-expand-sm navbar-dark bg-primary">
             <div class="container-fluid" id="first_nav">
-                <ul class="navbar-nav ms-md-auto" v-if="!id">
+                <ul class="navbar-nav ms-md-auto" v-if="!parent_id">
                     <li><router-link :to="{name:'Login'}" class="nav-link">로그인</router-link></li>
                     <li><router-link :to="{name:'Join'}" class="nav-link">회원가입</router-link></li>
                 </ul>
                 <ul class="navbar-nav ms-md-auto" v-else>
-                    <li class="nav-link" @click="logout">님 (로그아웃)</li>
+                    <li class="nav-link" @click="logout">{{parent_id}}님 (로그아웃)</li>
                     <li><router-link to="#" class="nav-link" v-show="id === 'admin'">관리자페이지</router-link></li>
                     <li><router-link to="#" class="nav-link" v-show="!id === 'admin'">마이페이지</router-link></li>
                 </ul>
@@ -63,7 +63,12 @@
 
 <script>
 export default {
-
+    props:{
+        parent_id:{
+            type:String,
+            required:true
+        }
+    }
 }
 </script>
 

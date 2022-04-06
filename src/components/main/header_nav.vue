@@ -66,6 +66,7 @@ import axios from '@/setting/axiossetting.js';
 import cookies from 'vue-cookies';
 import { useStore } from 'vuex';
 import router from '@/router';
+import { ref } from '@vue/reactivity';
 export default {
     props:{
         parent_id:{
@@ -76,7 +77,8 @@ export default {
     emits:['parent_getSession'],
     setup(props,context){
         const store =useStore();
-        const shownav = store.state.nav_show;
+        const shownav = ref(false); 
+        shownav.value = store.state.nav_show;
         const logout = async() =>{
             const data = await(await axios.post('users/logout')).data;
             console.log(data);
@@ -85,6 +87,7 @@ export default {
                 context.emit('parent_getSession','');
                 console.log("props 삭제 이후 =" +props.parent_id);
                 store.dispatch('navShow',false);
+                shownav.value=false;
                 router.push({
                     name:'Home'
                 })

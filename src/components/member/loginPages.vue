@@ -25,6 +25,7 @@ import { ref } from '@vue/reactivity'
 import axios from '@/setting/axiossetting.js';
 import cookies from 'vue-cookies';
 import router from '@/router';
+import { useStore } from 'vuex';
 export default {
   emits:["parent_getSession"],
   setup(props,context){
@@ -32,6 +33,7 @@ export default {
     const input_id = ref('');
     const input_pass = ref('');
     const remember = ref(false);
+    const store= useStore();
 
     const getCookie = () =>{
       //이름이 save_id인 쿠키를 가져온다
@@ -68,6 +70,7 @@ export default {
           }else{
             cookies.remove("save_id");
           }
+          store.dispatch('navShow',true);
           router.push({
             name:'Home'
           });

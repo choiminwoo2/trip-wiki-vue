@@ -232,20 +232,27 @@
 </template>
 
 <script>
-import { showMenuApi } from '@/api/index'; // api 통신전용 메소드 소환 
-export default { data() { 
-  return { 
-    menu: { //api 데이터 객체과 똑같은 형식의 객체을 만들었다. 여기다 데이터를 담을거다. 
-      id: '', 
-      title: '', 
-      }, 
-      }; 
-      }, created() { 
-        showMenuApi() // 위에서 임포트한 통신 메소드이다. 렌더링시 생성(created)되도록 만든다. 
-        .then(response => (this.menu = response.body.items)) // 성공하면 json 객체를 받아온다. 
-        .catch(error => console.log(error)); // 실패하면 에러를 뿜어낸다. 
-        }, 
-        };
+import axios from '@/setting/axiossetting.js';
+import { ref } from '@vue/reactivity';
+export default { 
+  setup(){
+    const keyword = ref('서울');
+    let pages = 1;
+    const getTripList = async() =>{
+      // ,{
+      //   params:{
+      //     keyword : keyword.value,
+      //     page : pages
+      //   }
+      // }
+      const res = await axios.get('apitest');
+      console.log(res.data);
+    }
+    return{
+      getTripList,keyword,pages
+    }
+  }
+}
 </script>
 
 <style scope>

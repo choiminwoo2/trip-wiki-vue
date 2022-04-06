@@ -221,11 +221,31 @@
       
 </div>
 
+<div> 
+    // 받아온 api 데이터 통째로 보여주기 
+    <p>menu: {{ this.menu }}</p> // api 데이터 중 필요한 것만 쏙쏙 빼서 개별적으로 보여주기 
+  <div v-for="(item, idx) in menu" :key="`ct-menu-${idx}`"> 
+    <p>id : {{ item.addr1 }}</p> <p>title : {{ item.contentid }}</p> 
+    </div> 
+    </div>
+
 </template>
 
 <script>
-
-
+import { showMenuApi } from '@/api/index'; // api 통신전용 메소드 소환 
+export default { data() { 
+  return { 
+    menu: { //api 데이터 객체과 똑같은 형식의 객체을 만들었다. 여기다 데이터를 담을거다. 
+      id: '', 
+      title: '', 
+      }, 
+      }; 
+      }, created() { 
+        showMenuApi() // 위에서 임포트한 통신 메소드이다. 렌더링시 생성(created)되도록 만든다. 
+        .then(response => (this.menu = response.body.items)) // 성공하면 json 객체를 받아온다. 
+        .catch(error => console.log(error)); // 실패하면 에러를 뿜어낸다. 
+        }, 
+        };
 </script>
 
 <style scope>

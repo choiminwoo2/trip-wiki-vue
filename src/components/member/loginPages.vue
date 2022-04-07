@@ -69,6 +69,7 @@ export default {
             cookies.set("save_id",input_id.value,'0.5d');
         }else if(data == 2){
           router.push({
+            
             name:'MailAuth',
             params: {id: input_id}
           })

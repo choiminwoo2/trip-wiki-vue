@@ -120,6 +120,7 @@ export default {
                          router.push({
                             name:'MailAuth',
                             params: {id: join.value.user_id}
+                            
                         })
                     }
                 }catch(err){

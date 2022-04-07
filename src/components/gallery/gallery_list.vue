@@ -61,15 +61,35 @@ export default {
 
 <style scoped>
     .gallery_list {
-        margin: 20px 100px 5px 100px;
+        margin: 20px 250px 5px 250px;
     }
 
-     .card {
+    .card {
         overflow: hidden;
         text-align: center;
+        height: 450px;
     }
 
     img {
-        height: 450px;
+        min-height: 390px;
+        min-width: 450px;
+    }
+
+    @media (max-width: 1600px) {
+        .gallery_list {
+            margin: 20px 150px 5px 150px;
+        }
+    }
+
+    @media (max-width: 1199px) {
+        .gallery_list {
+            margin: 20px 100px 5px 100px;
+        }
+    }
+
+    @media (max-width: 991px) {
+        .gallery_list {
+            margin: 20px 50px 5px 50px;
+        }
     }
 </style>

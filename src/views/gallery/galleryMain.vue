@@ -1,10 +1,12 @@
 <template>
     <div class="gallery">
-        <Header />
+        <Header :parent_id="parent_id"/>
         <h3>포토갤러리</h3>
         <h6>사진 속 함께하는 나들이 여행</h6>
         <div class="photo_button">
-            <button type="button" class="btn btn-success">사진 올리기</button>
+            <router-link :to="{name:'GalleryWrite'}">
+                <button type="button" class="btn btn-success">사진 올리기</button>
+            </router-link>
         </div>
         <Gallery_List />
     </div>
@@ -16,6 +18,16 @@ import Gallery_List from '@/components/gallery/gallery_list.vue'
 export default {
     components: {
         Header, Gallery_List
+    },
+    props: {
+        parent_id: {
+            type: String,
+            required: true
+        }
+    },
+    emits:['parent_getSession'],
+    setup(props, context) {
+        context.emit("parent_getSession");
     }
 }
 </script>
@@ -25,16 +37,24 @@ export default {
         text-align: right;
     }
     button {
-        margin-right: 100px;
+        margin-right: 250px;
     }
     h3 {
         margin-top: 50px;
-        margin-left: 145px;
+        margin-left: 280px;
     }
     h6 {
-        margin-left: 110px;
+        margin-left: 250px;
         margin-bottom: 0;
     }
 
- 
+    @media (max-width: 991px) {
+        h3, h6 {
+            margin-left: 50px;
+        }
+        .photo_button {
+            text-align: left;
+            margin: 20px 0px 0px 50px;
+        }
+    }
 </style>

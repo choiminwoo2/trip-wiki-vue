@@ -117,9 +117,10 @@ export default {
                     const res = await axios.post('users/add',join.value);
                     if(res.data==1){
                         alert('회원가입을 축하합니다.')
-                        router.push({
-                            name : 'Login'
-                        });
+                         router.push({
+                            name:'MailAuth',
+                            params: {id: join.value.user_id}
+                        })
                     }
                 }catch(err){
                     console.log(err)

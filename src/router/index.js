@@ -24,9 +24,9 @@ const routes = [
     path: '/trip/gallery',
     name: 'GalleryMain',
     component: GalleryMain
-  },
+  },  
   {
-    path: '/trip/mailAuth',
+    path: '/trip/mailAuth/:id',
     name: 'MailAuth',
     component: MailAuth
   }

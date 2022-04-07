@@ -65,130 +65,52 @@
   </div>
 
   <div class="main">
+
   <div class="row">
-      <div class="col-3">
+      <div class="col-3" v-for="(item, index) in list" :key="index">
         
           <div class="card">
             <div class="card-header">
-              My Card
+              &nbsp;
             </div>
-            <img src="./1234.jpg" alt="" />
+            <img src="./1234.jpg" v-if="!item.firstimage"/>
+            <img :src="item.firstimage" v-else/>
             <div class="card-body">
-              <h5 class="card-title">Lorem</h5>
-              <p class="card-text">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam egestas sed sem ut malesuada.</p>
-              <a href="#" class="btn btn-primary">More</a>
+                <h5 class="card-title">
+                  <div class="trip-text">
+                    <div>
+                      <button type="button" class="btn btn-outline-primary">관광지</button>
+                    </div>
+                  <div>
+                    {{item.title}}
+                  </div>
+                  </div>
+                  
+                </h5>
+                <div class="location-text"> 
+                  <div class="card-location">
+                    <img src="./location.png"/>
+                  </div>
+                <div>
+              </div>
+              <p class="card-text">
+                
+               {{item.addr1}}
+                
+                </p>
+                </div>
+
             </div>
           </div>
+          <br v-if="index == 3">
+          <br v-if="index == 3">
         </div>
 
-        <div class="col-3">
         
-          <div class="card">
-            <div class="card-header">
-              My Card
-            </div>
-            <img src="./1234.jpg" alt="" />
-            <div class="card-body">
-              <h5 class="card-title">Lorem</h5>
-              <p class="card-text">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam egestas sed sem ut malesuada.</p>
-              <a href="#" class="btn btn-primary">More</a>
-            </div>
-          </div>
         </div>
-
-        <div class="col-3">
-        
-          <div class="card">
-            <div class="card-header">
-              My Card
-            </div>
-            <img src="./1234.jpg" alt="" />
-            <div class="card-body">
-              <h5 class="card-title">Lorem</h5>
-              <p class="card-text">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam egestas sed sem ut malesuada.</p>
-              <a href="#" class="btn btn-primary">More</a>
-            </div>
-          </div>
-        </div>
-
-        <div class="col-3">
-        
-          <div class="card">
-            <div class="card-header">
-              My Card
-            </div>
-            <img src="./1234.jpg" alt="" />
-            <div class="card-body">
-              <h5 class="card-title">Lorem</h5>
-              <p class="card-text">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam egestas sed sem ut malesuada.</p>
-              <a href="#" class="btn btn-primary">More</a>
-            </div>
-          </div>
-        </div>
-   </div>
-
-   <div class="row">
-      <div class="col-3">
-        
-          <div class="card">
-            <div class="card-header">
-              My Card
-            </div>
-            <img src="./1234.jpg" alt="" />
-            <div class="card-body">
-              <h5 class="card-title">Lorem</h5>
-              <p class="card-text">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam egestas sed sem ut malesuada.</p>
-              <a href="#" class="btn btn-primary">More</a>
-            </div>
-          </div>
-        </div>
-
-        <div class="col-3">
-        
-          <div class="card">
-            <div class="card-header">
-              My Card
-            </div>
-            <img src="./1234.jpg" alt="" />
-            <div class="card-body">
-              <h5 class="card-title">Lorem</h5>
-              <p class="card-text">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam egestas sed sem ut malesuada.</p>
-              <a href="#" class="btn btn-primary">More</a>
-            </div>
-          </div>
-        </div>
-
-        <div class="col-3">
-        
-          <div class="card">
-            <div class="card-header">
-              My Card
-            </div>
-            <img src="./1234.jpg" alt="" />
-            <div class="card-body">
-              <h5 class="card-title">Lorem</h5>
-              <p class="card-text">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam egestas sed sem ut malesuada.</p>
-              <a href="#" class="btn btn-primary">More</a>
-            </div>
-          </div>
-        </div>
-
-        <div class="col-3">
-        
-          <div class="card">
-            <div class="card-header">
-              My Card
-            </div>
-            <img src="./1234.jpg" alt="" />
-            <div class="card-body">
-              <h5 class="card-title">Lorem</h5>
-              <p class="card-text">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam egestas sed sem ut malesuada.</p>
-              <a href="#" class="btn btn-primary">More</a>
-            </div>
-          </div>
-        </div>
-   </div>
+  
   </div>
+  
 
 
 
@@ -224,8 +146,9 @@
 <div> 
     // 받아온 api 데이터 통째로 보여주기 
     <p>menu: {{ this.menu }}</p> // api 데이터 중 필요한 것만 쏙쏙 빼서 개별적으로 보여주기 
-  <div v-for="(item, idx) in menu" :key="`ct-menu-${idx}`"> 
-    <p>id : {{ item.addr1 }}</p> <p>title : {{ item.contentid }}</p> 
+    {{list.length}}
+  <div v-for="(item, idx) in list" :key="`ct-menu-${idx}`"> 
+    <p>id : {{ item.addr1 }}</p> <p>title : {{ item.title}}</p> 
     </div> 
     </div>
 
@@ -238,6 +161,7 @@ export default {
   setup(){
     const keyword = ref('서울');
     let pages = 1;
+    const list = ref([]);
     const getTripList = async() =>{
       // ,{
       //   params:{
@@ -246,10 +170,14 @@ export default {
       //   }
       // }
       const res = await axios.get('apitest');
-      console.log(res.data);
+      console.log(res.data.response.body.items.item);
+      list.value=res.data.response.body.items.item;
+      //console.log(res.data.response.body.pageNo);
     }
+    getTripList();
+
     return{
-      getTripList,keyword,pages
+      getTripList,keyword,pages,list
     }
   }
 }
@@ -274,5 +202,29 @@ export default {
   .pagination{
     margin-top: 100px;
     justify-content: center;
+  }
+
+  .col-3 > .card > img {
+    height: 203px;
+  }
+
+  .col-3 > .card > .card-body > .card-text {
+  
+    height: 60px;
+  }
+
+  .col-3 > .card > .card-body > .location-text {
+
+    display: flex;
+  }
+
+  .col-3 > .card > .card-body > .location-text > .card-location > img {
+    width: 29px;
+    height: 29px;
+   
+  }
+
+  .col-3 > .card > .card-text {
+    display: flex;
   }
 </style>

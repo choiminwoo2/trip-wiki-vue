@@ -142,7 +142,7 @@
   margin-right: 10px;
   width: 55%;
   height: 100%;
-  background-color: blue;
+ 
 }
 
 .main_left > img{

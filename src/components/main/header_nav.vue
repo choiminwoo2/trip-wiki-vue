@@ -44,7 +44,7 @@
                         <li class="nav-item dropdown">
                             <router-link class="nav-link dropdown-toggle" data-bs-toggle="dropdown" to="#" role="button" aria-haspopup="true" aria-expanded="false"> 여행지 살펴보기 </router-link>
                             <div class="dropdown-menu">
-                                <router-link class="dropdown-item" to="#">&nbsp;서울 </router-link>
+                                <router-link class="dropdown-item" :to="{name:'TripList'}">&nbsp;서울 </router-link>
                                 <router-link class="dropdown-item" to="#">&nbsp;경기/ 인천 </router-link>
                                 <router-link class="dropdown-item" to="#">&nbsp;대전/ 충청/ 강원 </router-link>
                                 <router-link class="dropdown-item" to="#">&nbsp;부산/ 대구/ 경상 </router-link>

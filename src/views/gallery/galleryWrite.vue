@@ -1,7 +1,7 @@
 <template>
     <div class="galleryWrite">
         <Header :parent_id="parent_id"/>
-        <Gallery_Write />
+        <Gallery_Write :parent_id="parent_id"/>
     </div>
 </template>
 

@@ -3,9 +3,9 @@
         <h3> 포토갤러리 사진 등록</h3>
         <div class="form-group">
             <label for="galleryTitle" class="form-label mt-4">사진 제목</label>
-            <input type="text" class="form-control" id="galleryTitle" placeholder="사진에 대한 짧은 글을 작성해주세요" maxlength="30">
+            <input type="text" class="form-control" id="galleryTitle" v-model="gallery.title" placeholder="사진에 대한 짧은 글을 작성해주세요" maxlength="30">
             <label for="galleryArea" class="form-label mt-4">사진 장소</label>
-            <input type="text" class="form-control" id="galleryArea" placeholder="사진 속 장소를 입력해주세요" maxlength="30">
+            <input type="text" class="form-control" id="galleryArea" v-model="gallery.area" placeholder="사진 속 장소를 입력해주세요" maxlength="30">
         </div>
         <div class="form-group formFile_image">
             <label for="formFile" class="form-label mt-4">사진 업로드</label>
@@ -42,7 +42,6 @@ export default {
             fileName:''
         })
 
-        let file = '';
         let imageFile = ref("");
         let imageUrl = ref("");
         const router = useRouter();
@@ -66,8 +65,8 @@ export default {
 
         const add = async() => {
             let frm = new FormData();
-            if (file != '') { // let file=''; 초기 값 상태가 아닌지 확인. 즉 파일을 선택하면 파일 업로드하기
-                frm.append("uploadfile", file);
+            if (imageFile.value != '') { // let file=''; 초기 값 상태가 아닌지 확인. 즉 파일을 선택하면 파일 업로드하기
+                frm.append("uploadfile", imageFile.value);
             }
             frm.append("title", gallery.value.title);
             frm.append("area", gallery.value.area);

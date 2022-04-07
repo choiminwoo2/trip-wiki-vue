@@ -2,8 +2,9 @@ import { createRouter, createWebHistory } from 'vue-router'
 import LoginView from '@/views/member/LoginView.vue';
 import JoinView from '@/views/member/JoinView.vue';
 import MainPage from '@/views/main/MainPage.vue';
-import GalleryMain from '@/views/gallery/galleryMain.vue';
 import MailAuth from '@/views/member/MailAuth.vue';
+import GalleryMain from '@/views/gallery/galleryMain.vue';
+import GalleryWrite from '@/views/gallery/galleryWrite.vue';
 const routes = [
   {
     path: '/',
@@ -21,14 +22,19 @@ const routes = [
     component: LoginView
   },
   {
+    path: '/trip/mailAuth/:id',
+    name: 'MailAuth',
+    component: MailAuth
+  },
+  {
     path: '/trip/gallery',
     name: 'GalleryMain',
     component: GalleryMain
   },  
   {
-    path: '/trip/mailAuth/:id',
-    name: 'MailAuth',
-    component: MailAuth
+    path: '/trip/galleryWrite',
+    name: 'GalleryWrite',
+    component: GalleryWrite
   }
 
 

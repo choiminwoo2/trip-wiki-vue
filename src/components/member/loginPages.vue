@@ -5,13 +5,13 @@
         <li><i class='bx bx-lock-open-alt' ></i><input v-model="input_pass"  type="password" placeholder="비밀번호를 입력하세요"></li>
       </ul>
       <input type="checkbox" v-model="remember"><span>아이디 기억하기</span>
-      <div class="find-action">
-         <a >아이디 찾기</a>
-         <a >비밀 번호 찾기</a>
-      </div>
       <div class="btn-group">
-        <router-link :to="{name:'Join'}" class="btn btn-primary" @click="join">회원 가입</router-link>
-        <button type="submit" class="btn btn-info" >로그인</button>
+        <button type="submit" class="btn btn-info">로그인</button>
+      </div>
+       <div class="find-action">
+        <a>아이디 찾기</a>
+        <a>비밀 번호 찾기</a>
+        <router-link :to="{name:'Join'}"  @click="join" class="join-temp">회원 가입</router-link>
       </div>
       <p>소셜 계정으로 로그인하기</p>
         <ul class="social-group">
@@ -69,7 +69,7 @@ export default {
             cookies.set("save_id",input_id.value,'0.5d');
         }else if(data == 2){
           router.push({
-            
+
             name:'MailAuth',
             params: {id: input_id}
           })
@@ -154,16 +154,21 @@ export default {
     transform: translateX(-2px);
   }
   .find-action{
-    display: flex;
-    justify-content: space-between;
-    margin-top:10px;
+    display: grid;
+    grid-template-columns: 70px 80px 150px;
     padding-right: 10px;
+    .join-temp{
+      justify-self: flex-end;
+      transform: translateX(5px);
+    }
   }
   .btn-group{
     display:grid;
-    grid-template-columns: 150px 150px;
+    grid-template-columns: 320px;
     justify-content: space-between;
-    transform: translateX(-2.5%);
+  }
+  .btn-info{
+    margin : 2px !important;
   }
   .btn-primary, .btn-info{
     padding: 5px;
@@ -173,13 +178,17 @@ export default {
   .social-group{
     margin-top:10px;
     display: flex;
-    width: 280px;
+    width: 320px;
     align-items: center;
     justify-content: center;
     flex-direction: column;
     background-color: #F7E600;
     color:#3A1D1D;
     height:30px;
+  }
+  p{
+    margin-top:10px;
+    margin-bottom: 2px;
   }
   .social-group > li > a{
     font-size:12px;

@@ -66,6 +66,7 @@ const routes = [
     name: 'Community',
     component : CommunityView
   },
+  {
     path: '/trip/galleryWrite',
     name: 'GalleryWrite',
     component: GalleryWrite

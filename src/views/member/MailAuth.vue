@@ -6,7 +6,7 @@
      <h1>메일 인증시 사이트를 이용하실 수 있습니다.</h1>
     <hr>
     <div>
-    <h4><a href="https://www.google.com/intl/ko/gmail/about/">인증하러 가기</a></h4>
+    <h4><span @click="handleLinkPages">이메일을 확인해주세요.</span></h4>
     </div>
   </div>
 </template>
@@ -19,6 +19,7 @@ export default {
     setup(){
         const loading = ref(true);
         const id = useRoute().params.id;
+
         const mailAuth = async() =>{
             try{
                 const data = await(await axios.get(`createMailAuth/${id}`)).data;

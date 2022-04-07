@@ -1,49 +1,5 @@
 <template>
-<div>
-    <nav class="navbar navbar-expand-lg navbar-dark bg-primary">
-
-  <div class="container-fluid">
-    <a class="navbar-brand" href="#">Navbar</a>
-    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarColor01" aria-controls="navbarColor01" aria-expanded="false" aria-label="Toggle navigation">
-      <span class="navbar-toggler-icon"></span>
-    </button>
-
-
-    <div class="collapse navbar-collapse" id="navbarColor01">
-      <ul class="navbar-nav me-auto">
-        <li class="nav-item">
-          <a class="nav-link active" href="#">Home
-            <span class="visually-hidden">(current)</span>
-          </a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" href="#">Features</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" href="#">Pricing</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" href="#">About</a>
-        </li>
-        <li class="nav-item dropdown">
-          <a class="nav-link dropdown-toggle" data-bs-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">Dropdown</a>
-          <div class="dropdown-menu">
-            <a class="dropdown-item" href="#">Action</a>
-            <a class="dropdown-item" href="#">Another action</a>
-            <a class="dropdown-item" href="#">Something else here</a>
-            <div class="dropdown-divider"></div>
-            <a class="dropdown-item" href="#">Separated link</a>
-          </div>
-        </li>
-      </ul>
-      <form class="d-flex">
-        <input class="form-control me-sm-2" type="text" placeholder="Search">
-        <button class="btn btn-secondary my-2 my-sm-0" type="submit">Search</button>
-      </form>
-    </div>
-  </div>
-</nav>
-</div>
+<Header />
 
 <div class="container">
 
@@ -54,8 +10,8 @@
       <button type="button" class="btn btn-primary" style="width:100px">지역</button>
       <button id="btnGroupDrop1" type="button" class="btn btn-primary dropdown-toggle" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false"></button>
       <div class="dropdown-menu" aria-labelledby="btnGroupDrop1" style="">
-        <a class="dropdown-item" href="#">Dropdown link</a>
-        <a class="dropdown-item" href="#">Dropdown link</a>
+        <a class="dropdown-item" href="#">서울</a>
+        <a class="dropdown-item" href="#">경기</a>
       </div>
       <input type="text" class="form-control" placeholder="지역 검색" aria-label="Recipient's username" aria-describedby="button-addon2" style="margin-left:10px;width:800px;" >
       <button class="btn btn-primary" type="button" id="button-addon2" style="width:100px">검색</button>
@@ -89,7 +45,7 @@
                 </h5>
                 <div class="location-text"> 
                   <div class="card-location">
-                    <img src="./location.png"/>
+                    <img src="@/assets/location.png"/>
                   </div>
                 <div>
               </div>
@@ -140,24 +96,20 @@
     </li>
   </ul>
 </div>
-      
 </div>
-
-<div> 
-    // 받아온 api 데이터 통째로 보여주기 
-    <p>menu: {{ this.menu }}</p> // api 데이터 중 필요한 것만 쏙쏙 빼서 개별적으로 보여주기 
-    {{list.length}}
-  <div v-for="(item, idx) in list" :key="`ct-menu-${idx}`"> 
-    <p>id : {{ item.addr1 }}</p> <p>title : {{ item.title}}</p> 
-    </div> 
-    </div>
-
+<Footer/>
 </template>
 
 <script>
 import axios from '@/setting/axiossetting.js';
 import { ref } from '@vue/reactivity';
+import Header from '@/components/main/header_nav.vue';
+import Footer from '@/components/main/footer_info.vue';
+
 export default { 
+   components: {
+        Header,Footer
+    },
   setup(){
     const keyword = ref('서울');
     let pages = 1;

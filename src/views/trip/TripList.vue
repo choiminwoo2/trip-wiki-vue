@@ -45,9 +45,6 @@
 </nav>
 </div>
 
-
-
-
 <div class="container">
 
   <div class="search_box">
@@ -224,26 +221,58 @@
       
 </div>
 
+<div> 
+    // 받아온 api 데이터 통째로 보여주기 
+    <p>menu: {{ this.menu }}</p> // api 데이터 중 필요한 것만 쏙쏙 빼서 개별적으로 보여주기 
+  <div v-for="(item, idx) in menu" :key="`ct-menu-${idx}`"> 
+    <p>id : {{ item.addr1 }}</p> <p>title : {{ item.contentid }}</p> 
+    </div> 
+    </div>
+
 </template>
 
 <script>
-
-
+import axios from '@/setting/axiossetting.js';
+import { ref } from '@vue/reactivity';
+export default { 
+  setup(){
+    const keyword = ref('서울');
+    let pages = 1;
+    const getTripList = async() =>{
+      // ,{
+      //   params:{
+      //     keyword : keyword.value,
+      //     page : pages
+      //   }
+      // }
+      const res = await axios.get('apitest');
+      console.log(res.data);
+    }
+    return{
+      getTripList,keyword,pages
+    }
+  }
+}
 </script>
 
 <style scope>
 .search_box{
-   margin-top: 10px;
+   margin-top: 50px;
   transform: translateX(130px);
  
 } 
 
   .row {
-    margin-top: 50px;
+    margin-top: 70px;
+  
+  }
+
+  .row>*{
+    z-index: -1;
   }
 
   .pagination{
-    margin-top: 50px;
+    margin-top: 100px;
     justify-content: center;
   }
 </style>

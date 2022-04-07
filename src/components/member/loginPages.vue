@@ -25,6 +25,7 @@ import { ref } from '@vue/reactivity'
 import axios from '@/setting/axiossetting.js';
 import cookies from 'vue-cookies';
 import router from '@/router';
+import { useStore } from 'vuex';
 export default {
   emits:["parent_getSession"],
   setup(props,context){
@@ -32,6 +33,7 @@ export default {
     const input_id = ref('');
     const input_pass = ref('');
     const remember = ref(false);
+    const store= useStore();
 
     const getCookie = () =>{
       //이름이 save_id인 쿠키를 가져온다
@@ -65,9 +67,18 @@ export default {
           console.log("login data = " + data);
           if(remember.value){
             cookies.set("save_id",input_id.value,'0.5d');
-          }else{
+        }else if(data == 2){
+          router.push({
+            
+            name:'MailAuth',
+            params: {id: input_id}
+          })
+        }
+          
+          else{
             cookies.remove("save_id");
           }
+          store.dispatch('navShow',true);
           router.push({
             name:'Home'
           });

@@ -135,7 +135,7 @@ export default {
 }
 </script>
 
-<style scope>
+<style scoped>
 .search_box{
    margin-top: 50px;
   transform: translateX(130px);

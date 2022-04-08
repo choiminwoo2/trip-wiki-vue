@@ -118,7 +118,7 @@
 
 </script>
 
-<style scope>
+<style scoped>
 
 .title{
   margin-top: 100px;

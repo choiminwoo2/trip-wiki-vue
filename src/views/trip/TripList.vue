@@ -1,24 +1,10 @@
 <template>
-<Header />
+
+<Header :parent_id="parent_id" />
+
+<search_box />
 
 <div class="container">
-
-  <div class="search_box">
-
-  <div class="btn-group mt-3" role="group" aria-label="Button group with nested dropdown">
-    
-      <button type="button" class="btn btn-primary" style="width:100px">지역</button>
-      <button id="btnGroupDrop1" type="button" class="btn btn-primary dropdown-toggle" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false"></button>
-      <div class="dropdown-menu" aria-labelledby="btnGroupDrop1" style="">
-        <a class="dropdown-item" href="#">서울</a>
-        <a class="dropdown-item" href="#">경기</a>
-      </div>
-      <input type="text" class="form-control" placeholder="지역 검색" aria-label="Recipient's username" aria-describedby="button-addon2" style="margin-left:10px;width:800px;" >
-      <button class="btn btn-primary" type="button" id="button-addon2" style="width:100px">검색</button>
-</div>
-
-
-  </div>
 
   <div class="main">
 
@@ -33,15 +19,16 @@
             <img :src="item.firstimage" v-else/>
             <div class="card-body">
                 <h5 class="card-title">
-                  <div class="trip-text">
-                    <div>
-                      <button type="button" class="btn btn-outline-primary">관광지</button>
+                  <div class="flex">
+                    <div class="trip-text">
+                    <div class="flex-icon">
+                        <button type="button" class="btn btn-outline-primary">관광지</button>
                     </div>
-                  <div>
-                    {{item.title}}
+                    <div class="flex-name">
+                      {{item.title}}
+                    </div>
+                    </div>
                   </div>
-                  </div>
-                  
                 </h5>
                 <div class="location-text"> 
                   <div class="card-location">
@@ -72,29 +59,9 @@
 
 
 <div>
-  <ul class="pagination">
-    <li class="page-item disabled">
-      <a class="page-link" href="#">&laquo;</a>
-    </li>
-    <li class="page-item active">
-      <a class="page-link" href="#">1</a>
-    </li>
-    <li class="page-item">
-      <a class="page-link" href="#">2</a>
-    </li>
-    <li class="page-item">
-      <a class="page-link" href="#">3</a>
-    </li>
-    <li class="page-item">
-      <a class="page-link" href="#">4</a>
-    </li>
-    <li class="page-item">
-      <a class="page-link" href="#">5</a>
-    </li>
-    <li class="page-item">
-      <a class="page-link" href="#">&raquo;</a>
-    </li>
-  </ul>
+  
+  <paging/>
+
 </div>
 </div>
 <Footer/>
@@ -102,45 +69,74 @@
 
 <script>
 import axios from '@/setting/axiossetting.js';
-import { ref } from '@vue/reactivity';
+import { ref,watch } from 'vue';
 import Header from '@/components/main/header_nav.vue';
 import Footer from '@/components/main/footer_info.vue';
-
+import search_box from '@/components/trip/search_box.vue';
+import paging from '@/components/trip/trip_paging.vue';
+import {useStore} from 'vuex';
 export default { 
    components: {
-        Header,Footer
+        Header,Footer,search_box,paging
     },
-  setup(){
-    const keyword = ref('서울');
-    let pages = 1;
-    const list = ref([]);
-    const getTripList = async() =>{
-      // ,{
-      //   params:{
-      //     keyword : keyword.value,
-      //     page : pages
-      //   }
-      // }
-      const res = await axios.get('apitest');
-      console.log(res.data.response.body.items.item);
-      list.value=res.data.response.body.items.item;
-      //console.log(res.data.response.body.pageNo);
+    props:{
+    parent_id:{
+      type:String,
+      required:true     
     }
-    getTripList();
+  },
+	emits:['parent_getSession'],
+  setup(props,context){
+     context.emit("parent_getSession");
+    const store = useStore(); 
+    const keyword ='서울';
+    
+    const list = ref([]);
+    let currentpage = 1;
+    let maxpage = 1;
+    const getTripList = async(page) =>{
+     
+      try{    //&areaCode=${areaCode}
+      const res = await axios.get(`apitest?page=${page}&keyword=${keyword}`);
+
+
+        console.log(res.data.boardlist);
+        list.value = JSON.parse(res.data.boardlist).response.body.items.item;
+        maxpage=res.data.maxpage;
+        currentpage=res.data.page;
+        //search_word.value = res.data.search_word;
+        
+        const pagelist=ref([]);      
+        for(let i=res.data.startpage; i<=res.data.endpage;i++){
+          pagelist.value.push(i);
+        }
+        const obj = {maxpage, currentpage,pagelist};
+        store.dispatch('store_obj', obj);
+        
+      } catch (err) {
+        console.log(err);
+      }    
+    };
+    getTripList(1);
+ 
+  
+     watch(()=>store.state.page, ()=>{
+      getTripList(store.state.page);
+    })
+
+    
+
+
 
     return{
-      getTripList,keyword,pages,list
+      list
     }
   }
 }
 </script>
 
 <style scoped>
-.search_box{
-   margin-top: 50px;
-  transform: translateX(130px);
- 
-} 
+
 
   .row {
     margin-top: 70px;
@@ -179,4 +175,9 @@ export default {
   .col-3 > .card > .card-text {
     display: flex;
   }
+
+.col-3 > .card > .card-body > .card-title > .flex{
+  display: flex;
+}
+ 
 </style>

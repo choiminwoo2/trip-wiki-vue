@@ -4,12 +4,16 @@ import JoinView from '@/views/member/JoinView.vue';
 import MainPage from '@/views/main/MainPage.vue';
 import MailAuth from '@/views/member/MailAuth.vue';
 import MailAuthSucess from '@/views/member/MailAuthSucess.vue';
+import PwdSearch from '@/views/member/PwdSearch.vue';
+import IdSearch from '@/views/member/IdSearch.vue';
 import Myinfo from '@/components/mypage/mypage_inform.vue';
-import Myboardlist from '@/components/mypage/myBoard_list.vue'; 
 import TripList from '@/views/trip/TripList.vue';
 import CommunityView  from '@/views/community/community_list.vue';
 import GalleryMain from '@/views/gallery/galleryMain.vue';
 import GalleryWrite from '@/views/gallery/galleryWrite.vue';
+import GalleryDetail from '@/views/gallery/galleryDetail.vue';
+import GalleryModify from '@/views/gallery/galleryModify.vue';
+
 const routes = [
   {
     path: '/',
@@ -52,11 +56,6 @@ const routes = [
     component: Myinfo
   },
   {
-    path: '/trip/myBoardlist',
-    name:'Myboardlist',
-    component: Myboardlist
-  }, 
-  {
     path: '/trip/TripList',
     name: 'TripList',
     component: TripList
@@ -70,6 +69,27 @@ const routes = [
     path: '/trip/galleryWrite',
     name: 'GalleryWrite',
     component: GalleryWrite
+  }
+  ,
+  {
+    path: '/trip/galleryDetail',
+    name: 'GalleryDetail',
+    component: GalleryDetail
+    },
+    {
+    path: '/trip/galleryModify',
+    name: 'GalleryModify',
+    component: GalleryModify
+    },
+  {
+    path : '/trip/PwdSearch',
+    name : 'PwdSearch',
+    component : PwdSearch
+  },
+  {
+    path : '/trip/Idsearch',
+    name : 'IdSearch',
+    component : IdSearch
   }
   
 

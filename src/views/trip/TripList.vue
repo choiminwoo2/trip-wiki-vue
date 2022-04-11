@@ -54,10 +54,6 @@
   
   </div>
   
-
-
-
-
 <div>
   
   <paging/>
@@ -156,13 +152,8 @@ export default {
     height: 203px;
   }
 
-  .col-3 > .card > .card-body > .card-text {
-  
-    height: 60px;
-  }
-
   .col-3 > .card > .card-body > .location-text {
-
+    margin-top: 10px;
     display: flex;
   }
 
@@ -176,8 +167,13 @@ export default {
     display: flex;
   }
 
-.col-3 > .card > .card-body > .card-title > .flex{
-  display: flex;
+.col-3 > .card > .card-body {
+  height: 212px;
+}
+
+.col-3 > .card > .card-body > .card-title > .flex > .trip-text > .flex-icon {
+  margin-top: 10px;
+  margin-bottom: 10px;
 }
  
 </style>

@@ -1,7 +1,7 @@
 <template>
   <div class="login-Container">
     <img src="@/assets/logo.png">
-    <LoginPages/>
+    <LoginPages />
   </div>
 </template>
 
@@ -34,7 +34,6 @@ export default {
     max-width: 1100px;
     justify-content: center;
     justify-items: center;
-    margin-top:225px;
 
   }
   img{
@@ -56,7 +55,6 @@ export default {
     max-width: 70%;
     justify-content: center;
     justify-items: center;
-    margin-top:150px;
   } 
    img{
     position: relative;
@@ -82,7 +80,6 @@ export default {
     justify-items: center;
     min-width: 300px;
     max-width: 600px;
-   margin-top:150px;
 
   }
    img{

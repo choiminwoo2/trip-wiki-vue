@@ -1,9 +1,8 @@
 <template> 
-  <div id="app">
+      
       <router-view 
         @parent_getSession="getSession"
         :parent_id="id"/>
-  </div>
 </template>
 <script>
 import axios from '@/setting/axiossetting.js';

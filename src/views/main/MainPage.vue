@@ -10,7 +10,7 @@
 
 <script>
 import Header from '@/components/main/header_nav.vue';
-import Footer from '@/components/main/footer_info.vue'
+import Footer from '@/components/main/footer_info.vue';
 import Main_Slide from '@/components/main/main_slide.vue';
 import Main_Trip from '@/components/main/main_trip.vue';
 import Main_Gallery from '@/components/main/main_gallery.vue';

@@ -1,11 +1,17 @@
 <template>
-    <form @submit.prevent="add">
-        <h3> 포토갤러리 사진 등록</h3>
+    <form @submit.prevent="update">
+        <h3> 포토갤러리 사진 수정</h3>
         <div class="form-group">
             <label for="galleryTitle" class="form-label mt-4">사진 제목</label>
-            <input type="text" class="form-control" id="galleryTitle" ref="input_title" v-model.lazy="gallery.title" placeholder="사진에 대한 짧은 글을 작성해주세요" maxlength="30">
+            <input type="text" class="form-control" id="galleryTitle" v-model.lazy="gallery.title" placeholder="사진에 대한 짧은 글을 작성해주세요" maxlength="30">
             <label for="galleryArea" class="form-label mt-4">사진 장소</label>
-            <input type="text" class="form-control" id="galleryArea" ref="input_area" v-model.lazy="gallery.area" placeholder="사진 속 장소를 입력해주세요" maxlength="30">
+            <input type="text" class="form-control" id="galleryArea" v-model.lazy="gallery.area" placeholder="사진 속 장소를 입력해주세요" maxlength="30">
+        </div>
+        <div class="original_ok">
+            <button @click="onClickButton"><i class='bx bxs-message-alt-x'></i></button>
+            <div class="original">
+                <img src="@/assets/image/spring.jpg" id="photo_original">
+            </div>
         </div>
         <div class="form-group formFile_image">
             <label for="formFile" class="form-label mt-4">사진 업로드</label>
@@ -23,32 +29,51 @@
 <script>
 import {ref, watch} from "vue";
 import axios from '@/setting/axiossetting.js';
-import {useRouter} from 'vue-router';
+import {useRoute, useRouter} from 'vue-router';
 export default {
-    props: {
-        parent_id: {
-            type: String,
-            required: true
+    props:{
+        parent_id:{
+        type:String,
+        required:false
         }
     },
-    emits: ['parent_getSession'],
+    emits:['parent_getSession'],
     setup(props, context) {
         context.emit("parent_getSession");
-        const gallery = ref({
-            user:'',
-            title:'',
-            area:'',
-            fileName:''
-        })
+
+        const fileName = ref("");
+        const gallery = ref({});
         let imageFile = ref("");
         let imageUrl = ref("");
         const router = useRouter();
+        const num = useRoute().params.num;
+        let check = 0;
+        
+        const getDetail = async ()=>{
+            try{
+                console.log("num="+num);
+                const res = await axios.get('photos/'+ num);
+                console.log(res.data);
+                gallery.value = res.data.gallery;
+
+                //"board_ORIGINAL":null 로 전송된 경우 fileName.value=null입니다.
+                fileName.value = gallery.value.photo;
+                console.log("파일이름 = " + fileName.value);
+
+            } catch (error) {
+                console.log(error);
+            }
+        }
+
+        getDetail();
 
         const change = event => {
             if (event.target.files.length === 0) {
                 return;
             }
             imageFile.value = event.target.files[0];
+            fileName.value = imageFile.value.name;
+            check++;
         }
 
         // 이미지 미리보기
@@ -56,12 +81,12 @@ export default {
             let fileReader = new FileReader();
             fileReader.readAsDataURL(imageFile);
 
-            fileReader.addEventListener("load", () =>{
+            fileReader.addEventListener("load", () => {
                 imageUrl.value = fileReader.result;
             })
-        })
-
-        const add = async() => {
+        });
+        
+        const update = async() => {
             let frm = new FormData();
             if (!gallery.value.title) {
                 alert("사진 제목을 입력해주세요");
@@ -81,30 +106,44 @@ export default {
             frm.append("title", gallery.value.title);
             frm.append("area", gallery.value.area);
             frm.append("user_id", props.parent_id);
-
-            try {
-                const res = await axios.post('gallery/new',
-                    frm,
-                    { header: 
-                        {'Content-Type':'multipart/form-data;charset=UTF-8'}
-                    },
-                )
-                console.log(res.data);
+            frm.append("gallery_id", num);
                 
-                router.push({
-                    name: 'GalleryMain'
-                })
-            } catch(err) {
-                console.log('여기는 오류')
-                console.log(err)
+            if(check == 0 && fileName.value != null) { //기존파일 그대로인 경우
+                frm.append("check", fileName.value);  
+                frm.append("photo",gallery.value.photo);
             }
+                
+            try{
+                const res= await axios.patch('gallery/update', 
+                    frm,
+                        { headers:
+                            { 'Content-Type': 'multipart/form-data;charset=UTF-8' } 
+                        }
+                ); 
+                console.log(res.data);
+                console.log("modifyAction");
+                router.push({name : 'galleryDetail'});
+                    
+            }catch(err){
+                    console.log('여기는 오류')
+                    console.log(err);
+            }
+        }//update
+
+        const remove = () =>{
+            fileName.value='';
         }
+
+        const goDetail=()=>{
+            router.push({name:'galleryDetail'})
+        }
+
         return {
-            gallery, change, add, imageUrl
+        fileName, gallery,
+        change, update, remove, goDetail, imageUrl
         };
     }
-
-}
+};
 </script>
 
 <style scoped>
@@ -136,7 +175,18 @@ export default {
         text-align: center;
     }
 
-    #photo_preview {
+    .original {
+        margin: 0 auto;
+        border-style: dotted;
+        border-width: 0.5px;
+        border-radius: 2%;
+        width: 750px;
+        height: 422px;
+        overflow: hidden;      
+        text-align: center;
+    }
+
+    #photo_preview, #photo_original {
         width: auto;
         height: 100%;
     }

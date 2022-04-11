@@ -6,14 +6,14 @@
      <h1>메일 인증이 완료 되었습니다.</h1>
     <hr>
     <div>
-    <h4>{{timer}} 후 메인페이지로 이동합니다.</h4>
+    <h4>{{timer}} 후 로그인페이지로 이동합니다.</h4>
     </div>
   </div>
 </template>
 
 <script>
 import axios from '@/setting/axiossetting.js';
-import { useRoute } from 'vue-router'
+import { useRoute } from 'vue-router';
 import router from '@/router';
 import { ref } from '@vue/reactivity';
 
@@ -36,7 +36,7 @@ export default {
                 }else{
                      clearInterval(interval);   
                       router.push({
-                        name:'Home'
+                        name:'Login'
                     })
                 }
                 }, 1000);
@@ -66,7 +66,6 @@ export default {
     }
 
     .Loading-container{
-
         width: 100%;
         min-height: 100%;
         max-height:100%;

@@ -9,8 +9,8 @@
         <button type="submit" class="btn btn-info">로그인</button>
       </div>
        <div class="find-action">
-        <a>아이디 찾기</a>
-        <a>비밀 번호 찾기</a>
+        <a><router-link :to="{name:'IdSearch'}">아이디 찾기</router-link></a>
+        <a><router-link :to="{name:'PwdSearch'}">비밀번호 찾기</router-link></a>
         <router-link :to="{name:'Join'}"  @click="join" class="join-temp">회원 가입</router-link>
       </div>
       <p>소셜 계정으로 로그인하기</p>
@@ -60,7 +60,7 @@ export default {
         })).data;
         console.log(data);
         if(data == -1){
-          console.log("아이디가 존재하지않습니다.");
+          alert("아이디가 존재하지않습니다.");
         }else if(data == 0){
           console.log("비밀번호가 일치하지 않습니다.");
         }else if(data == 1){

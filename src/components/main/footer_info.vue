@@ -16,7 +16,11 @@ export default {
 
 <style scoped>
     footer {
-        background-color: rgb(149, 160, 153);
+        width: 100%;
         height: 150px;
+        bottom: 0;
+        left: 0;
+        margin-top: 100px;
+        background-color: rgb(149, 160, 153);
     }
 </style>

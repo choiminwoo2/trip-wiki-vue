@@ -19,18 +19,15 @@
             <tr id="date">
                 {{gallery.user_id}} {{gallery.reg_date}} 작성
             </tr>
-
         </table>
-        <img v-bind:src="preview">
     </div>
 </template>
 
 <script>
-import {ref, computed} from 'vue';
+import {ref} from 'vue';
 import {useRoute} from 'vue-router';
 import {useRouter} from 'vue-router';
 import axios from '@/setting/axiossetting.js';
-import {useStore} from 'vuex';
 export default {
     props: {
         parent_id: {
@@ -54,6 +51,8 @@ export default {
                 const res = await axios.get(`gallery/${num}`);
                 console.log(res.data);
                 gallery.value = res.data.gallery;
+                display(gallery.value.photo);
+
             } catch (error) {
                 console.log(error);
             }
@@ -61,19 +60,13 @@ export default {
 
         getDetail();
 
-        const store = useStore();
-        const count = computed(() => {
-            return store.state.count;
-        })
-
         const preview = ref('');
-        const display = async() => {
-            console.log(gallery.value.photo);
+        const display = async(filename) => {
             try {
                 // Blob(Binary Large Object)객체는 파일을 text나 2진 데이터 형태로 읽을 수 있음)
                 const res = await axios.get ('gallery/display', {
                     params: {
-                        filename: gallery.value.photo,
+                        filename: filename,
                     },
                     responseType: 'blob'
                 });
@@ -90,7 +83,7 @@ export default {
         
 
         return {
-            gallery, count, goModify, display, preview
+            gallery, goModify, display, preview
         }
 
     }
@@ -121,9 +114,6 @@ export default {
 
     .photo_wapper {
         margin: 0 auto;
-        border-style: dotted;
-        border-width: 0.5px;
-        border-radius: 2%;
         width: 1100px;
         height: 619px;
         overflow: hidden;      

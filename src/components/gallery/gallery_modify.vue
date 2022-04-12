@@ -7,13 +7,17 @@
             <label for="galleryArea" class="form-label mt-4">사진 장소</label>
             <input type="text" class="form-control" id="galleryArea" v-model.lazy="gallery.area" placeholder="사진 속 장소를 입력해주세요" maxlength="30">
         </div>
-        <div class="original_ok">
-            <button @click="onClickButton"><i class='bx bxs-message-alt-x'></i></button>
+        <div class="original_ok" v-if="originalOk">
+            <div class="showImage">
+                <button type="button" class="btn btn-outline-dark showBtn" @click="onClickBtn">
+                    사진 변경하기 <i class='bx bxs-message-alt-x'/>
+                </button>
+            </div>
             <div class="original">
-                <img src="@/assets/image/spring.jpg" id="photo_original">
+                <img :src="preview" id="photo_original">
             </div>
         </div>
-        <div class="form-group formFile_image">
+        <div class="form-group formFile_image" v-else>
             <label for="formFile" class="form-label mt-4">사진 업로드</label>
             <input class="form-control" type="file" id="formFile" @change="change">
             <div class="preview">
@@ -43,29 +47,35 @@ export default {
 
         const fileName = ref("");
         const gallery = ref({});
+        const preview = ref(''); // 기존 사진 출력
         let imageFile = ref("");
         let imageUrl = ref("");
         const router = useRouter();
         const num = useRoute().params.num;
         let check = 0;
+        let originalOk = ref(true);
         
-        const getDetail = async ()=>{
+        const getDetail = async () => {
             try{
                 console.log("num="+num);
-                const res = await axios.get('photos/'+ num);
+                const res = await axios.get('gallery/'+ num);
                 console.log(res.data);
                 gallery.value = res.data.gallery;
-
-                //"board_ORIGINAL":null 로 전송된 경우 fileName.value=null입니다.
+                display(gallery.value.photo);
                 fileName.value = gallery.value.photo;
                 console.log("파일이름 = " + fileName.value);
-
             } catch (error) {
                 console.log(error);
             }
         }
 
         getDetail();
+
+        const onClickBtn = (event) =>  {
+            event.preventDefault();
+            originalOk.value = false;
+
+        }
 
         const change = event => {
             if (event.target.files.length === 0) {
@@ -74,6 +84,24 @@ export default {
             imageFile.value = event.target.files[0];
             fileName.value = imageFile.value.name;
             check++;
+        }
+
+        // 기존 사진 출력
+        const display = async(filename) => {
+            try {
+                // Blob(Binary Large Object)객체는 파일을 text나 2진 데이터 형태로 읽을 수 있음)
+                const res = await axios.get ('gallery/display', {
+                    params: { filename: filename },
+                    responseType: 'blob'
+                });
+    
+                let bb = new Blob([res.data]);
+                let url = window.URL.createObjectURL(bb);
+                preview.value = url;
+    
+            } catch (err) {
+                console.log(err)
+            }
         }
 
         // 이미지 미리보기
@@ -85,7 +113,7 @@ export default {
                 imageUrl.value = fileReader.result;
             })
         });
-        
+
         const update = async() => {
             let frm = new FormData();
             if (!gallery.value.title) {
@@ -97,11 +125,8 @@ export default {
                 alert("사진 장소를 입력해주세요");
                 return false;
             }
-            if (imageFile.value != '') { // let file=''; 초기 값 상태가 아닌지 확인. 즉 파일을 선택하면 파일 업로드하기
+            if (imageFile.value != '') { // let file=''; 초기 값 상태가 아닌지 확인. 즉 파일을 선택하면 파일 업로드
                 frm.append("uploadfile", imageFile.value);
-            } else {
-                alert("사진 업로드는 필수입니다");
-                return false;
             }
             frm.append("title", gallery.value.title);
             frm.append("area", gallery.value.area);
@@ -122,7 +147,8 @@ export default {
                 ); 
                 console.log(res.data);
                 console.log("modifyAction");
-                router.push({name : 'galleryDetail'});
+                alert('수정되었습니다')
+                router.push({name:'GalleryDetail', params:{num:`${num}`}})
                     
             }catch(err){
                     console.log('여기는 오류')
@@ -135,12 +161,12 @@ export default {
         }
 
         const goDetail=()=>{
-            router.push({name:'galleryDetail'})
+            router.push({name:'GalleryDetail', params:{num:`${num}`}})
         }
 
         return {
-        fileName, gallery,
-        change, update, remove, goDetail, imageUrl
+            fileName, gallery, imageUrl, preview, originalOk,
+            change, update, remove, goDetail,  display, onClickBtn
         };
     }
 };
@@ -175,6 +201,15 @@ export default {
         text-align: center;
     }
 
+    .showImage {
+        width: 750px;
+        margin: 0 auto;
+    }
+
+    .showBtn {
+        margin-top: 30px;
+    }
+
     .original {
         margin: 0 auto;
         border-style: dotted;
@@ -193,6 +228,7 @@ export default {
 
     .submit-btn {
         text-align: center;
+        margin-top: 25px;
     }
 
     h3 {

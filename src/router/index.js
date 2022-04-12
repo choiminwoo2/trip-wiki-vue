@@ -9,6 +9,7 @@ import IdSearch from '@/views/member/IdSearch.vue';
 import Myinfo from '@/components/mypage/mypage_inform.vue';
 import TripList from '@/views/trip/TripList.vue';
 import CommunityView  from '@/views/community/community_list.vue';
+import CommunityWrite from '@/views/community/community_write.vue';
 import GalleryMain from '@/views/gallery/galleryMain.vue';
 import GalleryWrite from '@/views/gallery/galleryWrite.vue';
 import GalleryDetail from '@/views/gallery/galleryDetail.vue';
@@ -90,6 +91,11 @@ const routes = [
     path : '/trip/Idsearch',
     name : 'IdSearch',
     component : IdSearch
+  },
+  {
+    path: '/trip/communityWrite',
+    name: 'CommunityWrite',
+    component : CommunityWrite
   }
   
 

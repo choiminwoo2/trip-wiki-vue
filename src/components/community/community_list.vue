@@ -33,7 +33,7 @@
       <table class="table table-striped">
         <thead>
           <tr>
-            <th colspan="3">MVC 게시판 - list</th>
+            <th colspan="3">Trip-Community</th>
             <th colspan="2">
             <span>글 개수 : {{listcount}}</span>
             </th>

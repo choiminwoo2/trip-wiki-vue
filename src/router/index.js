@@ -72,12 +72,12 @@ const routes = [
   }
   ,
   {
-    path: '/trip/galleryDetail',
+    path: '/trip/galleryDetail/:num',
     name: 'GalleryDetail',
     component: GalleryDetail
     },
     {
-    path: '/trip/galleryModify',
+    path: '/trip/galleryModify/:num',
     name: 'GalleryModify',
     component: GalleryModify
     },
@@ -91,9 +91,6 @@ const routes = [
     name : 'IdSearch',
     component : IdSearch
   }
-  
-
-
 ]
 
 const router = createRouter({

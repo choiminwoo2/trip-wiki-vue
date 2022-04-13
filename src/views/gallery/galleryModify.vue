@@ -2,15 +2,17 @@
     <div class="galleryModify">
         <Header :parent_id="parent_id"/>
         <Gallery_Modify :parent_id="parent_id"/>
+        <Footer />
     </div>
 </template>
 
 <script>
 import Header from '@/components/main/header_nav.vue';
+import Footer from '@/components/main/footer_info.vue';
 import Gallery_Modify from '@/components/gallery/gallery_modify.vue';
 export default {
     components: {
-        Header, Gallery_Modify
+        Header, Footer, Gallery_Modify
     },
     props: {
         parent_id: {

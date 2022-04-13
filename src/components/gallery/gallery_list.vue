@@ -5,14 +5,12 @@
                 <div class="col" v-for="(item, index) in list" :key="index">
                     <router-link :to="{name:'GalleryDetail', params:{num:`${item.gallery_id}`}}">
                         <div class="card">
-                            <!--<img :src="require('C:/upload/2022-4-7/bbs20224766417959.jpg')" class="card-img-top gallery-photo">-->
-                            <img :src="item.photo" class="card-img-top gallery-photo">
+                            <img :src="src[index]" class="card-img-top gallery-photo">
                             <div class="card-body">
                                 <h6 class="card-title">{{ item.title }}</h6>
                             </div>
                         </div>
                     </router-link>
-                    {{item.photo}}
                 </div>
             </div>
         </div>
@@ -32,7 +30,7 @@ export default {
         const limit = 6;
         let currentpage = 1;
         let maxpage = 1;
-
+        let src=ref([]);
         const listcount = ref(0);
         const list = ref([]);
         const startnum = ref(0);
@@ -46,10 +44,10 @@ export default {
                 const res = await axios.get(`photos?page=${page}&limit=6`);
 
                 list.value = res.data.gallerylist;
-                //let src2 = require('C:/upload/2022-4-4/bbs20224463918059.png');
-
-                //list.value[0].photo = require(`${list.value[0].photo}`)
-                console.log(list.value[0].photo)
+                list.value.forEach((item, index) => {
+                    console.log(item.photo)
+                     getImage(item.photo, index )
+                })
 
                 listcount.value = res.data.listcount;
                 maxpage = res.data.maxpage;
@@ -73,8 +71,19 @@ export default {
 
         getList(1);
 
+        const getImage= async(filename, index) => {
+            const res=await axios.get('gallery/display',
+                { 
+                    params: { filename : filename , },
+                    responseType:'blob'
+                }
+            );
+            let bb = new Blob([res.data]);
+            let url=window.URL.createObjectURL(bb);
+            src.value[index] = url;
+        }
         return {
-            limit, startnum, list, listcount
+            limit, startnum, list, listcount, src
         }
     }
 }

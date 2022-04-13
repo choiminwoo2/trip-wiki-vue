@@ -2,16 +2,19 @@
     <div class="galleryDetail">
         <Header :parent_id="parent_id"/>
         <Gallery_Detail :parent_id="parent_id" />
-        
+        <Comment />
+        <Footer />
     </div>
 </template>
 
 <script>
 import Header from '@/components/main/header_nav.vue';
+import Footer from '@/components/main/footer_info.vue';
 import Gallery_Detail from '@/components/gallery/gallery_detail.vue';
+import Comment from '@/components/gallery/gallery_comment.vue';
 export default {
     components: {
-        Header, Gallery_Detail
+        Header, Footer, Gallery_Detail, Comment
     },
     props: {
         parent_id: {

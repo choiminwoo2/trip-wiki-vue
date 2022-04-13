@@ -73,12 +73,12 @@ const routes = [
   }
   ,
   {
-    path: '/trip/galleryDetail',
+    path: '/trip/galleryDetail/:num',
     name: 'GalleryDetail',
     component: GalleryDetail
     },
     {
-    path: '/trip/galleryModify',
+    path: '/trip/galleryModify/:num',
     name: 'GalleryModify',
     component: GalleryModify
     },
@@ -97,9 +97,6 @@ const routes = [
     name: 'CommunityWrite',
     component : CommunityWrite
   }
-  
-
-
 ]
 
 const router = createRouter({

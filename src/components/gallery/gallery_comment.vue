@@ -1,10 +1,10 @@
 <template>
     <div class="container">
-        <h3>댓글</h3>
+        <h5>댓글</h5>
         <div class="comment_write">
-            <textarea class="form-control" rows="3" v-model="content" @input="change" maxlength="50" style="resize:none"></textarea>
-            <button type="button" class="btn btn-info">Info</button>
-            <button type="button" class="btn btn-success">Success</button>
+            <textarea class="form-control" rows="3" v-model="content" maxlength="50" style="resize:none"></textarea>
+            <button type="button" class="btn btn-info" >로그인</button>
+            <button type="button" class="btn btn-success">등록</button>
         </div>
 
     </div>
@@ -16,6 +16,6 @@ export default {
 }
 </script>
 
-<style>
+<style scoped>
 
 </style>

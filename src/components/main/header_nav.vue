@@ -3,14 +3,14 @@
         <!-- 로그인/ 로그아웃 nav -->
         <nav class="navbar navbar-expand-sm navbar-dark bg-primary">
             <div class="container-fluid" id="first_nav">
-                <ul class="navbar-nav ms-md-auto" v-if="!shownav" >
-                    <li><router-link :to="{name:'Login'}" class="nav-link">로그인</router-link></li>
-                    <li><router-link :to="{name:'Join'}" class="nav-link">회원가입</router-link></li>
-                </ul>
-                <ul class="navbar-nav ms-md-auto" v-else>
+                 <ul class="navbar-nav ms-md-auto" v-if="parent_id" >
                     <li class="nav-link logout-hover" @click="logout" >{{parent_id}}님 (로그아웃)</li>
                     <li><router-link to="#" class="nav-link" v-show="parent_id === 'admin'">관리자페이지</router-link></li>
                     <li><router-link to="#" class="nav-link" v-show="!parent_id === 'admin'">마이페이지</router-link></li>
+                </ul>
+                <ul class="navbar-nav ms-md-auto" v-else >
+                    <li><router-link :to="{name:'Login'}" class="nav-link">로그인</router-link></li>
+                    <li><router-link :to="{name:'Join'}" class="nav-link">회원가입</router-link></li>
                 </ul>
             </div>
         </nav>
@@ -62,11 +62,13 @@
 </template>
 
 <script>
-import axios from '@/setting/axiossetting.js';
+
 import cookies from 'vue-cookies';
-import { useStore } from 'vuex';
+// import { useStore } from 'vuex';
+// import router from '@/router';
+// import { ref } from '@vue/reactivity';
+import axios from '@/setting/axiossetting.js'
 import router from '@/router';
-import { ref } from '@vue/reactivity';
 export default {
     props:{
         parent_id:{
@@ -76,28 +78,32 @@ export default {
     },
     emits:['parent_getSession'],
     setup(props,context){
-        const store =useStore();
-        const shownav = ref(false); 
-        shownav.value = store.state.nav_show;
+        console.log("props ID=" + props.parent_id);
+        context.emit("parent_getSession");
+        // const store =useStore();
+        // const shownav = ref(false); 
+        // shownav.value = store.state.nav_show;
         const logout = async() =>{
+            console.log("logout")
+            //context.emit("parent_getSession",'logout');
+            cookies.remove(props.parent_id);
             const data = await(await axios.post('users/logout')).data;
-            console.log(data);
-            if(data){
-                cookies.remove(props.parent_id);
-                context.emit('parent_getSession','');
-                console.log("props 삭제 이후 =" +props.parent_id);
-                store.dispatch('navShow',false);
-                shownav.value=false;
-                router.push({
-                    name:'Home'
-                })
+             console.log(data);
+            // if(data){
+            //     console.log("shownave.value=" + !shownav.value)
+            //     console.log("props 삭제 이후 =" +props.parent_id);
+            //     store.dispatch('navShow',false);
+            //     shownav.value=false;
+                 router.push({
+                    name:'Login'
+                 })
                 
-            }else{
-                console.log("로그아웃 실패.");
-            }
+            // }else{
+            //     console.log("로그아웃 실패.");
+            // }
         }  
         return{
-            logout,shownav
+            logout
         }
     }
 }

@@ -42,8 +42,10 @@ export default {
                         sendEmailToUser(email_message);
                     }
             }else if(sendId.value == '' && input_email.value != ''){
+                sendMessage.value="아이디";
                 const data = await (await axios.post('idFinder',{
-                        user_email : input_email.value
+                        email : input_email.value,
+                        message : sendMessage.value
                     })).data; 
                     console.log(data);
             }
@@ -51,9 +53,10 @@ export default {
         const sendEmailToUser = async() =>{
             const data = await( await axios.post('keySender',{
                 email : input_email.value,
-                message : sendMessage.value
+                message : sendMessage.value,
+                id : sendId.value
             })).data;
-            console.log(data)
+            console.log(data);
         }
         return{
             input_email,ChangeEmail,sendId,handleEmailSender,email_color,email_message

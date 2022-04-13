@@ -14,8 +14,8 @@
         <router-link :to="{name:'Join'}"  @click="join" class="join-temp">회원 가입</router-link>
       </div>
       <p>소셜 계정으로 로그인하기</p>
-        <ul class="social-group">
-          <li><a><img src="@/assets/kakao_icon.png" class="kakao-logo">카카오 로그인</a></li>
+        <ul>
+          <li><img src="@/assets/kakao_icon.png" @click="kakaologin" style="width:316px;"></li>
         </ul>
   </form>
 </template>
@@ -69,12 +69,10 @@ export default {
             cookies.set("save_id",input_id.value,'0.5d');
         }else if(data == 2){
           router.push({
-
             name:'MailAuth',
             params: {id: input_id}
           })
         }
-          
           else{
             cookies.remove("save_id");
           }
@@ -87,18 +85,15 @@ export default {
         console.log(err);
       }
     }
-    try{
-        const json = axios.get('apitest');
-        console.log(json);
+    const kakaologin = () =>{
+      window.location.replace("https://kauth.kakao.com/oauth/authorize?client_id=7766f2940612dd165b60ff116edf4541&redirect_uri=http://localhost:8081/trip/auth&response_type=code");
     }
-    catch(err){
-      console.log(err)
-    }
+    
     return{
-      input_id,input_pass,remember,loginProcess,join
-    }
-  }
-}
+      input_id,input_pass,remember,loginProcess,join,kakaologin
+    }//return end
+  }//setup end
+}//export end
 </script>
 
 <style lang="scss" scoped>
@@ -196,7 +191,5 @@ export default {
   .mx{
     margin-right: 2px;
   }
- div.login-Container > form > ul.social-group > li > a > img{
-   transform: translate(-10px,-1px);
- }
+
 </style>

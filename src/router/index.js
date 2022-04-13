@@ -8,11 +8,14 @@ import PwdSearch from '@/views/member/PwdSearch.vue';
 import IdSearch from '@/views/member/IdSearch.vue';
 import Myinfo from '@/components/mypage/mypage_inform.vue';
 import TripList from '@/views/trip/TripList.vue';
+import TripDetail from '@/views/trip/TripDetail.vue';
 import CommunityView  from '@/views/community/community_list.vue';
 import GalleryMain from '@/views/gallery/galleryMain.vue';
 import GalleryWrite from '@/views/gallery/galleryWrite.vue';
 import GalleryDetail from '@/views/gallery/galleryDetail.vue';
 import GalleryModify from '@/views/gallery/galleryModify.vue';
+import PasswordConverterPage from '@/views/member/PasswordConverterPage.vue';
+import KakaoAuth from '@/views/member/kakaoAuth.vue';
 
 const routes = [
   {
@@ -72,12 +75,12 @@ const routes = [
   }
   ,
   {
-    path: '/trip/galleryDetail/:num',
+    path: '/trip/galleryDetail',
     name: 'GalleryDetail',
     component: GalleryDetail
     },
     {
-    path: '/trip/galleryModify/:num',
+    path: '/trip/galleryModify',
     name: 'GalleryModify',
     component: GalleryModify
     },
@@ -90,7 +93,22 @@ const routes = [
     path : '/trip/Idsearch',
     name : 'IdSearch',
     component : IdSearch
-  }
+  },
+  {
+    path: '/trip/PasswordConverter/:id/:key',
+    name : 'PasswordConverterPage',
+    component : PasswordConverterPage
+  },
+  {
+    path: '/trip/auth/',
+    name : 'KakaoAuth',
+    component : KakaoAuth
+  },
+  {
+    path: '/trip/TripDetail/:contentId',
+    name: 'TripDetail',
+    component: TripDetail
+  },
 ]
 
 const router = createRouter({

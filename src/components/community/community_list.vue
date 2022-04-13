@@ -129,12 +129,14 @@ export default {
 const getList = async (page) => {
      
       try {
-        const res = await axios.get(`boards?page=${page}&limit=${limit.value}`);
+        const res = await axios.get(`boards?page=${page}&limit=${limit.value}&search_field=${search_field.value}&search_word=${search_word.value}`);
         
         list.value = res.data.boardlist;
         listcount.value=res.data.listcount;
         maxpage=res.data.maxpage;
         currentpage=res.data.page;
+        search_field.value=res.data.search_field;
+        search_word.value = res.data.search_word;
         startnum.value=listcount.value-(currentpage-1)*limit.value;
         console.log("page의 startnum.value = " + startnum.value);
         

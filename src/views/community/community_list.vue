@@ -25,7 +25,7 @@ export default {
     const router = useRouter();
     const goWrite=()=>{
       router.push({
-        name:'Board_Write',
+        name:'CommunityWrite',
       });
     }
     return {

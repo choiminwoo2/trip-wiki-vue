@@ -4,12 +4,12 @@
             <h1>Trip-Community-Write</h1>
             <div class="rows">
       <span>지역</span>
-      <select class="form-control" v-model="limit" >
-        <option value="1" selected>서울</option>
-        <option value="2">경기</option>
-        <option value="3">부산</option>
-        <option value="4">대구</option>
-        <option value="5">제주</option>
+      <select class="form-control" v-model="board.location" >
+        <option value="서울" selected>서울</option>
+        <option value="경기/인천">경기/인천</option>
+        <option value="대전/충청/강원">대전/충청/강원</option>
+        <option value="부산/대구/경상">부산/대구/경상</option>
+        <option value="광주/전라/제주">광주/전라/제주</option>
       </select>
       </div>
             <div class="form-group">
@@ -46,7 +46,7 @@
 
 
   <div id="app">
-        <ckeditor :editor="editor" v-model="editorData" :config="editorConfig"></ckeditor>
+        <ckeditor :editor="editor" v-model="board.editorData" :config="editorConfig"></ckeditor>
     </div>
 
 
@@ -95,9 +95,11 @@ export default {
 
         context.emit("parent_getSession");
         const board = ref({
+            location:'',
             name:'',
             pass:'',
             content:'',
+            editorData:'',
             subject:'',
             fileName:''
         })
@@ -115,8 +117,9 @@ export default {
             if(file!=''){
              frm.append("uploadfile", file);  
             }
+            frm.append("BOARD_LOCATION", board.value.location)
             frm.append("BOARD_SUBJECT", board.value.subject);
-            frm.append("BOARD_CONTENT", board.value.content);
+            frm.append("BOARD_CONTENT", board.value.editorData);
             frm.append("BOARD_PASS", board.value.pass);
             frm.append("BOARD_NAME", props.parent_id);
 

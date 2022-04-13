@@ -109,7 +109,7 @@ export default {
     }
 
     img {
-        min-height: 390px;
+        min-height: 400px;
         min-width: 450px;
     }
 

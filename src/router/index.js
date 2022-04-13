@@ -6,7 +6,7 @@ import MailAuth from '@/views/member/MailAuth.vue';
 import MailAuthSucess from '@/views/member/MailAuthSucess.vue';
 import PwdSearch from '@/views/member/PwdSearch.vue';
 import IdSearch from '@/views/member/IdSearch.vue';
-import Myinfo from '@/components/mypage/mypage_inform.vue';
+import Myinfo from '@/views/mypage/mypage_inform.vue';
 import TripList from '@/views/trip/TripList.vue';
 import TripDetail from '@/views/trip/TripDetail.vue';
 import CommunityView  from '@/views/community/community_list.vue';

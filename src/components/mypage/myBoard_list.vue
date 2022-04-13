@@ -1,14 +1,5 @@
 <template>
-<div>
-    <Header />
-</div>
 <div class="container">
- <router-link :to="{name:'Myinfo'}" class="btn btn-primary">내 정보</router-link>
- <router-link :to="{name:'Myboardlist'}" class="btn btn-primary">내 게시물</router-link> 
- <router-link to="name:'myheart'" class="btn btn-primary">좋아요 한 게시물 확인</router-link> 
- <router-link to="name:'mycomment'" class="btn btn-primary">내 댓글</router-link> 
-    </div>
-    
 <table class="table table-hover">
   <thead>
     <tr>
@@ -20,14 +11,12 @@
     </tr>
   </thead>
 </table>
+</div>
 </template>
 
 <script>
-import Header from '@/components/main/header_nav.vue';
+
 export default {
-  components: {
-    Header
-  }
 
 }
 </script>

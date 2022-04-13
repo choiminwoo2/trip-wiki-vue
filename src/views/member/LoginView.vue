@@ -1,6 +1,6 @@
 <template>
   <div class="login-Container">
-    <img src="@/assets/logo.png">
+    <router-link :to="{name:'Home'}"><img src="@/assets/logo.png"></router-link>
     <LoginPages />
   </div>
 </template>
@@ -36,12 +36,16 @@ export default {
     justify-items: center;
 
   }
+  
   img{
     position: relative;
     max-width:200px;
     max-height: 200px;
     margin: 0 auto;
     transform: translateX(-25px);
+  }
+  a{
+    text-align: center;
   }
 }
 /* 태블릿 pc~ */
@@ -62,6 +66,9 @@ export default {
     max-height: 200px;
     margin: 0 auto;
     transform: translateX(-15px);
+  }
+  a{
+    text-align: center;
   }
   .header{
   height:200px;
@@ -88,6 +95,9 @@ export default {
     max-height: 125px;
     margin: 0 auto;
     transform: translateX(-10px);
+  }
+  a{
+    text-align: center;
   }
   .header{
   height:150px;

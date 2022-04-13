@@ -1,8 +1,8 @@
 <template>
     <div class="container">
         <div class="buttons">
-            <button type="button" class="btn btn-info" @click="goModify">수정</button>&nbsp;
-            <button type="button" class="btn btn-danger">삭제</button>
+            <button type="button" class="btn btn-info" v-if="gallery.user_id == parent_id" @click="goModify">수정</button>&nbsp;
+            <button type="button" class="btn btn-danger" v-if="gallery.user_id == parent_id || parent_id == 'admin'" @click.prevent="deleteProcess">삭제</button>
         </div>
         <table>
             <tr>
@@ -80,10 +80,26 @@ export default {
                 console.log(err)
             }
         }
-        
 
+        const deleteProcess = async () => {
+            const res = await axios.delete(`gallery/${num}`)
+            confirm('정말 해당 게시물을 삭제하시겠습니까?');
+            if (!confirm) {
+                return;
+            } else {
+                if (res.data == -1) {
+                    alert('삭제 실패입니다');
+                } else {
+                    alert('삭제되었습니다');
+                    router.push({
+                        name: 'GalleryMain',
+                    });
+                }
+            }
+        }
+        
         return {
-            gallery, goModify, display, preview
+            gallery, goModify, display, preview, deleteProcess
         }
 
     }

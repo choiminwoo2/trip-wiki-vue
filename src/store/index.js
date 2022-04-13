@@ -9,6 +9,7 @@ export default createStore({
     obj: {},
     page: 1,
     keyword:'서울',   
+    menu:'I'
 
   },
   getters: {
@@ -43,7 +44,9 @@ export default createStore({
     update_keyword(state, payload) {
       state.keyword = payload;
   },
-
+    update_menu(state,payload){
+      state.menu = payload
+    },
   },
   actions: {
     navShow(context,show){
@@ -79,6 +82,10 @@ export default createStore({
     store_keyword(context, keyword) {
       
       context.commit('update_keyword', keyword)
+    },
+    store_menu(context, menu) {
+      
+      context.commit('update_menu', menu)
     }
 
     

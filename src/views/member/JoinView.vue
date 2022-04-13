@@ -1,6 +1,6 @@
 <template>
   <div class="join-container">
-    <img src="@/assets/logo.png">
+    <router-link :to="{name:'Home'}"><img src="@/assets/logo.png"></router-link>
     <MemberJoin/>
   </div>
 </template>
@@ -32,6 +32,9 @@ export default {
     margin: 0 auto;
     transform: translateX(3px);
   }
+  a{
+    text-align: center;
+  }
 }
 /* 태블릿 pc~ */
 /* 가로의 길이가 768에서 1023px 사이 */
@@ -52,6 +55,9 @@ export default {
     max-height: 200px;
     margin: 0 auto;
   }
+  a{
+    text-align: center;
+  }
 }
 /* 모바일~*/
 /* 가로의 길이가  767 이하*/
@@ -71,6 +77,9 @@ export default {
     max-width:125px;
     max-height: 125px;
     margin: 0 auto;
+  }
+  a{
+    text-align: center;
   }
 }
 </style>

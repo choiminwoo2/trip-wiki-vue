@@ -1,5 +1,4 @@
 <template> 
-      
       <router-view 
         @parent_getSession="getSession"
         :parent_id="id"/>
@@ -12,12 +11,16 @@ export default {
   setup(){
     const id = ref('');
     const router = useRouter();
+    console.log("render App.vue");
+
     const getSession = async(received_id) =>{
-      if(received_id == ''){
+
+      console.log("getSession init Value=" +received_id);
+      if(received_id == 'logout'){
         try{
-          const data = await (await axios.post("members/logout")).data;
+          const data = await (await axios.post("users/logout")).data;
           id.value='';
-          console.log(data);
+          console.log("getSession=" + data);
         }catch(err){
           console.log(err);
         }

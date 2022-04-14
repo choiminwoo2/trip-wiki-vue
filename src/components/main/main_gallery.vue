@@ -6,30 +6,62 @@
             <button type="button" id="move-btn" class="btn btn-primary">포토갤러리 >> </button>
         </router-link>
         <div class="gallery_wrapper">
-            <div>
-                <img src="@/assets/image/beach.jpg" class="gallery-photo">
-            </div>
-            <div>
-                <img src="@/assets/image/flower.jpg" class="gallery-photo">
-            </div>
-            <div>
-                <img src="@/assets/image/winter.jpg" class="gallery-photo">
-            </div>
-            <div>
-                <img src="@/assets/image/flower.jpg" class="gallery-photo">
-            </div>
-            <div>
-                <img src="@/assets/image/winter.jpg" class="gallery-photo">
-            </div>
-            <div>
-                <img src="@/assets/image/beach.jpg" class="gallery-photo">
+            <div v-for="(item, index) in list" :key="index">
+                <router-link :to="{name:'GalleryDetail', params:{num:`${item.gallery_id}`}}">
+                    <img :src="src[index]" class="gallery-photo">
+                </router-link>
             </div>
         </div>
     </div>
 </template>
 
 <script>
+import {ref} from 'vue';
+import axios from '@/setting/axiossetting.js';
 export default {
+    props: {
+        parent_id: {
+            type: String,
+            required: true
+        }
+    },
+    setup(props, context) {
+        context.emit("parent_getSession");
+        const list = ref([]);
+        let src=ref([]);
+
+        const getList = async () => {
+            try {
+                const res = await axios.get('main/photos');
+
+                list.value = res.data.gallerylist;
+                list.value.forEach((item, index) => {
+                    console.log(item.photo)
+                     getImage(item.photo, index)
+                })
+                console.log(res.data.gallerylist);
+            } catch (err) {
+                console.log(err);
+            }
+        };
+
+        getList();
+
+        const getImage= async(filename, index) => {
+            const res=await axios.get('gallery/display',
+                { 
+                    params: { filename : filename , },
+                    responseType:'blob'
+                }
+            );
+            let bb = new Blob([res.data]);
+            let url=window.URL.createObjectURL(bb);
+            src.value[index] = url;
+        }
+        return {
+            list, src
+        }
+    }
 
 }
 </script>
@@ -79,5 +111,9 @@ export default {
         width: auto;
         height: 100%;
         
+    }
+
+    .gallery-photo:hover {
+        transform: scale(1.2);
     }
 </style>

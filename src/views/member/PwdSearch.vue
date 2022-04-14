@@ -8,9 +8,9 @@
               <h3>비밀번호 찾기</h3>
               <input v-model="input_id" class="form-control" placeholder="아이디 입력">
               <EmailBox />
-               <input type="text" placeholder="인증 번호 입력" class="form-control" style="margin-bottom:5px; margin-top:18px;">
-              <button class="btn btn-info btn-xs right-button">인증 번호 확인</button>
-              <button class="btn btn-primary ">비밀번호 확인하기</button>
+               <input v-model="input_key" placeholder="인증 번호 입력" class="form-control" style="margin-bottom:5px; margin-top:18px;">
+              <button class="btn btn-info btn-xs right-button" @Click="getKey">인증 번호 확인</button>
+              <button class="btn btn-primary ">비밀번호 변경하기</button>
           </div>
       </form>
   </div>
@@ -20,6 +20,8 @@
 import EmailBox from '@/components/member/emailBox.vue';
 import { useStore } from 'vuex';
 import { ref, watch } from '@vue/runtime-core';
+import router from '@/router';
+import axios from '@/setting/axiossetting.js';
 export default {
     components:{
         EmailBox
@@ -28,9 +30,36 @@ export default {
         const sendEmail = ref('');
         const store = useStore();
         const input_id = ref('');
-    
+        const input_key = ref('');
+        let sendIdValue = '';
+
+        const readKey = async() =>{
+            const secrectKey = input_key.value;
+            const id = input_id.value;
+            const data = await(await axios.post(`SelectToFinder/${secrectKey}/${id}`)).data;
+            if(data.result == 1){
+               sendIdValue = data.id;
+            }
+        }
         const sendId = () =>{
-            
+                if(input_id.value == ''){
+                    return;
+                }
+                if(sendEmail.value ==''){
+                    return;
+                }
+                if(sendIdValue != ''){
+                     router.push({
+                    name : 'PasswordConverterPage',
+                    params:{
+                        id: input_id.value,
+                        key: input_key.value
+                    }
+                })
+                }
+        }
+        const getKey = () =>{
+            readKey();
         }
 
         watch(input_id,()=>{
@@ -42,7 +71,7 @@ export default {
             console.log("sendEmail=" + sendEmail.value)
         })
         return{
-            store,sendEmail,input_id,sendId
+            store,sendEmail,input_id,sendId,input_key,getKey,sendIdValue
         }
     }
 }
@@ -79,6 +108,9 @@ export default {
         margin : 0 auto;
         padding: 20px;
         .img{
+            text-align: center;
+        }
+        a{
             text-align: center;
         }
         .center-container{

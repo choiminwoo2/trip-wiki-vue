@@ -1,8 +1,8 @@
 <template>
     <div class="container">
         <div class="buttons">
-            <button type="button" class="btn btn-info" @click="goModify">수정</button>&nbsp;
-            <button type="button" class="btn btn-danger">삭제</button>
+            <button type="button" class="btn btn-info" v-if="gallery.user_id == parent_id" @click="goModify">수정</button>&nbsp;
+            <button type="button" class="btn btn-danger" v-if="gallery.user_id == parent_id || parent_id == 'admin'" @click.prevent="deleteProcess">삭제</button>
         </div>
         <table>
             <tr>
@@ -19,18 +19,15 @@
             <tr id="date">
                 {{gallery.user_id}} {{gallery.reg_date}} 작성
             </tr>
-
         </table>
-        <img v-bind:src="preview">
     </div>
 </template>
 
 <script>
-import {ref, computed} from 'vue';
+import {ref} from 'vue';
 import {useRoute} from 'vue-router';
 import {useRouter} from 'vue-router';
 import axios from '@/setting/axiossetting.js';
-import {useStore} from 'vuex';
 export default {
     props: {
         parent_id: {
@@ -54,6 +51,8 @@ export default {
                 const res = await axios.get(`gallery/${num}`);
                 console.log(res.data);
                 gallery.value = res.data.gallery;
+                display(gallery.value.photo);
+
             } catch (error) {
                 console.log(error);
             }
@@ -61,19 +60,13 @@ export default {
 
         getDetail();
 
-        const store = useStore();
-        const count = computed(() => {
-            return store.state.count;
-        })
-
         const preview = ref('');
-        const display = async() => {
-            console.log(gallery.value.photo);
+        const display = async(filename) => {
             try {
                 // Blob(Binary Large Object)객체는 파일을 text나 2진 데이터 형태로 읽을 수 있음)
                 const res = await axios.get ('gallery/display', {
                     params: {
-                        filename: gallery.value.photo,
+                        filename: filename,
                     },
                     responseType: 'blob'
                 });
@@ -87,10 +80,26 @@ export default {
                 console.log(err)
             }
         }
-        
 
+        const deleteProcess = async () => {
+            const res = await axios.delete(`gallery/${num}`)
+            confirm('정말 해당 게시물을 삭제하시겠습니까?');
+            if (!confirm) {
+                return;
+            } else {
+                if (res.data == -1) {
+                    alert('삭제 실패입니다');
+                } else {
+                    alert('삭제되었습니다');
+                    router.push({
+                        name: 'GalleryMain',
+                    });
+                }
+            }
+        }
+        
         return {
-            gallery, count, goModify, display, preview
+            gallery, goModify, display, preview, deleteProcess
         }
 
     }
@@ -121,9 +130,6 @@ export default {
 
     .photo_wapper {
         margin: 0 auto;
-        border-style: dotted;
-        border-width: 0.5px;
-        border-radius: 2%;
         width: 1100px;
         height: 619px;
         overflow: hidden;      

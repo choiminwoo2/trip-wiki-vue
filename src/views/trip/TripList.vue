@@ -60,10 +60,8 @@
                 <div>
               </div>
               <p class="card-text">
-               
                {{item.addr1}}
-             
-                </p>
+              </p>
                 </div>
        
             </div>

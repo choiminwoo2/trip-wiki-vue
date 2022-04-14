@@ -40,7 +40,6 @@
       <div id="map" class="map"></div>
       <input type="hidden" id="mapx" :value="list.mapx">
       <input type="hidden" id="mapy" :value="list.mapy">
-    
 
   </div>
 
@@ -117,8 +116,7 @@ import axios from '@/setting/axiossetting.js';
 import dayjs from 'dayjs' //npm install dayjs --save
 import {useRoute} from 'vue-router';
 //import {useStore} from 'vuex';
-import { ref} from 'vue';
-//import { kakao} from '@/views/trip/kakao.js';
+import { ref } from 'vue';
 export default {
     components: {
         Header,Footer
@@ -133,8 +131,19 @@ export default {
   component: { 
       dayjs 
     },
-  
-      
+  data() { 
+    return { 
+              today: dayjs().format("YYYYMMDD"),
+              yesterday:'',
+              oneday: dayjs().format("MM/DD"),
+              twoday:'',
+              threeday:'',
+              fourday:'',
+              fiveday:'',
+       }
+            
+  },
+
  setup(props,context){
      context.emit("parent_getSession");
      //const store = useStore(); 
@@ -145,17 +154,9 @@ export default {
      var areacode = document.getElementById("areacode");
     
      const YYYYMMDD = dayjs().format("YYYYMMDD")+"0600";
-    console.log(YYYYMMDD);
-
     
-    let today =dayjs().format("YYYYMMDD");
-    let  yesterday='';
-    let  oneday= dayjs().format("MM/DD");
-    let  twoday='';
-    let threeday='';
-    let  fourday='';
-    let  fiveday='';
-
+    console.log(YYYYMMDD);
+    
 
     //한국관광공사_국문 공통정보 조회 API
     const getDetail = async(contentId) =>{
@@ -208,22 +209,18 @@ export default {
     };
     
     getWeather(YYYYMMDD);
-    console.log(yesterday);
-     const calcDate= () =>
-       { 
-         yesterday = dayjs(today).subtract(1, 'day').format('YYYYMMDD'); 
-         twoday = dayjs(today).add(1, 'day').format('MM/DD'); 
-         threeday = dayjs(today).add(2, 'day').format('MM/DD'); 
-         fourday = dayjs(today).add(3, 'day').format('MM/DD'); 
-         fiveday = dayjs(today).add(4, 'day').format('MM/DD'); 
-         }
-    calcDate();
-
-
+  
+  window.kakao && window.kakao.maps ? initMap() : this.addScript(); 
+    
      return{
-       list,temperature,weather,areacode,oneday,twoday,threeday,fourday,fiveday
-     } 
-    },mounted() { 
+       list,temperature,weather,areacode
+     }
+  },
+
+ 
+
+  
+  mounted() { 
      this.calcDate(); 
      window.kakao && window.kakao.maps ? this.initMap() : this.addScript(); 
   
@@ -240,8 +237,8 @@ export default {
          this.fiveday = dayjs(this.today).add(4, 'day').format('MM/DD'); 
          } ,
       initMap() { 
-        
-        console.log("맵");
+
+        console.log("this.initMap");
         var container = document.getElementById('map'); 
         var mapx = document.getElementById('mapx'); 
         var mapy = document.getElementById('mapy'); 
@@ -254,22 +251,17 @@ export default {
             position: map.getCenter() 
             }); 
             marker.setMap(map); 
-           
-          },
+            }, 
+            
             addScript() { 
-             
-              console.log("스크립트");
+              console.log("addScript()");
               const script = document.createElement('script'); /* global kakao */
                script.onload = () => kakao.maps.load(this.initMap); 
                script.src = `http://dapi.kakao.com/v2/maps/sdk.js?autoload=false&appkey=${key}`; 
                document.head.appendChild(script); 
-              
-               }
-             
+               } 
             }
-  
-        
-}
+          }
 
 </script>
 

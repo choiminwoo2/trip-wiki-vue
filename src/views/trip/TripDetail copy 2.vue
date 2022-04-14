@@ -38,8 +38,6 @@
      
  
       <div id="map" class="map"></div>
-      <input type="hidden" id="mapx" :value="list.mapx">
-      <input type="hidden" id="mapy" :value="list.mapy">
     
 
   </div>
@@ -117,7 +115,7 @@ import axios from '@/setting/axiossetting.js';
 import dayjs from 'dayjs' //npm install dayjs --save
 import {useRoute} from 'vue-router';
 //import {useStore} from 'vuex';
-import { ref} from 'vue';
+import { ref, onMounted } from 'vue';
 //import { kakao} from '@/views/trip/kakao.js';
 export default {
     components: {
@@ -219,34 +217,13 @@ export default {
          }
     calcDate();
 
+ 
+    const initMap=()=> { 
 
-     return{
-       list,temperature,weather,areacode,oneday,twoday,threeday,fourday,fiveday
-     } 
-    },mounted() { 
-     this.calcDate(); 
-     window.kakao && window.kakao.maps ? this.initMap() : this.addScript(); 
-  
-    },
-    
-    
-    methods : { 
-      calcDate: function() 
-       { 
-         this.yesterday = dayjs(this.today).subtract(1, 'day').format('YYYYMMDD'); 
-         this.twoday = dayjs(this.today).add(1, 'day').format('MM/DD'); 
-         this.threeday = dayjs(this.today).add(2, 'day').format('MM/DD'); 
-         this.fourday = dayjs(this.today).add(3, 'day').format('MM/DD'); 
-         this.fiveday = dayjs(this.today).add(4, 'day').format('MM/DD'); 
-         } ,
-      initMap() { 
-        
-        console.log("맵");
+        console.log("this.initMap");
         var container = document.getElementById('map'); 
-        var mapx = document.getElementById('mapx'); 
-        var mapy = document.getElementById('mapy'); 
         var options = { 
-          center: new kakao.maps.LatLng(mapy.value, mapx.value), 
+          center: new kakao.maps.LatLng(list.value.mapy,list.value.mapx), 
           level: 2
           }; 
           var map = new kakao.maps.Map(container, options); //마커추가하려면 객체를 아래와 같이 하나 만든다. 
@@ -254,22 +231,81 @@ export default {
             position: map.getCenter() 
             }); 
             marker.setMap(map); 
-           
-          },
-            addScript() { 
-             
-              console.log("스크립트");
+      }
+
+      const addScript=()=> { 
+              let a=1;
+              console.log("addScript()");
               const script = document.createElement('script'); /* global kakao */
-               script.onload = () => kakao.maps.load(this.initMap); 
+               script.onload = () => kakao.maps.load(initMap); 
                script.src = `http://dapi.kakao.com/v2/maps/sdk.js?autoload=false&appkey=${key}`; 
                document.head.appendChild(script); 
+               console.log(script);
+               
+            if(a!=1){
+              location.reload();
+              a++;
               
-               }
-             
             }
-  
-        
+        }
+        window.kakao && window.kakao.maps ? initMap() : null; 
+
+    onMounted(() => {
+      if(!window.kakao || !window.kakao.maps) {
+        addScript();
+      }else{
+        initMap();
+      }
+      
+    })
+    
+
+
+     return{
+       list,temperature,weather,areacode,oneday,twoday,threeday,fourday,fiveday
+     }
+ }
+
 }
+
+  
+  // mounted() { 
+  //   
+  //    window.kakao && window.kakao.maps ? this.initMap() : this.addScript(); 
+  //   // this.$router.go();
+  //   },
+    
+    
+    // methods : { 
+      
+    //   initMap() { 
+
+    //     console.log("this.initMap");
+    //     var container = document.getElementById('map'); 
+    //     var mapx = document.getElementById('mapx'); 
+    //     var mapy = document.getElementById('mapy'); 
+    //     var options = { 
+    //       center: new kakao.maps.LatLng(mapy.value, mapx.value), 
+    //       level: 2
+    //       }; 
+    //       var map = new kakao.maps.Map(container, options); //마커추가하려면 객체를 아래와 같이 하나 만든다. 
+    //       var marker = new kakao.maps.Marker({ 
+    //         position: map.getCenter() 
+    //         }); 
+    //         marker.setMap(map); 
+
+           
+    //         }, 
+            
+    //         addScript() { 
+    //           console.log("addScript()");
+    //           const script = document.createElement('script'); /* global kakao */
+    //            script.onload = () => kakao.maps.load(this.initMap); 
+    //            script.src = `http://dapi.kakao.com/v2/maps/sdk.js?autoload=false&appkey=${key}`; 
+    //            document.head.appendChild(script); 
+    //            } 
+    //         }
+    //     }
 
 </script>
 

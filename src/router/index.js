@@ -8,11 +8,13 @@ import PwdSearch from '@/views/member/PwdSearch.vue';
 import IdSearch from '@/views/member/IdSearch.vue';
 import Myinfo from '@/components/mypage/mypage_inform.vue';
 import TripList from '@/views/trip/TripList.vue';
+import TripDetail from '@/views/trip/TripDetail.vue';
 import CommunityView  from '@/views/community/community_list.vue';
 import GalleryMain from '@/views/gallery/galleryMain.vue';
 import GalleryWrite from '@/views/gallery/galleryWrite.vue';
 import GalleryDetail from '@/views/gallery/galleryDetail.vue';
 import GalleryModify from '@/views/gallery/galleryModify.vue';
+
 
 const routes = [
   {
@@ -59,6 +61,11 @@ const routes = [
     path: '/trip/TripList',
     name: 'TripList',
     component: TripList
+  },
+  {
+    path: '/trip/TripDetail/:contentId',
+    name: 'TripDetail',
+    component: TripDetail
   },
   {
     path: '/trip/community',

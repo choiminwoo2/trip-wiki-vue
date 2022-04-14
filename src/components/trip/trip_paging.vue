@@ -30,7 +30,7 @@ export default {
         const maxpage = ref(0);
         const currentpage = ref(1);
         const pagelist = ref([]);
-
+    
         watch(()=>store.state.obj,
         ()=>{
             maxpage.value = store.state.obj.maxpage;

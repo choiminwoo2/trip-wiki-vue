@@ -6,7 +6,7 @@
                  <ul class="navbar-nav ms-md-auto" v-if="parent_id" >
                     <li class="nav-link logout-hover" @click="logout" >{{parent_id}}님 (로그아웃)</li>
                     <li><router-link to="#" class="nav-link" v-show="parent_id === 'admin'">관리자페이지</router-link></li>
-                    <li><router-link to="#" class="nav-link" v-show="!parent_id === 'admin'">마이페이지</router-link></li>
+                    <li><router-link :to="{name:'Myinfo',params:{id:`${parent_id}`}}" class="nav-link" v-show="parent_id !== 'admin'">마이페이지</router-link></li>
                 </ul>
                 <ul class="navbar-nav ms-md-auto" v-else >
                     <li><router-link :to="{name:'Login'}" class="nav-link">로그인</router-link></li>
@@ -59,7 +59,7 @@
                             </div>
                         </li>
                         <li class="nav-item">
-                            <router-link class="nav-link" to="#"> 커뮤니티 </router-link>
+                            <router-link class="nav-link" :to="{name:'TripList'}"> 커뮤니티 </router-link>
                         </li>
                     </ul> 
                 </div>

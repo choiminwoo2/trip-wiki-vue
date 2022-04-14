@@ -241,12 +241,7 @@ export default {
                script.src = `http://dapi.kakao.com/v2/maps/sdk.js?autoload=false&appkey=${key}`; 
                document.head.appendChild(script); 
                console.log(script);
-               
-            if(a!=1){
-              location.reload();
-              a++;
-              
-            }
+             
         }
         window.kakao && window.kakao.maps ? initMap() : null; 
 

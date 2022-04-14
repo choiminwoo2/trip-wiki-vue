@@ -23,9 +23,9 @@
             </div>
             <div class="col-lg-7 col-md-12">
                 <div>
-                    <form class="d-flex">
-                        <input class="form-control me-sm-2" type="text" style="width:500px" placeholder="Search">
-                        <button class="btn btn-secondary my-2 my-sm-0" type="submit">Search</button>
+                    <form @submit.prevent="search_main" class="d-flex">
+                        <input class="form-control me-sm-2" type="text" style="width:500px" placeholder="Search" v-model="keyword">
+                        <button class="btn btn-secondary my-2 my-sm-0" type="submit">  Search</button>
                     </form>
                 </div>
             </div>
@@ -44,11 +44,18 @@
                         <li class="nav-item dropdown">
                             <router-link class="nav-link dropdown-toggle" data-bs-toggle="dropdown" to="#" role="button" aria-haspopup="true" aria-expanded="false"> 여행지 살펴보기 </router-link>
                             <div class="dropdown-menu">
-                                <router-link class="dropdown-item" :to="{name:'TripList'}">&nbsp;서울 </router-link>
-                                <router-link class="dropdown-item" to="#">&nbsp;경기/ 인천 </router-link>
-                                <router-link class="dropdown-item" to="#">&nbsp;대전/ 충청/ 강원 </router-link>
-                                <router-link class="dropdown-item" to="#">&nbsp;부산/ 대구/ 경상 </router-link>
-                                <router-link class="dropdown-item" to="#">&nbsp;광주/ 전라/ 제주 </router-link>
+                                 <li class="dropdown-item" @click="go('서울')">&nbsp;서울 </li>
+                                <li class="dropdown-item" @click="go('경기')">&nbsp;경기 </li>
+                                <li class="dropdown-item" @click="go('인천')">&nbsp;인천 </li>
+                                <li class="dropdown-item" @click="go('강원')">&nbsp;강원 </li>
+                                <li class="dropdown-item" @click="go('경상')">&nbsp;경상 </li>
+                                <li class="dropdown-item" @click="go('충청')">&nbsp;충청 </li>
+                                <li class="dropdown-item" @click="go('광주')">&nbsp;광주 </li>
+                                <li class="dropdown-item" @click="go('대전')">&nbsp;대전 </li>
+                                <li class="dropdown-item" @click="go('대구')">&nbsp;대구 </li>
+                                <li class="dropdown-item" @click="go('울산')">&nbsp;울산 </li>
+                                <li class="dropdown-item" @click="go('부산')">&nbsp;부산 </li>
+                                <li class="dropdown-item" @click="go('제주')">&nbsp;제주 </li>
                             </div>
                         </li>
                         <li class="nav-item">
@@ -64,9 +71,9 @@
 <script>
 
 import cookies from 'vue-cookies';
-// import { useStore } from 'vuex';
-// import router from '@/router';
-// import { ref } from '@vue/reactivity';
+import { useStore } from 'vuex';
+//import router from '@/router';
+import { ref } from '@vue/reactivity';
 import axios from '@/setting/axiossetting.js'
 import router from '@/router';
 export default {
@@ -80,9 +87,11 @@ export default {
     setup(props,context){
         console.log("props ID=" + props.parent_id);
         context.emit("parent_getSession");
-        // const store =useStore();
+       
         // const shownav = ref(false); 
         // shownav.value = store.state.nav_show;
+        const store =useStore();
+        const keyword = ref('');
         const logout = async() =>{
             console.log("logout")
             //context.emit("parent_getSession",'logout');
@@ -101,9 +110,26 @@ export default {
             // }else{
             //     console.log("로그아웃 실패.");
             // }
-        }  
+        } 
+        const search_main = ()=>{
+            router.push({
+                    name:'TripList',
+                    query: {keyword: keyword.value}
+                })
+            store.dispatch('store_keyword', keyword.value)
+          
+                        }
+        const go = (location) =>{
+            router.push({
+                    name:'TripList',
+                    query: {
+                        keyword: location
+                    }
+                })
+            store.dispatch('store_keyword', location)
+        } 
         return{
-            logout
+            logout,search_main,go,keyword
         }
     }
 }

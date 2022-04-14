@@ -18,6 +18,7 @@ import GalleryModify from '@/views/gallery/galleryModify.vue';
 import PasswordConverterPage from '@/views/member/PasswordConverterPage.vue';
 import KakaoAuth from '@/views/member/kakaoAuth.vue';
 
+
 const routes = [
   {
     path: '/',
@@ -63,6 +64,11 @@ const routes = [
     path: '/trip/TripList',
     name: 'TripList',
     component: TripList
+  },
+  {
+    path: '/trip/TripDetail/:contentId',
+    name: 'TripDetail',
+    component: TripDetail
   },
   {
     path: '/trip/community',

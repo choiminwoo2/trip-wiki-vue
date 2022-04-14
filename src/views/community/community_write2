@@ -45,9 +45,9 @@
             </div>
 
 
-            <div id="app">
-                <tiptap />
-            </div>
+  <div id="app">
+        <ckeditor :editor="editor" v-model="board.editorData" :config="editorConfig"></ckeditor>
+    </div>
 
 
             <div class="form-group">
@@ -70,12 +70,17 @@
 import { ref } from "vue";
 import axios from '../../axios/axiossetting.js';
 import { useRouter } from 'vue-router';
-import Tiptap from '../../components/community/community_tiptap.vue'
+import ClassicEditor from '@ckeditor/ckeditor5-build-classic';
 
 export default {
-       name: 'App',
-        components: {
-        Tiptap
+        name: 'app',
+        data() {
+            return {
+                editor: ClassicEditor,
+                editorConfig: {
+                    // The configuration of the editor.
+                }
+            };
         },
     props: {
         parent_id: {
@@ -92,7 +97,7 @@ export default {
             location:'',
             name:'',
             pass:'',
-            editor:'',
+            editorData:'',
             subject:'',
             fileName:''
         })
@@ -127,7 +132,7 @@ export default {
                 console.log(res.data);
 
                 router.push({
-                    name : 'CommunityView'
+                    name : 'Board_List'
                 });
 
             }catch(err){

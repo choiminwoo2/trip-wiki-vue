@@ -26,3 +26,4 @@ pnpm-debug.log*
 *.sln
 *.sw?
 node_modules
+src/views/trip/kakao_api.js

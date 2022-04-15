@@ -36,7 +36,7 @@ export default {
             maxpage.value = store.state.obj.maxpage;
             currentpage.value = store.state.obj.currentpage;
             pagelist.value = store.state.obj.pagelist;
-        }
+            }
         );
 
     //페이지 네이션의 페이지 번호를 클릭한 경우
@@ -56,6 +56,6 @@ export default {
     .pagination {
         margin-top: 70px;
         margin-bottom: 70px;
-    }
+     }
     ul.pagination{justify-content: center;}
 </style>

@@ -3,7 +3,8 @@ import { createStore } from 'vuex'
 export default createStore({
   state: {
     nav_show : false,
-    count: 0,
+      count: 0,
+      sendMail : {},
       display: false,
       obj: {},
       page: 1,
@@ -43,6 +44,14 @@ export default createStore({
   update_regId(state, payload) {
    state.regId = payload;
   },
+  updateMail(state,payload){
+    console.log("payload=" +payload)
+    state.sendMail.mail = payload
+  },
+  updateId(state,payload){
+    state.sendMail.id = payload
+  },
+
   },
   actions: {
     navShow(context,show){
@@ -51,6 +60,13 @@ export default createStore({
     count(context, count) {
       //commit(mutations에 정의된 함수이름, 함수에 넘길 값)
       context.commit('update_count', count)
+    },
+    sendMail(context,mail){
+      console.log("sendMail 진입")
+      context.commit('updateMail',mail)
+    },
+    sendId(context,id){
+      context.commit('updateId',id)
     },
     display(context, display) {
 

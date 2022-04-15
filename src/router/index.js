@@ -120,11 +120,6 @@ const routes = [
     component : KakaoAuth
   },
   {
-    path: '/trip/TripDetail/:contentId',
-    name: 'TripDetail',
-    component: TripDetail
-  },
-  {
 
     path: '/trip/Memberlist/',
     name:'Memberlist',

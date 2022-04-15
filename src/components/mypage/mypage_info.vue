@@ -21,7 +21,7 @@
       </tr>
   </tbody>
   </table>
-
+   
   <button class="btn btn-primary" @click="flag=true" v-show="!flag">회원정보 수정</button>
   <update v-show="flag" :parent_id="parent_id" />
 </template>
@@ -29,7 +29,7 @@
 <script>
 
 import {ref} from 'vue';
-//import {useRoute} from 'vue-router';
+import {useRoute} from 'vue-router';
 import axios from '../../axios/axiossetting.js';
 import update from '@/components/mypage/member_Update.vue';
 export default {
@@ -42,15 +42,15 @@ export default {
 			required:true
 		}
 	},
-  setup(props){
+  setup(){
     const m = ref([]);
     const flag = ref(false);
-        //const route = useRoute();
+        const route = useRoute();
         const info = async () =>{
             try{
-               console.log("파라미터로 넘어온 값 = " + props.parent_id)
+               console.log("파라미터로 넘어온 값 = " + route.params.id)
 
-               const res = await axios.get(`members/${props.parent_id}`);
+               const res = await axios.get(`members/${route.params.id}`);
                //const res = await axios.get(`members/testman1234`);
                 console.log(res.data)
                 if(res.data != null){
@@ -106,4 +106,5 @@ th{
 .membersubmit{
   float:right;
 }
+
 </style>

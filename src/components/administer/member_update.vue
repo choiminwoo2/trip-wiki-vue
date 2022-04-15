@@ -45,7 +45,6 @@
           <tr>
             <th><div>번호</div></th>
             <th><div>아이디</div></th>
-            <th><div>이름</div></th>            
             <th><div>삭제</div></th>
           </tr>	
         </thead>
@@ -69,7 +68,7 @@
 
 <script>
 import {ref, watch} from 'vue';
-import axios from '../../axios/axiossetting.js';
+import axios from '@/setting/axiossetting.js';
 import {useStore} from 'vuex';
 export default {
   
@@ -113,7 +112,7 @@ export default {
       const answer = confirm("정말 삭제하시겠습니까?");
       if(answer){
         try{
-            const res = await axios.delete(`members/${id}`)
+            const res = await axios.delete(`users/${id}`)
             console.log(res.data)
             if(res.data==0){
               alert('삭제 실패 입니다.')
@@ -128,7 +127,7 @@ export default {
     }
     const getList = async (page) => {
       try {
-        const res = await axios.get(`members?page=${page}&limit=${limit.value}&search_field=${search_field.value}&search_word=${search_word.value}`);
+        const res = await axios.get(`users?page=${page}&limit=${limit.value}&search_field=${search_field.value}&search_word=${search_word.value}`);
         console.log("memberlist="+res.data)
         list.value = res.data.memberlist;
         listcount.value=res.data.listcount;

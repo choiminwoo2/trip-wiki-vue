@@ -17,6 +17,7 @@ import GalleryDetail from '@/views/gallery/galleryDetail.vue';
 import GalleryModify from '@/views/gallery/galleryModify.vue';
 import PasswordConverterPage from '@/views/member/PasswordConverterPage.vue';
 import KakaoAuth from '@/views/member/kakaoAuth.vue';
+import Memberlist from '@/views/mypage/member_list.vue';
 import Community_Detail from '@/views/community/community_detail.vue';
 
 const routes = [
@@ -56,7 +57,7 @@ const routes = [
     component : MailAuthSucess
   },
   {
-    path: '/trip/myInfo',
+    path: '/trip/myInfo/:id',
     name:'Myinfo',
     component: Myinfo
   },
@@ -118,6 +119,11 @@ const routes = [
     component: TripDetail
   },
   {
+
+    path: '/trip/Memberlist/',
+    name:'Memberlist',
+    component: Memberlist
+  },
   path: '/trip/communityWrite',
     name: 'CommunityWrite',
     component : CommunityWrite

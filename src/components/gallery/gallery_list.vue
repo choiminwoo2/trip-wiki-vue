@@ -1,13 +1,15 @@
 <template>
     <div class="gallery_list">
         <div v-show="listcount > 0">
-            <div class="row row-cols-1 row-cols-md-3 g-4">
+            <div class="row row-cols-1 row-cols-md-3 g-4" id="card_wrapper">
                 <div class="col" v-for="(item, index) in list" :key="index">
                     <router-link :to="{name:'GalleryDetail', params:{num:`${item.gallery_id}`}}">
                         <div class="card">
-                            <img :src="src[index]" class="card-img-top gallery-photo">
+                            <div class="card_image">
+                                <img :src="src[index]" class="card-img-top gallery-photo">
+                            </div>
                             <div class="card-body">
-                                <h6 class="card-title">{{ item.title }}</h6>
+                                <span class="card-title">{{ item.title }}</span>
                             </div>
                         </div>
                     </router-link>
@@ -45,16 +47,15 @@ export default {
 
                 list.value = res.data.gallerylist;
                 list.value.forEach((item, index) => {
-                    console.log(item.photo)
-                     getImage(item.photo, index )
+                    //console.log(item.photo)
+                    getImage(item.photo, index)
                 })
 
                 listcount.value = res.data.listcount;
                 maxpage = res.data.maxpage;
                 currentpage = res.data.page;
                 startnum.value = listcount.value - (currentpage - 1) * limit;
-                console.log("page의 startnum.value = " + startnum.value);
-                console.log(res.data.gallerylist);
+                //console.log(res.data.gallerylist);
 
                 const pagelist = ref([]);
                 for (let i = res.data.startpage; i <= res.data.endpage; i++) {
@@ -90,44 +91,57 @@ export default {
 </script>
 
 <style scoped>
-    .gallery_list {
-        margin: 20px 250px 30px 250px;
+    #card_wrapper {
+        width: 1330px;
+        height: 910px;
+        margin: 0 auto;
     }
 
     .card {
         overflow: hidden;
         text-align: center;
-        height: 450px; 
+        height: 430px;
+        width: 420px;
+        transition-duration: 0.6s;
+        transition-timing-function: ease-out;   
     }
 
-    h6 {
+    .card:hover {
+        transition: transform 0.5s;
+        transform: scale(1.1);
+    }
+
+    span {
         color: rgb(83, 79, 79);
+        font-weight: bold;
+        font-size: 17px;
     }
 
     a {
         text-decoration: none;
     }
 
-    img {
-        min-height: 400px;
-        min-width: 450px;
+    .card_image {
+        position: relative;
+        width: 100%;
+        height: 430px;
+        overflow: hidden;
     }
 
-    @media (max-width: 1600px) {
-        .gallery_list {
-            margin: 20px 150px 5px 150px;
-        }
+    img {
+        width: auto;
+        height: 100%;
+    }
+
+    @media (max-width: 1335px) {
+        
     }
 
     @media (max-width: 1199px) {
-        .gallery_list {
-            margin: 20px 100px 5px 100px;
-        }
+        
     }
 
     @media (max-width: 991px) {
-        .gallery_list {
-            margin: 20px 50px 5px 50px;
-        }
+        
     }
 </style>

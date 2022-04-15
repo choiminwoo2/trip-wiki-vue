@@ -60,10 +60,12 @@ export default {
     h3 {
         margin-top: 50px;
         margin-left: 280px;
+        font-weight: 800;
     }
     h6 {
         margin-left: 250px;
         margin-bottom: 0;
+        font-weight: bold;
     }
 
     @media (max-width: 991px) {

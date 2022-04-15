@@ -36,10 +36,10 @@ export default {
 
                 list.value = res.data.gallerylist;
                 list.value.forEach((item, index) => {
-                    console.log(item.photo)
-                     getImage(item.photo, index)
+                    //console.log(item.photo)
+                    getImage(item.photo, index)
                 })
-                console.log(res.data.gallerylist);
+                //console.log(res.data.gallerylist);
             } catch (err) {
                 console.log(err);
             }
@@ -88,7 +88,7 @@ export default {
     }
 
     .gallery_wrapper {
-        width: 1003px;
+        width: 1054px;
         margin: 0 auto;
         margin-left: auto;
         margin-right: auto;
@@ -101,19 +101,24 @@ export default {
     }
 
     .gallery_wrapper > div {
-        width: 333px;
-        height: 600px;
+        width: 350px;
+        height: 350px;
         float: left;
         overflow: hidden;
+        
     }
 
     .gallery-photo {
         width: auto;
         height: 100%;
+        transition-duration: 1s;
+        transition-timing-function: ease-out;
         
     }
-
+    
     .gallery-photo:hover {
-        transform: scale(1.2);
+        transition: transform 1s;
+        filter: brightness(70%);
     }
+
 </style>

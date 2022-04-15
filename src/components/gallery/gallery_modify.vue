@@ -1,6 +1,8 @@
 <template>
     <form @submit.prevent="update">
-        <h3> 포토갤러리 사진 수정</h3>
+        <div id="titleText">
+            <h3> 포토갤러리 수정</h3>
+        </div>
         <div class="form-group">
             <label for="galleryTitle" class="form-label mt-4">사진 제목</label>
             <input type="text" class="form-control" id="galleryTitle" v-model.lazy="gallery.title" placeholder="사진에 대한 짧은 글을 작성해주세요" maxlength="30">
@@ -174,7 +176,15 @@ export default {
 
 <style scoped>
     form {
-        margin: 20px 200px 20px 200px;
+        margin: 40px 200px 20px 200px;
+    }
+
+    #titleText {
+        text-align: center;
+    }
+
+    h3 {
+        font-weight: 600;
     }
 
     .form-group {
@@ -231,8 +241,4 @@ export default {
         margin-top: 25px;
     }
 
-    h3 {
-        margin-top: 50px;
-        margin-left: 80px;
-    }
 </style>

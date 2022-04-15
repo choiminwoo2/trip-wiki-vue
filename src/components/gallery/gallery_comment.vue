@@ -1,5 +1,6 @@
 <template>
     <div class="container">
+        <!-- 댓글 입력란 -->
         <div id="textTitle">
             <span id="textHeader">댓글</span> <span> ({{listcount}}) </span>
         </div>
@@ -11,20 +12,29 @@
                 <button type="button" class="btn btn-success" v-if="parent_id" @click="add">등록</button>
                 <button type="button" class="btn btn-info" v-else>로그인</button>
             </div>
+        </div> 
+        <!-- 댓글 리스트 -->
+        <div id="commentList" v-if="listcount > 0">
+            <div class="comments" v-for="(item, index) in list" :key="index">
+                <div class="user_info">
+                    <span class="user_id"><i class='bx bxs-user' /> {{ item.user_id }} </span>
+                    <span> | {{ item.reg_date }}</span>
+                </div>
+                <div class="user_content">
+                    <span>{{ item.content }}</span>
+                </div>
+                <div class="commentMgr">
+                    <span v-show="item.user_id == parent_id" @click="update(item.content, item.comment_id)">
+                        수정<i class='bx bxs-edit' />
+                    </span>&nbsp;
+                    <span v-show="item.user_id == parent_id || item.user == 'admin'" @click="del(item.comment_id)">
+                        삭제<i class='bx bxs-message-square-x' />
+                    </span>
+                </div>
+                <hr>
+            </div>
+            <div id="message" @click="more">{{ message }}</div>
         </div>
-
-        <table class="table table-striped" v-if="listcount > 0">
-            <tr v-for="(item, index) in list" :key="index">
-                <td><i class='bx bxs-user' />{{ item.user_id }}</td>
-                <td>{{ item.content }}</td>
-                <td v-if="item.user_id == parent_id">{{ item.reg_date }}
-                    <i class='bx bxs-edit' @click="update(item.content, item.comment_id)" />
-                    <i class='bx bxs-message-square-x' @click="del(item.comment_id)"/>
-                </td>
-                <td v-else>{{ item.reg_date }}</td>
-            </tr>
-        </table>
-        <div id="message" @click="more">{{ message }}</div>
 
     </div>
 </template>
@@ -63,7 +73,7 @@ export default {
                     message.value = "등록된 댓글이 없습니다."
                 } else {
                     if (listcount.value > list.value.length) {
-                        message.value = "더보기";
+                        message.value = " + 더보기";
                     } else if (listcount.value > 0) {
                         message.value = "";
                     }
@@ -81,19 +91,26 @@ export default {
             let res;
             try {
                 if (button_message.value == "등록") {
-                    res = await axios.post("g_comments/new", {
-                        gallery_id:gallery_id,
-                        content:content.value,
-                        user_id:props.parent_id
-                    });
+                    if (!content.value == '') {
+                        res = await axios.post("g_comments/new", {
+                            gallery_id:gallery_id,
+                            content:content.value,
+                            user_id:props.parent_id
+                        });
+                    } else {
+                        alert("댓글을 입력해주세요");
+                    }
                     console.log(res.data);
                 } else {
-                    res = await axios.patch("g_comments", { // 수정
-                        comment_id:comment_id,
-                        content:content.value
-                    });
-                    button_message.value = "등록";
-                    console.log(res.data);
+                    if (!content.value == '') {
+                        res = await axios.patch("g_comments", { // 수정
+                            comment_id:comment_id,
+                            content:content.value
+                        });
+                        button_message.value = "등록";
+                    } else {
+                        alert("댓글을 입력해주세요");
+                    }
                 }
                 content.value = "";
                 if (res.data == 1)
@@ -105,7 +122,7 @@ export default {
 
         const del = async (num) => {
             console.log("삭제 num = " + num)
-            if (!confirm("정말 삭제하시겠습니까?")) {
+            if (!confirm("정말 해당 댓글을 삭제하시겠습니까?")) {
                 return;
             }
             try {
@@ -163,6 +180,7 @@ export default {
         resize: none;
     }
 
+
     .btns {
         text-align: right;
         padding-bottom: 15px;
@@ -170,11 +188,7 @@ export default {
        
     }
 
-    table {
-        margin: 0 auto;
-    }
-
-    #msssage {
+    #message {
         text-align: center;
     }
 
@@ -182,4 +196,30 @@ export default {
         font-weight: bold;
         font-size: 25px;
     }
+
+    #commentList {
+        margin-top: 30px;
+    }
+
+    .comments {
+        width: 1100px;
+        margin: 0 auto;
+    }
+
+    .user_content {
+        padding-left: 20px;
+    }
+
+    .user_id {
+        font-weight: bold;
+        font-size: 17px;
+    }
+
+    .commentMgr {
+        text-align: right;
+    }
+
+
+
+
 </style>

@@ -17,8 +17,8 @@
                     <td>{{item.id}}</td>
                     <td>{{item.content}}</td>
                     <td v-if="item.id==parent_id">{{item.reg_date}}
-                        <img src="../assets/pencil.png" width="15px" @click="update(item.content, item.num)">
-                        <img src="../assets/delete.png" width="15px" @click="del(item.num)">
+                        <img src="../../assets/pencil.png" width="15px" @click="update(item.content, item.num)">
+                        <img src="../../assets/delete.png" width="15px" @click="del(item.num)">
                     </td>
                     <td v-else>{{item.reg_date}}</td>
                 </tr>
@@ -29,7 +29,7 @@
 </template>
 
 <script>
-import axios from '../axios/axiossetting.js';
+import axios from '../../axios/axiossetting.js';
 import {useRoute} from 'vue-router'
 import {ref} from 'vue';
 import {useStore} from 'vuex';

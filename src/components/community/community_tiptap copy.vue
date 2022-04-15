@@ -37,7 +37,7 @@
     </button>
 
       </div>
-  <editor-content :editor="editor"  @input="input" v-model="message"/>
+  <editor-content :editor="editor" />
 </template>
 
 <script>
@@ -53,18 +53,21 @@ import ListItem from '@tiptap/extension-list-item'
 import Dropcursor from '@tiptap/extension-dropcursor'
 import Strike from '@tiptap/extension-strike'
 import Heading from '@tiptap/extension-heading'
-import { onBeforeUnmount,  ref } from 'vue';
+
 
 export default {
   components: {
     EditorContent,
   },
-   emits:['parent_message'],
-  setup(props, context){
-   //setup(){
-    const message = ref('')
-    let  editor = ( new Editor({
-      editable:true,
+
+  data() {
+    return {
+      editor: null,
+    }
+  },
+
+  mounted() {
+    this.editor = new Editor({
       extensions: [
         Document,
         Paragraph,
@@ -86,26 +89,16 @@ export default {
         <p><i>And this.</i></p>
         <p style="font-style: italic">This as well.</p>
       `,
-    }))
+    })
 
- 
+   
 
-  const input= ()=>{
-    console.log("여기가 글자입니다.")
-    console.log(message.value)
-    console.log(editor)
-    console.log(editor.options.element.innerText)
-   context.emit('parent_message', editor.options.element.innerText);
-  }
+  },
 
-    
-     onBeforeUnmount(() => {
-       editor.destroy()
-  })
-
-    return {
-      editor,input, message
-    }}}
+  beforeUnmount() {
+    this.editor.destroy()
+  },
+}
 </script>
 
 <style lang="scss">

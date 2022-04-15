@@ -50,7 +50,7 @@
         <tbody>
           <tr v-for="(item, index) in list" :key="index">
             <td>{{startnum-index}}</td>
-            <td><router-link :to="{name:'Board_Detail', params:{num:`${item.board_NUM}`}}">
+            <td><router-link :to="{name:'Community_Detail', params:{num:`${item.board_NUM}`}}">
                   <span v-for="num in item.board_RE_LEV*2" :key="num">&nbsp;&nbsp;</span>
                   <img v-if="item.board_RE_LEV>0" src="../../assets/line.gif">
                   <span>{{item.board_SUBJECT}}</span>
@@ -116,16 +116,6 @@ export default {
       });
     }
     
-    watch(limit, ()=>{
-      console.log("(limit)board_list_vue - store.state.page] " + store.state.page)
-      getList(store.state.page);
-    })
-    
-    watch(()=>store.state.page, ()=>{
-      console.log("store.state.page board_list_vue - store.state.page] " + store.state.page)
-      getList(store.state.page);
-    })
- 
 const getList = async (page) => {
      
       try {
@@ -152,7 +142,17 @@ const getList = async (page) => {
         console.log(err);
       }    
     };
-    //getList(1);
+    getList(1);
+
+        watch(limit, ()=>{
+      console.log("(limit)board_list_vue - store.state.page] " + store.state.page)
+      getList(store.state.page);
+    })
+    
+    watch(()=>store.state.page, ()=>{
+      console.log("store.state.page board_list_vue - store.state.page] " + store.state.page)
+      getList(store.state.page);
+    })
     return{
         limit,  search_field, search_word,search,listcount, list,startnum,
        placeholder_message, change_placeholder, option_data

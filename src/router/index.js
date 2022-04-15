@@ -17,7 +17,7 @@ import GalleryDetail from '@/views/gallery/galleryDetail.vue';
 import GalleryModify from '@/views/gallery/galleryModify.vue';
 import PasswordConverterPage from '@/views/member/PasswordConverterPage.vue';
 import KakaoAuth from '@/views/member/kakaoAuth.vue';
-
+import Community_Detail from '@/views/community/community_detail.vue';
 
 const routes = [
   {
@@ -121,7 +121,12 @@ const routes = [
   path: '/trip/communityWrite',
     name: 'CommunityWrite',
     component : CommunityWrite
-  }
+  },
+  {
+    path: '/trip/community_Detail',
+      name: 'Community_Detail',
+      component : Community_Detail
+    }
 ]
 
 const router = createRouter({

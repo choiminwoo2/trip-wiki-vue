@@ -1,5 +1,6 @@
 <template>
-    <div>
+    <Header :parent_id="parent_id"/>
+    <div class="write">
         <form @submit.prevent="add">
             <h1>Trip-Community-Write</h1>
             <div class="rows">
@@ -44,9 +45,11 @@
                 />
             </div>
 
+            <br>
+
 
             <div id="app">
-                <tiptap />
+                <tiptap  @parent_message="getMessage"/>
             </div>
 
 
@@ -64,9 +67,12 @@
             </div>
         </form>
     </div>
+      <Footer />
 </template>
  
 <script>
+import Header from '@/components/main/header_nav.vue';
+import Footer from '@/components/main/footer_info.vue';
 import { ref } from "vue";
 import axios from '../../axios/axiossetting.js';
 import { useRouter } from 'vue-router';
@@ -75,7 +81,7 @@ import Tiptap from '../../components/community/community_tiptap.vue'
 export default {
        name: 'App',
         components: {
-        Tiptap
+        Header, Footer,Tiptap
         },
     props: {
         parent_id: {
@@ -103,6 +109,11 @@ export default {
             file=event.target.files[0];
             board.value.fileName = file.name;
         }
+        let getMessage_value = '';
+        const getMessage = (value)=>{
+          console.log("p = " + value);
+          getMessage_value = value;
+      }
 
         const add =async()=>{
             console.log('하하');
@@ -112,7 +123,7 @@ export default {
             }
             frm.append("BOARD_LOCATION", board.value.location)
             frm.append("BOARD_SUBJECT", board.value.subject);
-            frm.append("BOARD_CONTENT", board.value.editorData);
+            frm.append("BOARD_CONTENT", getMessage_value);
             frm.append("BOARD_PASS", board.value.pass);
             frm.append("BOARD_NAME", props.parent_id);
 
@@ -127,7 +138,7 @@ export default {
                 console.log(res.data);
 
                 router.push({
-                    name : 'CommunityView'
+                    name : 'Community'
                 });
 
             }catch(err){
@@ -138,7 +149,7 @@ export default {
 
         return{
             board,
-            change, add
+            change, add,  getMessage
         };
     }
     
@@ -152,5 +163,15 @@ img{
 
 button{
     margin-right: 1em;
+}
+
+.write{
+    border-radius: .25rem;
+    margin-left: 10%;
+    margin-right: 10%;
+}
+
+#app{
+    border-style: solid;
 }
 </style>

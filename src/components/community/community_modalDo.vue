@@ -25,10 +25,10 @@
 <script>
 import {ref, computed} from 'vue';
 import {useRoute, useRouter} from 'vue-router';
-import axios from '../axios/axiossetting.js';
+import axios from '../../axios/axiossetting.js';
 import {useStore} from 'vuex';
 export default{
-
+    
     setup(){
         const num = useRoute().params.num;
         console.log(num)

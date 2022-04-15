@@ -27,13 +27,12 @@ export default {
                     name : 'Home'
                 });
             }else{
-                console.log(data);
-                //   router.push({
-                // name: 'KakaJoinView',
-                // params:{
-                //     'id' : id
-                // }
-            //});
+                  router.push({
+                name: 'KakaJoinView',
+                params:{
+                    'id' : id
+                }
+            });
             }
         }
         return{

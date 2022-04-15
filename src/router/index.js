@@ -17,6 +17,7 @@ import GalleryDetail from '@/views/gallery/galleryDetail.vue';
 import GalleryModify from '@/views/gallery/galleryModify.vue';
 import PasswordConverterPage from '@/views/member/PasswordConverterPage.vue';
 import KakaoAuth from '@/views/member/kakaoAuth.vue';
+import KakaoJoin from '@/views/member/kakaoJoin.vue';
 import Memberlist from '@/views/mypage/member_list.vue';
 import Community_Detail from '@/views/community/community_detail.vue';
 
@@ -35,6 +36,11 @@ const routes = [
     path: '/trip/login',
     name: 'Login',
     component: LoginView
+  },
+  {
+    path: '/trip/login/:id',
+    name: 'KakaoJoin',
+    component: KakaoJoin
   },
   {
     path: '/trip/mailAuth/:id',
@@ -67,7 +73,7 @@ const routes = [
     component: TripList
   },
   {
-    path: '/trip/TripDetail/:contentId',
+    path: '/trip/TripDetail/:contentId/:areacode',
     name: 'TripDetail',
     component: TripDetail
   },

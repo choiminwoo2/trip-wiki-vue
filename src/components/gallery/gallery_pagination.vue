@@ -51,4 +51,7 @@
     ul.pagination{
         justify-content: center;
     }
+    nav {
+        margin: 30px;
+    }
 </style>

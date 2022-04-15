@@ -21,7 +21,7 @@
             <input type="password" placeholder="암호 재 확인" v-model="password_chk" required>
             <p :class="password_color">{{password_message}}</p>
             <div class="btn-group">
-                <button class="btn btn-primary">확인</button>
+                <button type=submit class="btn btn-primary">확인</button>
             </div>
          </div>
      </div>
@@ -32,6 +32,7 @@
 import axios from '@/setting/axiossetting.js';
 import {watch,ref} from 'vue';
 import router from '@/router';
+import {useRoute} from 'vue-router';
 export default {
     props:{
 		parent_id:{
@@ -39,10 +40,12 @@ export default {
 			required:true
 		}
 	},
-    setup(props){
+    setup(){
+        const route = useRoute()
         //확인 시 보낼 객체.
         const join = ref({
             user_password : '',
+            user_id : route.params.id
         });
 
         //메세지 처리할 메세지 모음.
@@ -68,12 +71,12 @@ export default {
 
         const updateProcess = async() =>{
                 try{
-                    const res = await axios.post('users/add',join.value);
+                    const res = await axios.put('users',join.value);
                     if(res.data==1){
                         alert('회원정보가 변경되었습니다.')
                          router.push({
-                            name:'MailAuth',
-                            params: {id: props.parent_id}
+                            name:'Home',
+                            params: {id: route.params.id}
                         })
                     }
                 }catch(err){
@@ -163,7 +166,7 @@ export default {
             margin-top:10px;
             width:100%;
             button{
-                width:50px;
+                width:60px;
                 float: right;
             }
         }

@@ -50,6 +50,7 @@
                                 <li class="dropdown-item" @click="go('강원')">&nbsp;강원 </li>
                                 <li class="dropdown-item" @click="go('경상')">&nbsp;경상 </li>
                                 <li class="dropdown-item" @click="go('충청')">&nbsp;충청 </li>
+                                <li class="dropdown-item" @click="go('전라')">&nbsp;전라 </li>
                                 <li class="dropdown-item" @click="go('광주')">&nbsp;광주 </li>
                                 <li class="dropdown-item" @click="go('대전')">&nbsp;대전 </li>
                                 <li class="dropdown-item" @click="go('대구')">&nbsp;대구 </li>

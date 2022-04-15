@@ -12,7 +12,7 @@ import router from '@/router';
 
 export default {
     setup(){
-        const id = useRoute().params.id;
+        const id = useRoute().params.kakaoId;
         const callAxiosJoin = async() => {
             console.log(id); 
             const data= await (await axios.post(`kokaoJoins/${id}`)).data;

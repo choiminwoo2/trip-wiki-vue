@@ -38,7 +38,7 @@ const routes = [
     component: LoginView
   },
   {
-    path: '/trip/login/:id',
+    path: '/trip/login/:kakaoId',
     name: 'KakaoJoin',
     component: KakaoJoin
   },

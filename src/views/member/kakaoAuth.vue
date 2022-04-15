@@ -28,9 +28,9 @@ export default {
                 });
             }else{
                   router.push({
-                name: 'KakaJoinView',
+                name: 'KakaoJoin',
                 params:{
-                    'id' : id
+                    kakaoId : id
                 }
             });
             }

@@ -4,7 +4,7 @@
         <span>어디로 가면 좋을까?</span>
         <button type="button" id="move-btn" class="btn btn-primary" @click="go('서울')">여행지 살펴보기 >> </button>
         <div class="card_wrapper">
-            <div class="card" v-for="(item, index) in list" :key="index" @click="detail(item.contentid)">
+            <div class="card" v-for="(item, index) in list" :key="index" @click="detail(item.contentid,item.areacode)">
                 <img src="@/assets/default1.jpg" class="card-img-top trip-photo" v-if="!item.firstimage" />
                 <img :src="item.firstimage" class="card-img-top trip-photo" v-else>
                 <div class="card-body">
@@ -48,13 +48,13 @@ export default {
 
         getTripList();
 
-        const detail =(contentid) =>{
-            console.log(contentid);
-            router.push({
+        const detail =(contentid,areacode) =>{
+      console.log(contentid,areacode);
+      router.push({
                     name:'TripDetail',
-                    params:{contentId:contentid}
-            })
-        }
+                    params:{contentId:contentid, areacode:areacode}
+             })
+     }
 
         const go = (location) =>{
             router.push({

@@ -2,7 +2,7 @@
     <div class="galleryDetail">
         <Header :parent_id="parent_id"/>
         <Gallery_Detail :parent_id="parent_id" />
-        <Comment />
+        <Comment :parent_id="parent_id" />
         <Footer />
     </div>
 </template>

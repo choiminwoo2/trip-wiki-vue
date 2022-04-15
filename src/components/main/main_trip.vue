@@ -2,57 +2,74 @@
     <!-- 여행지 살펴보기 -->
     <div class="trip_card_list ">
         <span>어디로 가면 좋을까?</span>
-        <button type="button" id="move-btn" class="btn btn-primary">여행지 살펴보기 >> </button>
+        <button type="button" id="move-btn" class="btn btn-primary" @click="go('서울')">여행지 살펴보기 >> </button>
         <div class="card_wrapper">
-            <div class="card">
-                <img src="@/assets/image/spring.jpg" class="card-img-top trip-photo">
+            <div class="card" v-for="(item, index) in list" :key="index" @click="detail(item.contentid)">
+                <img src="@/assets/default1.jpg" class="card-img-top trip-photo" v-if="!item.firstimage" />
+                <img :src="item.firstimage" class="card-img-top trip-photo" v-else>
                 <div class="card-body">
-                    <h6 class="card-title">중앙HTA</h6>
-                    <p class="card-text" style="font-size: 13px">서울특별시 종로구 율곡로10길 디아망 4층(봉익동 10-1)</p>
+                    <h6 class="card-title">{{item.title}}</h6>
+                    <p class="card-text" style="font-size: 13px">{{item.addr1}}</p>
                 </div>
             </div>
-            <div class="card">
-                <img src="@/assets/image/spring.jpg" class="card-img-top trip-photo">
-                <div class="card-body">
-                    <h6 class="card-title">중앙HTA</h6>
-                    <p class="card-text" style="font-size: 13px">서울특별시 종로구 율곡로10길 디아망 4층(봉익동 10-1)</p>
-                </div>
-            </div>
-            <div class="card">
-                <img src="@/assets/image/spring.jpg" class="card-img-top trip-photo">
-                <div class="card-body">
-                    <h6 class="card-title">중앙HTA</h6>
-                    <p class="card-text" style="font-size: 13px">서울특별시 종로구 율곡로10길 디아망 4층(봉익동 10-1)</p>
-                </div>
-            </div>
-            <div class="card">
-                <img src="@/assets/image/spring.jpg" class="card-img-top trip-photo">
-                <div class="card-body">
-                    <h6 class="card-title">중앙HTA</h6>
-                    <p class="card-text" style="font-size: 13px">서울특별시 종로구 율곡로10길 디아망 4층(봉익동 10-1)</p>
-                </div>
-            </div>
-            <div class="card">
-                <img src="@/assets/image/spring.jpg" class="card-img-top trip-photo">
-                <div class="card-body">
-                    <h6 class="card-title">중앙HTA</h6>
-                    <p class="card-text" style="font-size: 13px">서울특별시 종로구 율곡로10길 디아망 4층(봉익동 10-1)</p>
-                </div>
-            </div>
-            <div class="card">
-                <img src="@/assets/image/spring.jpg" class="card-img-top trip-photo">
-                <div class="card-body">
-                    <h6 class="card-title">중앙HTA</h6>
-                    <p class="card-text" style="font-size: 13px">서울특별시 종로구 율곡로10길 디아망 4층(봉익동 10-1)</p>
-                </div>
-            </div>      
         </div>
     </div>
 </template>
 
 <script>
+import axios from '@/setting/axiossetting.js';
+import {ref} from 'vue';
+import {useRouter} from 'vue-router';
+import { useStore } from 'vuex';
 export default {
+    props: {
+        parent_id: {
+            type: String,
+            required: true
+        }
+    },
+    emits:['parent_getSession'],
+    setup(props, context) {
+        context.emit("parent_getSession");
+        const router=useRouter();
+        const store =useStore();
+        const list = ref([]);
+        const keyword = ref('');
 
+        const getTripList = async() =>{
+            try { 
+                const res = await axios.get('apiMain');
+                //console.log("boardlist=" + res.data.boardlist);
+                list.value = JSON.parse(res.data.boardlist).response.body.items.item;
+            } catch (err) {
+                console.log(err);
+            }    
+        };
+
+        getTripList();
+
+        const detail =(contentid) =>{
+            console.log(contentid);
+            router.push({
+                    name:'TripDetail',
+                    params:{contentId:contentid}
+            })
+        }
+
+        const go = (location) =>{
+            router.push({
+                    name:'TripList',
+                    query: {
+                        keyword: location
+                    }
+                })
+            store.dispatch('store_keyword', location)
+        } 
+
+        return {
+            list, detail, go, keyword
+        }
+    }
 }
 </script>
 
@@ -95,9 +112,17 @@ export default {
         text-align: center;
         float: left;
         margin: 10px;
+        transition-duration: 1s;
+        transition-timing-function: ease-out;
+    }
+
+    .card:hover {
+        transition: transform 1s;
+        transform: scale(1.05);
     }
 
     img {
         height: 250px;
     }
+
 </style>

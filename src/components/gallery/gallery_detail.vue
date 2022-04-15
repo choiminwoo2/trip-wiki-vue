@@ -17,7 +17,7 @@
                 </div>
             </tr>
             <tr id="date">
-                {{gallery.user_id}} {{gallery.reg_date}} 작성
+                <span><b>{{gallery.user_id}}</b> | {{gallery.reg_date}} 작성</span>
             </tr>
         </table>
     </div>
@@ -49,7 +49,7 @@ export default {
         const getDetail = async () => {
             try {
                 const res = await axios.get(`gallery/${num}`);
-                console.log(res.data);
+                //console.log(res.data);
                 gallery.value = res.data.gallery;
                 display(gallery.value.photo);
 
@@ -74,8 +74,8 @@ export default {
                 let bb = new Blob([res.data]);
                 let url = window.URL.createObjectURL(bb);
                 preview.value = url;
-                console.log("url = " + url);
-                // window.URL.revokeObjectURL(a.href);
+                //console.log("url = " + url);
+                //window.URL.revokeObjectURL();
             } catch (err) {
                 console.log(err)
             }
@@ -139,6 +139,15 @@ export default {
     #photo {
         width: auto;
         height: 100%;
+    }
+
+    span {
+        margin: 20px;
+        font-size: 17px;
+    }
+
+    h3 {
+        font-weight: bold;
     }
 
 

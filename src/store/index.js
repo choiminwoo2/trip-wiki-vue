@@ -8,7 +8,9 @@ export default createStore({
       obj: {},
       page: 1,
       keyword:'서울',
-      menu:"I"   
+      menu:"I",
+      regId:'11B00000',
+      regId2:'11B10101'
   },
   getters: {
 
@@ -37,6 +39,9 @@ export default createStore({
   },
   update_menu(state, payload) {
     state.menu = payload;
+  },
+  update_regId(state, payload) {
+   state.regId = payload;
   },
   },
   actions: {
@@ -70,7 +75,11 @@ export default createStore({
   store_menu(context, menu) {
 
     context.commit('update_menu', menu)
-}
+  },
+  store_regId(context, regId) {
+
+    context.commit('update_regId', regId)
+  }
     },
   modules: {
 

@@ -124,6 +124,7 @@ const routes = [
     name:'Memberlist',
     component: Memberlist
   },
+  {
   path: '/trip/communityWrite',
     name: 'CommunityWrite',
     component : CommunityWrite

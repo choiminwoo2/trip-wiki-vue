@@ -33,7 +33,7 @@
       <table class="table table-striped">
         <thead>
           <tr>
-            <th colspan="3">MVC 게시판 - list</th>
+            <th colspan="3">Trip-Community</th>
             <th colspan="2">
             <span>글 개수 : {{listcount}}</span>
             </th>
@@ -50,7 +50,7 @@
         <tbody>
           <tr v-for="(item, index) in list" :key="index">
             <td>{{startnum-index}}</td>
-            <td><router-link :to="{name:'Board_Detail', params:{num:`${item.board_NUM}`}}">
+            <td><router-link :to="{name:'Community_Detail', params:{num:`${item.board_NUM}`}}">
                   <span v-for="num in item.board_RE_LEV*2" :key="num">&nbsp;&nbsp;</span>
                   <img v-if="item.board_RE_LEV>0" src="../../assets/line.gif">
                   <span>{{item.board_SUBJECT}}</span>
@@ -116,25 +116,17 @@ export default {
       });
     }
     
-    watch(limit, ()=>{
-      console.log("(limit)board_list_vue - store.state.page] " + store.state.page)
-      getList(store.state.page);
-    })
-    
-    watch(()=>store.state.page, ()=>{
-      console.log("store.state.page board_list_vue - store.state.page] " + store.state.page)
-      getList(store.state.page);
-    })
- 
 const getList = async (page) => {
      
       try {
-        const res = await axios.get(`boards?page=${page}&limit=${limit.value}`);
+        const res = await axios.get(`boards?page=${page}&limit=${limit.value}&search_field=${search_field.value}&search_word=${search_word.value}`);
         
         list.value = res.data.boardlist;
         listcount.value=res.data.listcount;
         maxpage=res.data.maxpage;
         currentpage=res.data.page;
+        search_field.value=res.data.search_field;
+        search_word.value = res.data.search_word;
         startnum.value=listcount.value-(currentpage-1)*limit.value;
         console.log("page의 startnum.value = " + startnum.value);
         
@@ -150,7 +142,17 @@ const getList = async (page) => {
         console.log(err);
       }    
     };
-    //getList(1);
+    getList(1);
+
+        watch(limit, ()=>{
+      console.log("(limit)board_list_vue - store.state.page] " + store.state.page)
+      getList(store.state.page);
+    })
+    
+    watch(()=>store.state.page, ()=>{
+      console.log("store.state.page board_list_vue - store.state.page] " + store.state.page)
+      getList(store.state.page);
+    })
     return{
         limit,  search_field, search_word,search,listcount, list,startnum,
        placeholder_message, change_placeholder, option_data

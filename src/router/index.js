@@ -10,6 +10,7 @@ import Myinfo from '@/views/mypage/mypage_inform.vue';
 import TripList from '@/views/trip/TripList.vue';
 import TripDetail from '@/views/trip/TripDetail.vue';
 import CommunityView  from '@/views/community/community_list.vue';
+import CommunityWrite from '@/views/community/community_write.vue';
 import GalleryMain from '@/views/gallery/galleryMain.vue';
 import GalleryWrite from '@/views/gallery/galleryWrite.vue';
 import GalleryDetail from '@/views/gallery/galleryDetail.vue';
@@ -17,6 +18,7 @@ import GalleryModify from '@/views/gallery/galleryModify.vue';
 import PasswordConverterPage from '@/views/member/PasswordConverterPage.vue';
 import KakaoAuth from '@/views/member/kakaoAuth.vue';
 import Memberlist from '@/views/mypage/member_list.vue';
+import Community_Detail from '@/views/community/community_detail.vue';
 
 const routes = [
   {
@@ -101,6 +103,7 @@ const routes = [
     component : IdSearch
   },
   {
+
     path: '/trip/PasswordConverter/:id/:key',
     name : 'PasswordConverterPage',
     component : PasswordConverterPage
@@ -116,10 +119,20 @@ const routes = [
     component: TripDetail
   },
   {
+
     path: '/trip/Memberlist/',
     name:'Memberlist',
     component: Memberlist
   },
+  path: '/trip/communityWrite',
+    name: 'CommunityWrite',
+    component : CommunityWrite
+  },
+  {
+    path: '/trip/community_Detail',
+      name: 'Community_Detail',
+      component : Community_Detail
+    }
 ]
 
 const router = createRouter({

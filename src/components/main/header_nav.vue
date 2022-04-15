@@ -59,7 +59,7 @@
                             </div>
                         </li>
                         <li class="nav-item">
-                            <router-link class="nav-link" :to="{name:'TripList'}"> 커뮤니티 </router-link>
+                            <router-link class="nav-link" :to="{name:'Community'}"> 커뮤니티 </router-link>
                         </li>
                     </ul> 
                 </div>

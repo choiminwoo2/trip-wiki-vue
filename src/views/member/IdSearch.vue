@@ -7,9 +7,7 @@
           <div class="center-container">
               <h3>아이디 찾기</h3>
               <EmailBox />
-               <input type="text" placeholder="인증 번호 입력" class="form-control" style="margin-bottom:5px; margin-top:18px;">
-              <button class="btn btn-info btn-xs right-button">인증 번호 확인</button>
-              <button class="btn btn-primary ">비밀번호 확인하러 가기</button>
+              <button class="btn btn-primary " style="margin-top:10px;">비밀번호 확인하러 가기</button>
           </div>
       </form>
   </div>
@@ -55,7 +53,7 @@ export default {
         margin-top:30px;
         border : 2px solid rgba(0, 0, 0, 0.2);
         border-radius: 5px;
-        height:300px;
+        height:200px;
         width: 400px;
         margin : 0 auto;
         padding: 20px;

@@ -37,9 +37,9 @@
   <div class="main_bot"> 
     <div class="bot_top">
       <div class="bot_left">
-        <p style="font-size:17px;">주소 | {{list.addr1}}</p>
+        <p style="font-size:17px;">주 &nbsp; 소 |&nbsp; {{list.addr1}}</p>
         <br>
-        <p style="font-size:17px;">관광지 | {{list.title}}</p>
+        <p style="font-size:17px;">관광지 |&nbsp; {{list.title}}</p>
      </div>
      <div class="bot_right">
       <div class="weather">

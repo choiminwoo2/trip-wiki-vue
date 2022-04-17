@@ -8,6 +8,10 @@
 			</thead>
 			<tbody>
 				<tr>
+					<td>지역</td>
+					<td>{{board.board_LOCATION}}</td>
+				</tr>
+				<tr>
 					<td>글쓴이</td>
 					<td>{{board.board_NAME}}</td>
 				</tr>
@@ -18,7 +22,7 @@
 				</tr>
 				<tr>
 					<td>내용</td>
-					<td>{{board.board_CONTENT}}</td>
+					<td><span v-html="board.board_CONTENT"></span></td>
 				</tr>
 				<tr >
 					<td>첨부파일</td>
@@ -34,13 +38,13 @@
 
 						<div 	class="group" 
 								v-if="board.board_NAME == parent_id || parent_id == 'admin'">
-							<router-link :to="{name:'Board_Update'}">
+							<router-link :to="{name:'Community_Update'}">
 								<button class="btn btn-warning" >수정</button>
 							</router-link>
 							<button class="btn btn-danger"  @click="showModal">삭제</button>
 						</div>
-						<router-link :to="{name:'Board_Reply'}"><button class="btn btn-info">답변</button></router-link>
-						<router-link :to="{name:'Board_List'}"><button class="btn btn-success">목록</button></router-link>
+						<router-link :to="{name:'Community_Reply'}"><button class="btn btn-info">답변</button></router-link>
+						<router-link :to="{name:'Community'}"><button class="btn btn-success">목록</button></router-link>
 						
 					</td>
 				</tr>
@@ -69,7 +73,7 @@ export default {
 		
 		const getDetail = async ()=>{
 			try{
-				const res=await axios.get(`boards/${num}`);
+				const res=await axios.get(`communitys/${num}`);
 				console.log(res.data);
 				board.value = res.data.board;
 			}catch(error){
@@ -184,4 +188,8 @@ button{
     color: white;
     border-radius: 30%;
 }
+img{
+    width:  20px;
+}
+.table{font-size: x-large;}
 </style>

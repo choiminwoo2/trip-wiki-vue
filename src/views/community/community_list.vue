@@ -1,9 +1,13 @@
 <template>
+
   <Header :parent_id="parent_id"/>
+  <div class="list">
   <Board_List/>      
   <Paging />
-  <button type="button" class="btn btn-info float-right" @click="goWrite">글 쓰 기</button>     
-  <Footer />       
+  <button type="button" class="btn btn-info float-right" @click="goWrite">글 쓰 기</button>  
+  </div>    
+  <Footer />
+  
 </template>
 
 <script>
@@ -38,3 +42,16 @@ export default {
   }
 }
 </script>
+
+<style scoped>
+
+.list{
+    border-radius: .25rem;
+    margin-left: 10%;
+    margin-right: 10%;
+}
+button{
+  float: right;
+}
+
+</style>

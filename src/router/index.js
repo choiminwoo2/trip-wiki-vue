@@ -18,6 +18,8 @@ import GalleryModify from '@/views/gallery/galleryModify.vue';
 import PasswordConverterPage from '@/views/member/PasswordConverterPage.vue';
 import KakaoAuth from '@/views/member/kakaoAuth.vue';
 import Community_Detail from '@/views/community/community_detail.vue';
+import Community_Update from '@/views/community/community_update.vue';
+import Community_Reply from '@/views/community/community_reply.vue';
 
 const routes = [
   {
@@ -71,7 +73,7 @@ const routes = [
     component: TripDetail
   },
   {
-    path: '/trip/community',
+    path: '/trip/communitys',
     name: 'Community',
     component : CommunityView
   },
@@ -123,9 +125,19 @@ const routes = [
     component : CommunityWrite
   },
   {
-    path: '/trip/community_Detail',
+    path: '/trip/communitys/:num',
       name: 'Community_Detail',
       component : Community_Detail
+    }
+  ,{
+    path: '/trip/communitys/:num',
+      name: 'Community_Update',
+      component : Community_Update
+    }
+  ,{
+    path: '/trip/communitys/:num',
+      name: 'Community_Reply',
+      component : Community_Reply
     }
 ]
 

@@ -40,18 +40,19 @@
           </tr>
           <tr>
             <th><div>번호</div></th>
+            <th><div>지역</div></th>
             <th><div>제목</div></th>
             <th><div>아이디</div></th>
             <th><div>날짜</div></th>
             <th><div>조회수</div></th>
-            <th><div>추천수</div></th>
           </tr>	
         </thead>
         <tbody>
           <tr v-for="(item, index) in list" :key="index">
             <td>{{startnum-index}}</td>
+            <td>{{item.board_LOCATION}}</td>
             <td><router-link :to="{name:'Community_Detail', params:{num:`${item.board_NUM}`}}">
-                  <span v-for="num in item.board_RE_LEV*2" :key="num">&nbsp;&nbsp;</span>
+                  <span v-for="num in item.board_RE_LEV*2" :key="num"></span>
                   <img v-if="item.board_RE_LEV>0" src="../../assets/line.gif">
                   <span>{{item.board_SUBJECT}}</span>
                 </router-link>
@@ -119,7 +120,7 @@ export default {
 const getList = async (page) => {
      
       try {
-        const res = await axios.get(`boards?page=${page}&limit=${limit.value}&search_field=${search_field.value}&search_word=${search_word.value}`);
+        const res = await axios.get(`communitys?page=${page}&limit=${limit.value}&search_field=${search_field.value}&search_word=${search_word.value}`);
         
         list.value = res.data.boardlist;
         listcount.value=res.data.listcount;
@@ -167,4 +168,5 @@ select.form-control{
 }
 .rows{text-align:right;}
 .center{text-align:center}
+.table{font-size: x-large;}
 </style>

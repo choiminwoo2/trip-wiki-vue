@@ -15,7 +15,7 @@
       </div>
       <p>소셜 계정으로 로그인하기</p>
         <ul>
-          <li><img src="@/assets/kakao_icon.png" @click="kakaologin" style="width:316px;"></li>
+          <li><img src="@/assets/kakao_icon.png" @click="kakaologin" style="width:316px; margin-bottom:100px;"></li>
         </ul>
   </form>
 </template>

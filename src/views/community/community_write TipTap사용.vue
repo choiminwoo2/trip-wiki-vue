@@ -48,9 +48,9 @@
             <br>
 
 
-              <div id="app">
-        <ckeditor :editor="editor" v-model="board.content" :config="editorConfig"></ckeditor>
-    </div>
+            <div id="app">
+                <tiptap  @parent_message="getMessage"/>
+            </div>
 
 
             <div class="form-group">
@@ -76,22 +76,13 @@ import Footer from '@/components/main/footer_info.vue';
 import { ref } from "vue";
 import axios from '../../axios/axiossetting.js';
 import { useRouter } from 'vue-router';
-import ClassicEditor from '@ckeditor/ckeditor5-build-classic';
+import Tiptap from '../../components/community/community_tiptap.vue'
 
 export default {
        name: 'App',
         components: {
-        Header, Footer
+        Header, Footer,Tiptap
         },
-            data() {
-            return {
-                editor: ClassicEditor,
-                editorConfig: {
-                    // The configuration of the editor.
-                }
-            };
-        },
-
     props: {
         parent_id: {
             type: String,
@@ -107,7 +98,7 @@ export default {
             location:'',
             name:'',
             pass:'',
-            content:'',
+            editor:'',
             subject:'',
             fileName:''
         })
@@ -118,6 +109,11 @@ export default {
             file=event.target.files[0];
             board.value.fileName = file.name;
         }
+        let getMessage_value = '';
+        const getMessage = (value)=>{
+          console.log("p = " + value);
+          getMessage_value = value;
+      }
 
         const add =async()=>{
             console.log('하하');
@@ -127,7 +123,7 @@ export default {
             }
             frm.append("BOARD_LOCATION", board.value.location)
             frm.append("BOARD_SUBJECT", board.value.subject);
-            frm.append("BOARD_CONTENT", board.value.content);
+            frm.append("BOARD_CONTENT", getMessage_value);
             frm.append("BOARD_PASS", board.value.pass);
             frm.append("BOARD_NAME", props.parent_id);
 
@@ -153,7 +149,7 @@ export default {
 
         return{
             board,
-            change, add
+            change, add,  getMessage
         };
     }
     

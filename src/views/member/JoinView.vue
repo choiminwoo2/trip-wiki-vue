@@ -2,14 +2,16 @@
   <div class="join-container">
     <router-link :to="{name:'Home'}"><img src="@/assets/logo.png"></router-link>
     <MemberJoin/>
+    <Footer />
   </div>
 </template>
 
 <script>
 import MemberJoin from '@/components/member/member_join.vue';
+import Footer from '@/components/main/footer_info.vue';
 export default {
     components :{
-        MemberJoin
+        MemberJoin,Footer
     }
 }
 </script>
@@ -35,6 +37,9 @@ export default {
   a{
     text-align: center;
   }
+  footer{
+    position: absolute;
+  }
 }
 /* 태블릿 pc~ */
 /* 가로의 길이가 768에서 1023px 사이 */
@@ -58,6 +63,9 @@ export default {
   a{
     text-align: center;
   }
+  footer{
+    position: absolute;
+  }
 }
 /* 모바일~*/
 /* 가로의 길이가  767 이하*/
@@ -80,6 +88,9 @@ export default {
   }
   a{
     text-align: center;
+  }
+  footer{
+    position: absolute;
   }
 }
 </style>

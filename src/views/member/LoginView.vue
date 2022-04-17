@@ -2,14 +2,17 @@
   <div class="login-Container">
     <router-link :to="{name:'Home'}"><img src="@/assets/logo.png"></router-link>
     <LoginPages />
+    <Footor />
   </div>
+  
 </template>
 
 <script>
 import LoginPages from '@/components/member/loginPages.vue'
+import Footor from '@/components/main/footer_info.vue';
 export default {
     components: {
-      LoginPages
+      LoginPages,Footor
     },props:{
       parent_id:{
         type: String,
@@ -47,6 +50,9 @@ export default {
   a{
     text-align: center;
   }
+  footer{
+    position: absolute;
+  }
 }
 /* 태블릿 pc~ */
 /* 가로의 길이가 768에서 1023px 사이 */
@@ -72,6 +78,9 @@ export default {
   }
   .header{
   height:200px;
+  }
+   footer{
+    position: absolute;
   }
 
 }
@@ -101,6 +110,9 @@ export default {
   }
   .header{
   height:150px;
+  }
+   footer{
+    position: absolute;
   }
 }
 </style>

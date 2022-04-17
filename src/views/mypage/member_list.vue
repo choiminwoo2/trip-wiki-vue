@@ -6,7 +6,7 @@
 
 <script>
 import Header from '@/components/main/header_nav.vue';
-import Memberlist from '@/components/administer/member_update.vue';
+import Memberlist from '@/components/administer/member_listupdate.vue';
 import Footer from '@/components/main/footer_info.vue';
 
 export default {

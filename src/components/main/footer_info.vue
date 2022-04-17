@@ -22,7 +22,5 @@ export default {
         left: 0;
         margin-top: 100px;
         background-color: rgb(149, 160, 153);
-        position: relative;
-        transform: translateY(-100%);
     }
 </style>

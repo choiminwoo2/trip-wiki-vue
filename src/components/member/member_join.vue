@@ -4,7 +4,7 @@
          <h3>계정 생성</h3>
             <div>
             <label for="id">아이디</label>
-            <input type="text" id="id" placeholder="ID 입력" v-model="join.user_id" required>
+            <input type="text" id="id" placeholder="ID 입력" v-model="join.user_id" :disabled="validated == true">
             <p :class="id_color">{{id_message}}</p>
             <!-- <label for="nickname">닉네임</label>
             <input type="text" id="nickname" placeholder="닉네임 입력" @input="input_nickname" required>
@@ -29,8 +29,12 @@
 import axios from '@/setting/axiossetting.js';
 import {watch,ref} from 'vue';
 import router from '@/router';
+import { useRoute } from 'vue-router';
+
 export default {
     setup(){
+        const kakaoId= useRoute().params.id;
+        const validated = ref(false);
         //회원가입시 보낼 객체.
         const join = ref({
             user_id : '',
@@ -39,6 +43,12 @@ export default {
             user_email:''
         });
 
+        if(kakaoId != undefined){
+            join.value.user_id = "kakao" + kakaoId;
+            validated.value =true;
+            axios.get()
+        }
+        else validated.value=false;
         //메세지 처리할 메세지 모음.
         const password_chk = ref('');
         const password_message = ref('');
@@ -80,7 +90,10 @@ export default {
             }catch(err){
                id_message.value="알 수 없는 오류입니다. 다시 시도해보세요. 관리자에게 문의하세요.";
             }
-        };//아이디 체크 끝
+        };
+        
+        
+        //아이디 체크 끝
         // const input_nickname = (e) =>{
         //     join.value.user_nickname = e.target.value;
         // }//닉네임 @input 한글 처리
@@ -176,7 +189,7 @@ export default {
         })//이메일 정규식 끝
         return{
             chkPass,join,password_chk,id_message,id_color,password_message,password_color
-            ,email_message,email_color,joinProcess
+            ,email_message,email_color,joinProcess,validated
         }
     }
 }
@@ -194,6 +207,7 @@ export default {
     margin : 0 auto;
     max-width: 400px;
     .join-box-inner{
+        margin-bottom: 150px;
         p{
             margin:0px;
             font-weight: bold;

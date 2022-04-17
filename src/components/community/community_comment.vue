@@ -17,8 +17,8 @@
                     <td>{{item.id}}</td>
                     <td>{{item.content}}</td>
                     <td v-if="item.id==parent_id">{{item.reg_date}}
-                        <img src="../../assets/pencil.png" width="15px" @click="update(item.content, item.num)">
-                        <img src="../../assets/delete.png" width="15px" @click="del(item.num)">
+                        <img src="../../assets/pencil.png" width="30px" @click="update(item.content, item.num)">
+                        <img src="../../assets/delete.png" width="30px" @click="del(item.num)">
                     </td>
                     <td v-else>{{item.reg_date}}</td>
                 </tr>
@@ -53,7 +53,7 @@ export default{
         const store = useStore();
         const  getList = async(page)=>{
             try{
-                const res = await axios.get("comments", {params:{board_num : board_num, page:page}})
+                const res = await axios.get("comcomments", {params:{board_num : board_num, page:page}})
                 listcount.value = res.data.listcount;
                 list.value = res.data.list;
 
@@ -94,14 +94,14 @@ export default{
 
             try{
                 if(button_message.value=="등록"){
-                    res = await axios.post("comments/new",
+                    res = await axios.post("comcomments/new",
                     {board_num:board_num,
                     content:content.value,
                     id:props.parent_id});
                     console.log(res.data);
 
                 }else{
-                    res = await axios.patch("comments",
+                    res = await axios.patch("comcomments",
                     {num:comment_num,content:content.value});
                     button_message.value="등록";
                     console.log(res.data);
@@ -121,7 +121,7 @@ export default{
                 return;
             }
             try{
-                const res= await axios.delete(`comments/${num}`);
+                const res= await axios.delete(`comcomments/${num}`);
                 if(res.data==1)
                 getList(1);
 
@@ -151,9 +151,12 @@ export default{
 
 <style scoped>
 img{
-    width:15px
+    width:30px
 }
 #comment > table > tbody > tr td:nth-child(1) {width:20%}
 #comment > table > tbody > tr td:nth-child(1) {width:30%}
 .float-right{margin-right: 0px;}
+#comment{
+    font-size: x-large;
+}
 </style>

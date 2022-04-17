@@ -1,10 +1,10 @@
 <template>
     <Header :parent_id="parent_id"/>
-
+<div class="detail">
     <Comment_Detail :parent_id="parent_id"  />
     <Modal/>
     <Comment :parent_id="parent_id"/>
-
+</div>
     <Footer />
 </template>
 
@@ -33,4 +33,8 @@ export default{
 </script>
 
 <style>
+.detail{
+        margin-left: 10%;
+    margin-right: 10%;
+}
 </style>

@@ -1,9 +1,9 @@
 <template>
   <div class="container">
   <div class="btn btn-primary" @click="handleClick('I')" >내 정보</div>
-  <div class="btn btn-primary" @click="handleClick('M')" >내 게시물</div> 
-  <div class="btn btn-primary" @click="handleClick('F')" >내 갤러리</div> 
-  <div class="btn btn-primary" @click="handleClick('C')" >내 댓글</div> 
+  <div class="btn btn-primary" @click="handleClick('M')" >내 커뮤니티</div> 
+  <div class="btn btn-primary" @click="handleClick('F')" >내 댓글</div> 
+  <div class="btn btn-primary" @click="handleClick('C')" >내 갤러리</div> 
 </div>
 </template>
 
@@ -22,6 +22,8 @@ export default {
 }
 </script>
 
-<style>
-
+<style scoped>
+.container{
+    margin-top:80px;
+}
 </style>

@@ -1,8 +1,8 @@
 <template>
-<div>
+<div class="container">
   <div  v-show="listcount>0">
      <div class="rows">
-      <span>줄보기</span>
+      <span>정렬</span>
       <select class="form-control" v-model="limit">
         <option value="1">1</option>
         <option value="3">3</option>
@@ -51,11 +51,10 @@
         <tbody>
           <tr v-for="(item, index) in list" :key="index">
             <td>{{startnum-index}}</td>
-            <td><router-link :to="{name:'Member_Info', params:{id:`${item.id}`}}">
-              {{item.id}}
+            <td><router-link :to="{name:'Memberlist', params:{id:`${item.user_id}`}}">
+              {{item.user_id}}
             </router-link></td>
-            <td>{{item.name}}</td>           
-            <td><button class="btn btn-danger btn-sm" @click="member_delete(item.id)">삭제</button></td>
+            <td><button class="btn btn-danger btn-sm" @click="member_delete(item.user_id)">삭제</button></td>
           </tr>
         </tbody>
       </table>      
@@ -93,7 +92,7 @@ export default {
     const search=()=>{
       console.log("search하러 가요");
       if(search_word.value==''){
-          alert('검색어를 입력하세요');
+          alert('아이디를 입력하세요');
           f2.value.focus();
           return;
       }
@@ -112,6 +111,7 @@ export default {
       const answer = confirm("정말 삭제하시겠습니까?");
       if(answer){
         try{
+          console.log(id)
             const res = await axios.delete(`users/${id}`)
             console.log(res.data)
             if(res.data==0){
@@ -178,7 +178,7 @@ select{
     border-radius: .25rem;
     transition: border-color .15s ease-in-out, box-shadow .15s ease-in-out;
  } 
-.container{width:60%}
+.container{width:70%}
 td:nth-child(1){width:10%}
 .input-group{margin-bottom:3em}
 </style>

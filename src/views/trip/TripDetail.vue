@@ -58,7 +58,7 @@
       <br><br><hr style="border:solid 2px black;">
       <p style="font-size:21px;">관광지 정보</p>
       <br>
-      {{list.overview}}
+      <p v-html="list.overview"></p>
      </div>
   </div>
 </div>

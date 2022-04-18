@@ -1,17 +1,16 @@
 <template>
   <Header :parent_id="parent_id"/>
   <Memberlist />
-  <Footer />
 </template>
 
 <script>
 import Header from '@/components/main/header_nav.vue';
 import Memberlist from '@/components/administer/member_listupdate.vue';
-import Footer from '@/components/main/footer_info.vue';
+
 
 export default {
 components: {
-    Header , Memberlist,Footer
+    Header , Memberlist
   },
     props:{
         parent_id:{

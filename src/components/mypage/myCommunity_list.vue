@@ -12,11 +12,10 @@
                     <td>{{ startnum - index }}</td>
                     <td>{{ item.board_SUBJECT }}</td>
                     <td>{{ item.board_DATE}}</td>
-                    <td>{{ item.board_LOCATION}}</td>
                     <td>
-                        <!-- <router-link :to="{name:'BoardDetail', params:{num:`${item.board_NAME}`}}">
+                         <router-link :to="{name:'Community_Detail', params:{num:`${item.board_NAME}`}}">
                             <button type="button" class="btn btn-secondary"> 상세 보기 >> </button>
-                        </router-link> -->
+                        </router-link> 
                     </td>
                 </tr>
             </table>

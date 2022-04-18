@@ -4,9 +4,9 @@
         <nav class="navbar navbar-expand-sm navbar-dark bg-primary">
             <div class="container-fluid" id="first_nav">
                  <ul class="navbar-nav ms-md-auto" v-if="parent_id" >
-                    <li class="nav-link logout-hover" @click="logout" >{{parent_id}}님 (로그아웃)</li>
-                    <li><router-link :to="{name:'Memberlist',params:{id:parent_id}}" class="nav-link" v-show="parent_id === 'admin'">관리자페이지</router-link></li>
-                    <li><router-link :to="{name:'Myinfo',params:{id:parent_id}}" class="nav-link" v-show="parent_id !== 'admin'">마이페이지</router-link></li>
+                    <li class="nav-link nav-hover" @click="logout" >{{parent_id}}님 (로그아웃)</li>
+                    <li><router-link :to="{name:'Memberlist',params:{id:parent_id}}" class="nav-link nav-hover" v-show="parent_id === 'admin'">관리자페이지</router-link></li>
+                    <li><router-link :to="{name:'Myinfo',params:{id:parent_id}}" class="nav-link nav-hover" v-show="parent_id !== 'admin'">마이페이지</router-link></li>
                 </ul>
                 <ul class="navbar-nav ms-md-auto" v-else >
                     <li><router-link :to="{name:'Login'}" class="nav-link">로그인</router-link></li>
@@ -39,10 +39,10 @@
                 <div class="collapse navbar-collapse justify-content-center" id="menu_nav">
                     <ul class="navbar-nav" id="category">
                         <li class="nav-item">
-                            <router-link class="nav-link" :to="{name:'GalleryMain'}"> 포토갤러리 </router-link>
+                            <router-link class="nav-link menu_link" :to="{name:'GalleryMain'}"> 포토갤러리 </router-link>
                         </li>
                         <li class="nav-item dropdown">
-                            <router-link class="nav-link dropdown-toggle" data-bs-toggle="dropdown" to="#" role="button" aria-haspopup="true" aria-expanded="false"> 여행지 살펴보기 </router-link>
+                            <router-link class="nav-link dropdown-toggle menu_link" data-bs-toggle="dropdown" to="#" role="button" aria-haspopup="true" aria-expanded="false"> 여행지 살펴보기 </router-link>
                             <div class="dropdown-menu">
                                  <li class="dropdown-item" @click="go('서울')">&nbsp;서울 </li>
                                 <li class="dropdown-item" @click="go('경기')">&nbsp;경기 </li>
@@ -60,7 +60,7 @@
                             </div>
                         </li>
                         <li class="nav-item">
-                            <router-link class="nav-link" :to="{name:'Community'}"> 커뮤니티 </router-link>
+                            <router-link class="nav-link menu_link" :to="{name:'Community'}"> 커뮤니티 </router-link>
                         </li>
                     </ul> 
                 </div>
@@ -143,7 +143,7 @@ export default {
         margin-right: 0px;
         margin-left: 0px;
     }
-    .logout-hover:hover{
+    .nav-hover:hover{
         cursor: pointer;
         font-size: 18px;
         transition: 0.5s font-size;
@@ -181,6 +181,15 @@ export default {
 
     .dropdown-item {
         font-weight: bold;
+    }
+
+    .menu_link {
+        transition-duration: 0.4s;
+        transition-timing-function: ease-out;
+    }
+
+    .menu_link:hover {
+        color: rgba(86, 92, 83, 0.89) !important;
     }
 
     @media (min-width: 992px) {

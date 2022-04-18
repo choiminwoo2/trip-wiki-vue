@@ -147,6 +147,11 @@ export default {
 
     h3 {
         font-weight: bold;
+        margin-bottom: 20px;
+    }
+
+    h5 {
+        margin-bottom: 20px;
     }
 
 

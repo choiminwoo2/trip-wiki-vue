@@ -381,7 +381,7 @@ export default {
   border-style: solid;
   border-width: 3px;
   width: 100%;
-  height: 800px;
+  height: 900px;
   
   
 }

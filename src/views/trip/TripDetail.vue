@@ -62,12 +62,10 @@
      </div>
   </div>
 </div>
-<Footer/>
 </template>
 
 <script>
 import Header from '@/components/main/header_nav.vue';
-import Footer from '@/components/main/footer_info.vue';
 import {key} from '@/views/trip/kakao_api.js'
 import axios from '@/setting/axiossetting.js';
 import dayjs from 'dayjs' //npm install dayjs --save
@@ -76,7 +74,7 @@ import {ref} from 'vue';
 import {useStore} from 'vuex';
 export default {
     components: {
-        Header,Footer
+        Header
     },
     props:{
     parent_id:{
@@ -86,7 +84,7 @@ export default {
   },
 	emits:['parent_getSession'],
   component: { 
-      dayjs 
+      dayjs
     },
   setup(props,context){
      context.emit("parent_getSession");

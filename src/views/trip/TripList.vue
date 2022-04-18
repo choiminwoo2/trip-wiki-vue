@@ -230,4 +230,21 @@ export default {
   transform: translateX(130px);
 } 
 
+ .card {
+        
+        max-width: 285px;
+        max-height:506px;
+        overflow: hidden;
+        
+      
+     
+        transition-duration: 1s;
+        transition-timing-function: ease-out;
+    }
+
+    .card > img:hover {
+        transition: transform 1.5s;
+        transform: scale(1.2);
+    }
+
 </style>

@@ -330,7 +330,7 @@ export default {
  }
 
 #map {
-  
+  border-radius: 5px;
   height:400px;
   border: 1px #a8a8a8 solid;
 }
@@ -362,6 +362,7 @@ export default {
 .main_top > .main_left > #carouselExampleControls > .carousel-inner > .carousel-item > img {
   width: 100%;
   height: 400px;
+  border-radius: 5px;
 }
 
 .main_right {
@@ -380,8 +381,7 @@ export default {
   border-width: 3px;
   width: 100%;
   height: 900px;
-  
-  
+  border-radius: 5px;
 }
 
 .bot_top{

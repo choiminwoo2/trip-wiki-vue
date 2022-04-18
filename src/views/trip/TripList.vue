@@ -27,12 +27,12 @@
                 <h5 class="card-title">
                   <div class="flex">
                     <div class="trip-text">
-                    <div class="flex-icon">
-                      <button type="button" class="btn btn-outline-primary">관광지</button>
-                    </div>
-                    <div class="flex-name">
-                      {{item.title}}
-                    </div>
+                      <div class="flex-icon">
+                        <button type="button" class="btn btn-outline-primary">관광지</button>
+                      </div>
+                      <div class="flex-name">
+                        {{item.title}}
+                      </div>
                     </div>
                   </div>
                 </h5>
@@ -57,21 +57,19 @@
         <paging/>
       </div>
 </div>
-<Footer/>
 </template>
 
 <script>
 import axios from '@/setting/axiossetting.js';
 import { ref,watch } from 'vue';
 import Header from '@/components/main/header_nav.vue';
-import Footer from '@/components/main/footer_info.vue';
 import paging from '@/components/trip/trip_paging.vue';
 import {useRoute,useRouter} from 'vue-router';
 import {useStore} from 'vuex';
 export default { 
 
     components: {
-        Header,Footer,paging
+        Header,paging
     },
     props:{
     parent_id:{

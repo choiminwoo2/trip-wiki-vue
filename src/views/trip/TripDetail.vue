@@ -86,7 +86,7 @@ export default {
   },
 	emits:['parent_getSession'],
   component: { 
-      dayjs 
+      dayjs
     },
   setup(props,context){
      context.emit("parent_getSession");

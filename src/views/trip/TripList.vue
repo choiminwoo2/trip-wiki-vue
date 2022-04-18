@@ -57,7 +57,7 @@
         <paging/>
       </div>
 </div>
-<Footer/>
+<Footer />
 </template>
 
 <script>
@@ -115,8 +115,8 @@ export default {
     };
 
    if(route.query.keyword){
-     getTripList(1,route.query.keyword);
-     store.dispatch('store_keyword',route.query.keyword)
+      getTripList(1,route.query.keyword);
+      store.dispatch('store_keyword',route.query.keyword)
    }
 
       watch(()=>store.state.page, ()=>{ 
@@ -128,11 +128,12 @@ export default {
       console.log(store.state.page);
       getTripList(store.state.page,store.state.keyword);
    })
-     const search = async (event) =>{
+      const search = async (event) =>{
       message.value=event.target.text;
     };
     
     watch(message, () => {
+
         getTripList(1,message.value);
         watch(()=>store.state.page, ()=>{
         store.state.keyword=message.value;
@@ -146,9 +147,12 @@ export default {
         getTripList(1,input_data.value);
         watch(()=>store.state.page, ()=>{
         store.state.keyword=input_data.value;
+      
         getTripList(store.state.page,store.state.keyword);
     })
   }
+
+   
     const detail =(contentid,areacode) =>{
       console.log(contentid,areacode);
       router.push({

@@ -2,12 +2,17 @@
       <router-view 
         @parent_getSession="getSession"
         :parent_id="id"/>
+        <Footer />
 </template>
 <script>
 import axios from '@/setting/axiossetting.js';
 import { useRouter } from 'vue-router';
 import { ref } from '@vue/reactivity';
+import Footer from '@/components/main/footer_info.vue';
 export default {
+  components:{
+    Footer
+  },
   setup(){
     const id = ref('');
     const router = useRouter();

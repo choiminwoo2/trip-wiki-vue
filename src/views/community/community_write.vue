@@ -100,9 +100,10 @@ export default {
 
     setup(props, context){
 
+        
         context.emit("parent_getSession");
         const board = ref({
-            location:'',
+            location:'서울',
             name:'',
             pass:'',
             content:'',

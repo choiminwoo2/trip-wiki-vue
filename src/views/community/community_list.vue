@@ -30,9 +30,13 @@ export default {
    
     const router = useRouter();
     const goWrite=()=>{
+      if(!props.parent_id == ''){
       router.push({
         name:'CommunityWrite',
       });
+      } else{
+        alert('로그인이 필요한 서비스 입니다.')
+      }
     }
     return {
       goWrite

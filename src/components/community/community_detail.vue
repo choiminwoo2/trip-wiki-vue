@@ -43,7 +43,7 @@
 							</router-link>
 							<button class="btn btn-danger"  @click="showModal">삭제</button>
 						</div>
-						<router-link :to="{name:'Community_Reply'}"><button class="btn btn-info">답변</button></router-link>
+						<button class="btn btn-info" @click="reply">답변</button>
 						<router-link :to="{name:'Community'}"><button class="btn btn-success">목록</button></router-link>
 						
 					</td>
@@ -65,9 +65,19 @@ export default {
 			required:true
 		}
 	},
-	setup(){
-		
+	emits:['parent_getSession'],
+	setup(props, context){
+		context.emit("parent_getSession");
 		const num = useRoute().params.num;
+		const reply = () =>{
+			if (!props.parent_id == '') {
+                num.push({
+                    name : 'Community_Reply',
+                });
+            } else {
+                alert('로그인이 필요한 서비스입니다')
+            }
+		}
 		
 		const board=ref({});
 		
@@ -143,7 +153,7 @@ export default {
 
 		return{
 			board, count,
-			download, showModal
+			download, showModal, reply
 		}
 	}
 }

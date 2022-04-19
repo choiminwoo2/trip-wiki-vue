@@ -44,7 +44,7 @@ export default{
         }
 
         const goDelete=async ()=>{
-            const res = await axios.delete(`boards/${num}`, 
+            const res = await axios.delete(`communitys/${num}`, 
             {params:{password : BOARD_PASS.value}
             })
             if(res.data==0){
@@ -55,7 +55,7 @@ export default{
                 alert('삭제 성공');
                 store.dispatch('display', false);
                 router.push({
-                    name: 'Board_List',
+                    name: 'Community',
                 });
             }
         }

@@ -59,7 +59,6 @@
       </div>
     </form>
   </div>
-  <Footer />
 </template>
 
 <script>
@@ -67,12 +66,11 @@ import { ref } from "vue";
 import axios from '../../axios/axiossetting.js';
 import {useRoute, useRouter} from 'vue-router';
 import Header from '@/components/main/header_nav.vue';
-import Footer from '@/components/main/footer_info.vue';
 import ClassicEditor from '@ckeditor/ckeditor5-build-classic';
 export default {
   name: 'App',
         components: {
-        Header, Footer
+        Header
         },
         data() {
             return {

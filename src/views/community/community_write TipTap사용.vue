@@ -67,12 +67,10 @@
             </div>
         </form>
     </div>
-      <Footer />
 </template>
  
 <script>
 import Header from '@/components/main/header_nav.vue';
-import Footer from '@/components/main/footer_info.vue';
 import { ref } from "vue";
 import axios from '../../axios/axiossetting.js';
 import { useRouter } from 'vue-router';
@@ -81,7 +79,7 @@ import Tiptap from '../../components/community/community_tiptap.vue'
 export default {
        name: 'App',
         components: {
-        Header, Footer,Tiptap
+        Header,Tiptap
         },
     props: {
         parent_id: {

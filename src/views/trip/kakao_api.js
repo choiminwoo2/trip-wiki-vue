@@ -1,3 +1,3 @@
-const key = '16cbd9892ceb07937affe6fe07df9a34';
+const key = 'f795c92ca3afbbdfdd6e2ecb809bb60b';
 
 export {key}

@@ -5,8 +5,6 @@
     <tr>
       <th scope="col" id="num">번호</th>
       <th scope="col" id="title">제목</th>
-      <th scope="col" id="read">조회</th>
-      <th scope="col" id="int">관심</th>
       <th scope="col" id="date">날짜</th>
     </tr>
   </thead>

@@ -83,8 +83,7 @@ export default {
 
         const deleteProcess = async () => {
             const res = await axios.delete(`gallery/${num}`)
-            confirm('정말 해당 게시물을 삭제하시겠습니까?');
-            if (!confirm) {
+            if (!confirm('정말 해당 게시물을 삭제하시겠습니까?')) {
                 return;
             } else {
                 if (res.data == -1) {
@@ -148,6 +147,11 @@ export default {
 
     h3 {
         font-weight: bold;
+        margin-bottom: 20px;
+    }
+
+    h5 {
+        margin-bottom: 20px;
     }
 
 

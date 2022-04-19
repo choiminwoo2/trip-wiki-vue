@@ -27,12 +27,12 @@
                 <h5 class="card-title">
                   <div class="flex">
                     <div class="trip-text">
-                    <div class="flex-icon">
-                      <button type="button" class="btn btn-outline-primary">관광지</button>
-                    </div>
-                    <div class="flex-name">
-                      {{item.title}}
-                    </div>
+                      <div class="flex-icon">
+                        <button type="button" class="btn btn-outline-primary">관광지</button>
+                      </div>
+                      <div class="flex-name">
+                        {{item.title}}
+                      </div>
                     </div>
                   </div>
                 </h5>
@@ -57,21 +57,19 @@
         <paging/>
       </div>
 </div>
-<Footer/>
 </template>
 
 <script>
 import axios from '@/setting/axiossetting.js';
 import { ref,watch } from 'vue';
 import Header from '@/components/main/header_nav.vue';
-import Footer from '@/components/main/footer_info.vue';
 import paging from '@/components/trip/trip_paging.vue';
 import {useRoute,useRouter} from 'vue-router';
 import {useStore} from 'vuex';
 export default { 
 
     components: {
-        Header,Footer,paging
+        Header,paging
     },
     props:{
     parent_id:{
@@ -115,8 +113,8 @@ export default {
     };
 
    if(route.query.keyword){
-     getTripList(1,route.query.keyword);
-     store.dispatch('store_keyword',route.query.keyword)
+      getTripList(1,route.query.keyword);
+      store.dispatch('store_keyword',route.query.keyword)
    }
 
       watch(()=>store.state.page, ()=>{ 
@@ -128,11 +126,12 @@ export default {
       console.log(store.state.page);
       getTripList(store.state.page,store.state.keyword);
    })
-     const search = async (event) =>{
+      const search = async (event) =>{
       message.value=event.target.text;
     };
     
     watch(message, () => {
+
         getTripList(1,message.value);
         watch(()=>store.state.page, ()=>{
         store.state.keyword=message.value;
@@ -146,9 +145,12 @@ export default {
         getTripList(1,input_data.value);
         watch(()=>store.state.page, ()=>{
         store.state.keyword=input_data.value;
+      
         getTripList(store.state.page,store.state.keyword);
     })
   }
+
+   
     const detail =(contentid,areacode) =>{
       console.log(contentid,areacode);
       router.push({
@@ -227,5 +229,22 @@ export default {
    margin-top: 50px;
   transform: translateX(130px);
 } 
+
+ .card {
+        
+        max-width: 285px;
+        max-height:506px;
+        overflow: hidden;
+        
+      
+     
+        transition-duration: 1s;
+        transition-timing-function: ease-out;
+    }
+
+    .card > img:hover {
+        transition: transform 1.5s;
+        transform: scale(1.2);
+    }
 
 </style>

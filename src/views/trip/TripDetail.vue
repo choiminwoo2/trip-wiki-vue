@@ -37,9 +37,9 @@
   <div class="main_bot"> 
     <div class="bot_top">
       <div class="bot_left">
-        <p style="font-size:17px;">주소 | {{list.addr1}}</p>
+        <p style="font-size:17px;">주 &nbsp; 소 |&nbsp; {{list.addr1}}</p>
         <br>
-        <p style="font-size:17px;">관광지 | {{list.title}}</p>
+        <p style="font-size:17px;">관광지 |&nbsp; {{list.title}}</p>
      </div>
      <div class="bot_right">
       <div class="weather">
@@ -58,16 +58,14 @@
       <br><br><hr style="border:solid 2px black;">
       <p style="font-size:21px;">관광지 정보</p>
       <br>
-      {{list.overview}}
+      <p v-html="list.overview"></p>
      </div>
   </div>
 </div>
-<Footer/>
 </template>
 
 <script>
 import Header from '@/components/main/header_nav.vue';
-import Footer from '@/components/main/footer_info.vue';
 import {key} from '@/views/trip/kakao_api.js'
 import axios from '@/setting/axiossetting.js';
 import dayjs from 'dayjs' //npm install dayjs --save
@@ -76,7 +74,7 @@ import {ref} from 'vue';
 import {useStore} from 'vuex';
 export default {
     components: {
-        Header,Footer
+        Header
     },
     props:{
     parent_id:{
@@ -86,7 +84,7 @@ export default {
   },
 	emits:['parent_getSession'],
   component: { 
-      dayjs 
+      dayjs
     },
   setup(props,context){
      context.emit("parent_getSession");
@@ -332,7 +330,7 @@ export default {
  }
 
 #map {
-  
+  border-radius: 5px;
   height:400px;
   border: 1px #a8a8a8 solid;
 }
@@ -364,6 +362,7 @@ export default {
 .main_top > .main_left > #carouselExampleControls > .carousel-inner > .carousel-item > img {
   width: 100%;
   height: 400px;
+  border-radius: 5px;
 }
 
 .main_right {
@@ -381,9 +380,8 @@ export default {
   border-style: solid;
   border-width: 3px;
   width: 100%;
-  height: 800px;
-  
-  
+  height: 900px;
+  border-radius: 5px;
 }
 
 .bot_top{

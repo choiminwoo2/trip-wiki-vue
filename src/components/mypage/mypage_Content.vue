@@ -2,8 +2,8 @@
   <div class="container">
       <MyInfo :parent_id="parent_id" v-if="menu=='I'" />
       <MyBoard :parent_id="parent_id" v-else-if="menu=='M'" />
-      <MyReply :parent_id="parent_id" v-else-if="menu=='C'" />
-      <MyHeart :parent_id="parent_id" v-else/>
+      <MyGallery :parent_id="parent_id" v-else-if="menu=='C'" />
+      <MyReply :parent_id="parent_id" v-else/>
   </div>
 </template>
 
@@ -11,12 +11,12 @@
 import { ref ,watch} from'vue';
 import {useStore} from 'vuex';
 import MyInfo from '@/components/mypage/mypage_info.vue';
-import MyBoard from '@/components/mypage/myBoard_list.vue';
+import MyBoard from '@/components/mypage/myCommunity_list.vue';
+import MyGallery from '@/components/mypage/myGallery_list.vue';
 import MyReply from '@/components/mypage/myReply_list.vue';
-import MyHeart from '@/components/mypage/myHeart_list.vue';
 export default {
   components: {
-    MyInfo,MyBoard,MyReply,MyHeart
+    MyInfo,MyBoard,MyReply,MyGallery
   },
   props:{
         parent_id:{

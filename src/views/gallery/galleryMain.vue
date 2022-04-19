@@ -8,19 +8,17 @@
         </div>
         <Gallery_List />
         <Paging />
-        <Footer />
     </div>
 </template>
 
 <script>
 import Header from '@/components/main/header_nav.vue';
-import Footer from '@/components/main/footer_info.vue';
 import Gallery_List from '@/components/gallery/gallery_list.vue';
 import Paging from '@/components/gallery/gallery_pagination.vue';
 import {useRouter} from 'vue-router';
 export default {
     components: {
-        Header, Footer, Gallery_List, Paging
+        Header, Gallery_List, Paging
     },
     props: {
         parent_id: {

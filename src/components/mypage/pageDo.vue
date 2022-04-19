@@ -47,6 +47,8 @@
     }
 </script>
 
-<style>
-
+<style scoped>
+ul.pagination{
+        justify-content: center;
+    }
 </style>

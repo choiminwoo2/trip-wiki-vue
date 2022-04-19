@@ -9,8 +9,9 @@
               <input v-model="input_id" class="form-control" placeholder="아이디 입력">
               <EmailBox />
                <input v-model="input_key" placeholder="인증 번호 입력" class="form-control" style="margin-bottom:5px; margin-top:18px;">
+               <p>{{message}}</p>
               <button class="btn btn-info btn-xs right-button" @Click="getKey">인증 번호 확인</button>
-              <button class="btn btn-primary ">비밀번호 변경하기</button>
+              <button class="btn btn-primary ">다음으로</button>
           </div>
       </form>
   </div>
@@ -31,6 +32,7 @@ export default {
         const store = useStore();
         const input_id = ref('');
         const input_key = ref('');
+        const message = ref('');
         let sendIdValue = '';
 
         const readKey = async() =>{
@@ -39,6 +41,7 @@ export default {
             const data = await(await axios.post(`SelectToFinder/${secrectKey}/${id}`)).data;
             if(data.result == 1){
                sendIdValue = data.id;
+               message.value = "인증 완료 되었습니다.";
             }
         }
         const sendId = () =>{
@@ -71,7 +74,7 @@ export default {
             console.log("sendEmail=" + sendEmail.value)
         })
         return{
-            store,sendEmail,input_id,sendId,input_key,getKey,sendIdValue
+            store,sendEmail,input_id,sendId,input_key,getKey,sendIdValue,message
         }
     }
 }

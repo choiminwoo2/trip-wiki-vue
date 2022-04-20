@@ -24,6 +24,7 @@ export default {
     max-width: 1100px;
     justify-content: center;
     justify-items: center;
+      padding-top:100px;
   }
   img{
     position: relative;
@@ -34,9 +35,6 @@ export default {
   }
   a{
     text-align: center;
-  }
-  footer{
-    position: absolute;
   }
 }
 /* 태블릿 pc~ */
@@ -51,6 +49,7 @@ export default {
     justify-content: center;
     justify-items: center;
     transform: translateX(-10px);
+      padding-top:100px;
   } 
    img{
     position: relative;
@@ -60,9 +59,6 @@ export default {
   }
   a{
     text-align: center;
-  }
-  footer{
-    position: absolute;
   }
 }
 /* 모바일~*/
@@ -77,6 +73,7 @@ export default {
     justify-items: center;
     min-width: 300px;
     max-width: 600px;
+      padding-top:100px;
   }
    img{
     position: relative;
@@ -86,9 +83,6 @@ export default {
   }
   a{
     text-align: center;
-  }
-  footer{
-    position: absolute;
   }
 }
 </style>

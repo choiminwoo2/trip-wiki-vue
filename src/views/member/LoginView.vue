@@ -35,6 +35,7 @@ export default {
     max-width: 1100px;
     justify-content: center;
     justify-items: center;
+    padding-top:100px;
 
   }
   
@@ -48,9 +49,7 @@ export default {
   a{
     text-align: center;
   }
-  footer{
-    position: absolute;
-  }
+
 }
 /* 태블릿 pc~ */
 /* 가로의 길이가 768에서 1023px 사이 */
@@ -63,6 +62,7 @@ export default {
     max-width: 70%;
     justify-content: center;
     justify-items: center;
+      padding-top:100px;
   } 
    img{
     position: relative;
@@ -77,9 +77,7 @@ export default {
   .header{
   height:200px;
   }
-   footer{
-    position: absolute;
-  }
+
 
 }
 /* 모바일~*/
@@ -94,7 +92,7 @@ export default {
     justify-items: center;
     min-width: 300px;
     max-width: 600px;
-
+     padding-top:100px;
   }
    img{
     position: relative;
@@ -108,9 +106,6 @@ export default {
   }
   .header{
   height:150px;
-  }
-   footer{
-    position: absolute;
   }
 }
 </style>

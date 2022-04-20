@@ -1,10 +1,13 @@
 <template>
     <div class="gallery">
         <Header :parent_id="parent_id"/>
-        <h3>포토갤러리</h3>
-        <h6>사진 속 함께하는 나들이 여행</h6>
-        <div class="photo_button">
-            <button type="button" class="btn btn-success" @click="goWrite">사진 올리기</button>
+        <div >
+                <div class="flex-column">
+                    <h3>포토갤러리</h3>
+                    <h6>사진 속 함께하는 나들이 여행</h6>
+                    <button type="button" class="btn btn-success" @click="goWrite">사진 올리기</button>
+                </div>
+
         </div>
         <Gallery_List />
         <Paging />
@@ -48,31 +51,53 @@ export default {
 }
 </script>
 
-<style scoped>
-    .photo_button {
-        text-align: right;
-    }
-    button {
-        margin-right: 250px;
-    }
-    h3 {
-        margin-top: 50px;
-        margin-left: 280px;
-        font-weight: 800;
-    }
-    h6 {
-        margin-left: 250px;
-        margin-bottom: 0;
-        font-weight: bold;
+<style lang="scss" scoped>
+
+ 
+ 
+
+
+    @media  (max-width:508px){ 
+        .flex-column{
+            display: flex;
+            flex-wrap: nowrap;
+            flex-direction: column;
+            
+            margin-top:50px;
+            margin-left: 1rem;
+            button{
+
+                align-self: flex-end;
+                margin-right: 3.3rem;
+                
+            }
+            .btn{
+                width: 120px !important;
+            }
+        }
     }
 
-    @media (max-width: 991px) {
-        h3, h6 {
-            margin-left: 50px;
+
+    // Extra large devices (large desktops, 1200px and up)
+    @media (min-width: 1351px) and (max-width: 1920px) {
+                .flex-column{
+            display: flex;
+            flex-wrap: nowrap;
+            flex-direction: column;
+            margin-top:50px;
+            margin-left: 1rem;
+            padding: 0px 15.8% 0 15%;
+            h3{
+                transform: translateX(28px);
+            }
+            button{
+                
+                align-self: flex-end;
+                
+            }
+            .btn{
+                width: 120px !important;
+            }
         }
-        .photo_button {
-            text-align: left;
-            margin: 20px 0px 0px 50px;
-        }
-    }
+     }
 </style>

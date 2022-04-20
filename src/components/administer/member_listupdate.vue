@@ -12,7 +12,7 @@
       </select>
     </div>
 
-      <form @submit.prevent="search">
+      <!-- <form @submit.prevent="search">
         <div class="input-group">
           <select id="viewcount" 
                   v-model.lazy="search_field"  
@@ -20,7 +20,7 @@
                 <option v-for="(item, index) in option_data" 
                         :key="index" 
                         :value="item.value" >{{item.label}}</option>
-               
+        
           </select>
           <input  
                   type="text" 
@@ -32,7 +32,7 @@
           <button class="btn btn-primary" type="submit" >검색</button>
         
         </div>
-  </form>
+  </form> -->
 
       <table class="table table-striped">
         <thead>

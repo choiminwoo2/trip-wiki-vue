@@ -67,12 +67,10 @@
             </div>
         </form>
     </div>
-      <Footer />
 </template>
  
 <script>
 import Header from '@/components/main/header_nav.vue';
-import Footer from '@/components/main/footer_info.vue';
 import { ref } from "vue";
 import axios from '../../axios/axiossetting.js';
 import { useRouter } from 'vue-router';
@@ -81,7 +79,7 @@ import ClassicEditor from '@ckeditor/ckeditor5-build-classic';
 export default {
        name: 'App',
         components: {
-        Header, Footer
+        Header
         },
             data() {
             return {
@@ -102,9 +100,10 @@ export default {
 
     setup(props, context){
 
+        
         context.emit("parent_getSession");
         const board = ref({
-            location:'',
+            location:'서울',
             name:'',
             pass:'',
             content:'',

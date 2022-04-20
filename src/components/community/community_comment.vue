@@ -93,19 +93,23 @@ export default{
             let res;
 
             try{
+                if (!props.parent_id == ''){
                 if(button_message.value=="등록"){
+                    
                     res = await axios.post("comcomments/new",
                     {board_num:board_num,
                     content:content.value,
                     id:props.parent_id});
                     console.log(res.data);
-
                 }else{
                     res = await axios.patch("comcomments",
                     {num:comment_num,content:content.value});
                     button_message.value="등록";
                     console.log(res.data);
                 }
+                                    }else {
+                        alert('로그인이 필요한 서비스입니다.')
+                    }
                 content.value="";
                 if(res.data==1)
                 getList(1);

@@ -2,17 +2,15 @@
 <div>
   <Header :parent_id="parent_id"/>
   <Myinform  :parent_id="parent_id"/>
-  <Footer />
 </div>
 </template>
 
 <script>
 import Header from '@/components/main/header_nav.vue';
 import Myinform from '@/components/mypage/mypage_inform.vue';
-import Footer from '@/components/main/footer_info.vue';
 export default {
   components: {
-    Header , Myinform ,Footer
+    Header , Myinform 
   },
   props:{
         parent_id:{

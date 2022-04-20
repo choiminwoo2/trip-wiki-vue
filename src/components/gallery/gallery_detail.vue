@@ -82,17 +82,17 @@ export default {
         }
 
         const deleteProcess = async () => {
-            const res = await axios.delete(`gallery/${num}`)
             if (!confirm('정말 해당 게시물을 삭제하시겠습니까?')) {
                 return;
             } else {
-                if (res.data == -1) {
-                    alert('삭제 실패입니다');
-                } else {
+                const res = await axios.delete(`gallery/${num}`)
+                if (res.data == 1) {
                     alert('삭제되었습니다');
                     router.push({
                         name: 'GalleryMain',
                     });
+                } else {
+                    alert('삭제 실패입니다');
                 }
             }
         }
@@ -147,6 +147,11 @@ export default {
 
     h3 {
         font-weight: bold;
+        margin-bottom: 20px;
+    }
+
+    h5 {
+        margin-bottom: 20px;
     }
 
 

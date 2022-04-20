@@ -35,15 +35,14 @@ export default {
 </script>
 
 <style scoped>
-    footer {
-        width: 100%;
-        height: 150px;
-        bottom: 0;
-        left: 0;
-        margin-top: 100px;
-        background-color: rgb(187, 190, 188);
-        
-    }
+footer{
+    height: 150px;
+    width: 100%;
+    position : relative;
+    transform : translateY(-100%);
+    margin-top:50px;
+    background-color: rgb(187, 190, 188);
+}
 
     footer >#logo {
         text-align: right;

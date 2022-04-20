@@ -1,9 +1,12 @@
 <template> 
+  <div class="wrap">
       <router-view 
         @parent_getSession="getSession"
         :parent_id="id"/>
+  </div>
         <Footer />
 </template>
+
 <script>
 import axios from '@/setting/axiossetting.js';
 import { useRouter } from 'vue-router';
@@ -56,9 +59,15 @@ export default {
       box-sizing: border-box;
     }
   }
+  .wrap{
+     height: auto;
+  min-height: 100%;
+  padding-bottom: 150px;
+  }
   #app{
     min-height: 100%;
-    height: 100%;
+    height:100%;
+    width:100%;
   }
  
 </style>

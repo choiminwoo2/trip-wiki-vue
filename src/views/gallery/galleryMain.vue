@@ -79,7 +79,7 @@ export default {
 
 
     // Extra large devices (large desktops, 1200px and up)
-    @media (min-width: 1351px) and (max-width: 1920px) {
+    @media (min-width: 1351px) {
                 .flex-column{
             display: flex;
             flex-wrap: nowrap;
@@ -100,4 +100,5 @@ export default {
             }
         }
      }
+     
 </style>

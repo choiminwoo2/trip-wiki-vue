@@ -85,7 +85,7 @@ export default {
       }
     }
     const kakaologin = () =>{
-      window.location.replace("https://kauth.kakao.com/oauth/authorize?client_id=7766f2940612dd165b60ff116edf4541&redirect_uri=http://localhost:8081/trip/auth&response_type=code");
+      window.location.replace("https://kauth.kakao.com/oauth/authorize?client_id=7766f2940612dd165b60ff116edf4541&redirect_uri=http://localhost:8088/trip/trip/auth&response_type=code");
     }
     
     return{

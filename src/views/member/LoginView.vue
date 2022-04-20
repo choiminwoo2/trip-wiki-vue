@@ -2,17 +2,15 @@
   <div class="login-Container">
     <router-link :to="{name:'Home'}"><img src="@/assets/logo.png"></router-link>
     <LoginPages />
-    <Footor />
   </div>
   
 </template>
 
 <script>
 import LoginPages from '@/components/member/loginPages.vue'
-import Footor from '@/components/main/footer_info.vue';
 export default {
     components: {
-      LoginPages,Footor
+      LoginPages
     },props:{
       parent_id:{
         type: String,

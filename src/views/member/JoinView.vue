@@ -2,16 +2,14 @@
   <div class="join-container">
     <router-link :to="{name:'Home'}"><img src="@/assets/logo.png"></router-link>
     <MemberJoin/>
-    <Footer />
   </div>
 </template>
 
 <script>
 import MemberJoin from '@/components/member/member_join.vue';
-import Footer from '@/components/main/footer_info.vue';
 export default {
     components :{
-        MemberJoin,Footer
+        MemberJoin
     }
 }
 </script>

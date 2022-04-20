@@ -10,7 +10,9 @@
             </div>
             <div class="btns">
                 <button type="button" class="btn btn-success" v-if="parent_id" @click="add">등록</button>
-                <button type="button" class="btn btn-info" v-else>로그인</button>
+                <router-link :to="{name:'Login'}" class="nav-link" v-else>
+                    <button type="button" class="btn btn-info">로그인</button>
+                </router-link>
             </div>
         </div> 
         <!-- 댓글 리스트 -->
@@ -18,7 +20,7 @@
             <div class="comments" v-for="(item, index) in list" :key="index">
                 <div class="user_info">
                     <span class="user_id"><i class='bx bxs-user' /> {{ item.user_id }} </span>
-                    <span> | {{ item.reg_date }}</span>
+                    <span class="date"> | {{ item.reg_date }}</span>
                 </div>
                 <div class="user_content">
                     <span>{{ item.content }}</span>
@@ -207,6 +209,7 @@ export default {
     }
 
     .user_content {
+        margin-top: 10px;
         padding-left: 20px;
     }
 
@@ -215,11 +218,12 @@ export default {
         font-size: 17px;
     }
 
+    .date {
+        font-size: 15px;
+    }
+
     .commentMgr {
         text-align: right;
     }
-
-
-
 
 </style>

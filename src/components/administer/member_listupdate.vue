@@ -20,7 +20,7 @@
                 <option v-for="(item, index) in option_data" 
                         :key="index" 
                         :value="item.value" >{{item.label}}</option>
-               
+        
           </select>
           <input  
                   type="text" 

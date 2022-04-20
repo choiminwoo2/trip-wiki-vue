@@ -53,7 +53,7 @@ export default {
         margin-top:30px;
         border : 2px solid rgba(0, 0, 0, 0.2);
         border-radius: 5px;
-        height:200px;
+        height:230px;
         width: 400px;
         margin : 0 auto;
         padding: 20px;

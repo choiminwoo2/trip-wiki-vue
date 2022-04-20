@@ -6,7 +6,7 @@
      <h1>메일 인증이 완료 되었습니다.</h1>
     <hr>
     <div>
-    <h4>{{timer}} 후 로그인페이지로 이동합니다.</h4>
+    <h4>{{timer +1}}초 후 로그인페이지로 이동합니다.</h4>
     </div>
   </div>
 </template>
@@ -21,16 +21,14 @@ export default {
     setup(){
         const mail = useRoute().params.mail;
         const authKey =useRoute().params.authKey;
-        const timer = ref(3);
+        const timer = ref(2);
         const loading = ref(true);
         const id = useRoute().params.id;
-      
         const getAuthSucess = async() =>{
             const data = await(await axios.post(`createUserAuth/${mail}/${authKey}/${id}`)).data;
             loading.value=false;
             if(data > 0){
                 var interval = setInterval(() => {
-                
                     if(timer.value >= 1){
                         timer.value = timer.value -1;
                 }else{

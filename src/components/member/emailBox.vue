@@ -47,9 +47,22 @@ export default {
                         email : input_email.value,
                         message : sendMessage.value
                     })).data; 
-                    console.log(data);
+                    console.log("아이디 찾기 =" +data);
+                    if(data == -1){
+                        email_message.value ="ID가 존재하지 않습니다."
+                        console.log("아이디가 존재하지 않습니다.")
+                    }else if(data == 1){
+                        email_message.value ="이메일을 확인해주세요."
+                        console.log("이메일을 확인해주세요")
+                    }else if(data== 2){
+                        email_message.value = "메일을 확인해주세요.";
+                        console.log("이메일을 확인해주세요")
+                        sendMessage.value = "비밀번호";
+                        sendEmailToUser(email_message);
+                    }
             }
-        }
+        }//handleEmailSender
+
         const sendEmailToUser = async() =>{
             const data = await( await axios.post('keySender',{
                 email : input_email.value,
@@ -57,12 +70,12 @@ export default {
                 id : sendId.value
             })).data;
             console.log(data);
-        }
+        }//sendEmailToUserEnd
         return{
             input_email,ChangeEmail,sendId,handleEmailSender,email_color,email_message
-        }
-    }
-}
+        }//return end
+    }//setup end
+}//export end
 </script>
 
 <style lang="scss" scoped>
